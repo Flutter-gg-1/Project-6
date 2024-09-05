@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tickets_app/extensions/get_size.dart';
-import 'package:tickets_app/extensions/string_ext.dart';
-import 'package:tickets_app/widget/my_t_field.dart';
-import '../extensions/color_ext.dart';
+import '../core/all_file.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -56,6 +53,11 @@ class SignUpScreen extends StatelessWidget {
                     hintText: 'Phone Number',
                   ),
                   SizedBox(height: context.getScreenSize(multiplyWidth: 0.05)),
+                  MyButton(text: 'Sign Up', onPressed: () {}),
+                  SizedBox(height: context.getScreenSize(multiplyWidth: 0.05)),
+                  TextButton(
+                      onPressed: () {},
+                      child: const Text('Skip').styled(color: C.text2)),
                 ],
               ),
             ],

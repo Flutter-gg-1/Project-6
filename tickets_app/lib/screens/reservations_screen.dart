@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tickets_app/extensions/string_ext.dart';
-import '../extensions/color_ext.dart';
+import 'package:tickets_app/core/extensions/string_ext.dart';
+import '../core/extensions/color_ext.dart';
 
 class ReservationsScreen extends StatelessWidget {
   const ReservationsScreen({super.key});

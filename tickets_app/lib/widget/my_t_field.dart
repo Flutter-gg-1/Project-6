@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tickets_app/extensions/color_ext.dart';
+import 'package:tickets_app/core/extensions/color_ext.dart';
 
 class MyTextField extends StatelessWidget {
   const MyTextField({super.key, this.hintText, this.prefixIcon});

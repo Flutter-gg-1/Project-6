@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tickets_app/extensions/string_ext.dart';
+import 'package:tickets_app/core/extensions/string_ext.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
