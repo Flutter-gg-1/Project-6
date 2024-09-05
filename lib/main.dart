@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:project6/screens/home_screen.dart';
+import 'package:project6/services/setup.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  setup();
   runApp(const MainApp());
 }
 
@@ -10,11 +14,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+      home: HomeScreen()
     );
   }
 }
