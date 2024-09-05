@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project6/screens/add_movie_screen.dart';
 import 'package:project6/widgets/show_movies.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -41,7 +42,7 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-        body: SafeArea(
+        body: const SafeArea(
             child: TabBarView(
           children: [
             ShowMovies(category: 'Comedy'),
@@ -50,6 +51,11 @@ class HomeScreen extends StatelessWidget {
             ShowMovies(category: 'Action'),
           ],
         )),
+        floatingActionButton: FloatingActionButton(onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return const AddMovieScreen();
+          }));
+        }),
       ),
     );
   }

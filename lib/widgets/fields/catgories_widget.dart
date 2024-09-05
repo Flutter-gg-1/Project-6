@@ -30,16 +30,12 @@ class CatgoriesWidget extends StatelessWidget {
               'Drama',
               'Romance',
               'Action',
-              'Horror',
-              'Family',
             ],
             buttonValues: const [
               'Comady',
               'Drama',
               'romance',
               'Action',
-              'Horror',
-              'Family',
             ],
             buttonTextStyle: const ButtonTextStyle(
                 selectedColor: Color(0xff6F43F5),

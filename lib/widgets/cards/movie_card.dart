@@ -38,7 +38,7 @@ class MovieCard extends StatelessWidget {
           ),
           Row(
             children: [
-              Icon(Icons.videocam_outlined, size: 16, color: Color(0xffF2F2F2),),
+              const Icon(Icons.videocam_outlined, size: 16, color: Color(0xffF2F2F2),),
               Text(
                 movie.category,
                 style: const TextStyle(color: Color(0xffDEDEDE), fontSize: 12),
@@ -46,13 +46,13 @@ class MovieCard extends StatelessWidget {
             ],
           ),
           ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 173),
+            constraints: const BoxConstraints(maxWidth: 173),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.calendar_month,
                       size: 16,
                       color: Color(0xffF2F2F2),
@@ -64,7 +64,7 @@ class MovieCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                Row(
+                const Row(
                   children: [
                     Icon(
                       Icons.edit_outlined,

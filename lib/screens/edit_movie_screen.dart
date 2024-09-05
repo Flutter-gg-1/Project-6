@@ -1,11 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:movie_app/widgets/buttons/button_widget.dart';
-import 'package:movie_app/widgets/fields/add_field_widget.dart';
-import 'package:movie_app/widgets/fields/catgories_widget.dart';
-import 'package:movie_app/widgets/fields/image_field_widget.dart';
+import 'package:project6/widgets/button_widget.dart';
+import 'package:project6/widgets/fields/add_field_widget.dart';
+import 'package:project6/widgets/fields/catgories_widget.dart';
+import 'package:project6/widgets/fields/image_field_widget.dart';
 
 class EditMoiveScreen extends StatelessWidget {
   const EditMoiveScreen({super.key});
@@ -39,7 +38,7 @@ class EditMoiveScreen extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 40),
-              ButtonWidget(title: 'Edit')
+              const ButtonWidget(title: 'Edit')
             ],
           ),
         ),
