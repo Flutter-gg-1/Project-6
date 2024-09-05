@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tickets_app/extensions/string_ext.dart';
+import 'package:tickets_app/widget/my_t_field.dart';
 import '../extensions/color_ext.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -7,11 +9,12 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
+      backgroundColor: C.bg,
       body: SafeArea(
         child: Column(
           children: [
-            const Text('SignUpScreen').styled(color: C.bg),
+            MyTextField(),
           ],
         ),
       ),
