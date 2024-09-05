@@ -16,8 +16,7 @@ class UserMgr {
   Future<void> _fetchData() async {
     if (box.read(key) == null) {
       allUsers = await _loadDefaultUsers();
-      BoxStorage.writeItems(
-          items: allUsers, key: key, toJson: (user) => user.toJson());
+      await _writeToBox();
     } else {
       allUsers = await BoxStorage.readItems<User>(
           key: key, fromJson: (json) => User.fromJson(json));
@@ -47,5 +46,19 @@ class UserMgr {
           email: 'jane@example.com',
           password: '123'),
     ];
+  }
+
+  // MARK: Add User
+  Future<void> addUser(User user) async {
+    allUsers.add(user);
+    await _writeToBox();
+  }
+
+  Future<void> _writeToBox() async {
+    await BoxStorage.writeItems(
+      items: allUsers,
+      key: key,
+      toJson: (user) => user.toJson(),
+    );
   }
 }

@@ -19,19 +19,7 @@ class ReservationMgr {
     }
   }
 
-  Future<void> addReservation({
-    required int userId,
-    required int roomId,
-    required String date,
-    required int numNights,
-  }) async {
-    var reservation = Reservation(
-      id: Random().nextInt(999),
-      userId: userId,
-      roomId: roomId,
-      date: date,
-      numNights: numNights,
-    );
+  Future<void> addReservation(Reservation reservation) async {
     allReservations.add(reservation);
     await _writeToBox();
   }
@@ -43,6 +31,19 @@ class ReservationMgr {
     if (reservation != null) {
       allReservations.remove(reservation);
       await _writeToBox();
+    }
+  }
+
+  Future<void> updateReservation(Reservation newReservation) async {
+    var oldReservation =
+        allReservations.where((r) => r.id == newReservation.id).firstOrNull;
+
+    if (oldReservation != null) {
+      allReservations.remove(oldReservation);
+      allReservations.add(newReservation);
+      await _writeToBox();
+    } else {
+      // Error! Could not find Reservation to Update...
     }
   }
 
