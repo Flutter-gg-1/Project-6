@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tickets_app/extensions/string_ext.dart';
-import '../extensions/color_ext.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../core/all_file.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -8,18 +9,39 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: C.bg,
       body: SafeArea(
         child: Column(
           children: [
-            const Text('LoginScreen').styled(color: C.accent),
+            SizedBox(height: context.getScreenSize(multiplyWidth: 0.3)),
+            RichText(
+                text: const TextSpan(children: [
+              TextSpan(text: 'Log in ', style: TextStyle(color: C.text3)),
+              TextSpan(text: 'Sign in', style: TextStyle(color: C.text2)),
+            ])),
+            const MyTextField(hintText: 'Email', prefixIcon: Icon(Icons.email)),
+            SizedBox(height: context.getScreenSize(multiplyWidth: 0.15)),
+            const MyTextField(
+                hintText: 'Password',
+                prefixIcon: Icon(Icons.lock),
+                suffixIcon: Icon(Icons.remove_red_eye)),
+            SizedBox(height: context.getScreenSize(multiplyWidth: 0.15)),
+            MyButton(text: 'Log in', onPressed: () {}),
+            SizedBox(height: context.getScreenSize(multiplyWidth: 0.1)),
+            TextButton(
+                onPressed: () {},
+                child: const Text('Forgot Password?').styled(color: C.text3)),
+            const Divider(),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ElevatedButton(
-                  onPressed: () => (),
-                  child: Text('Navigate').styled(color: C.bg),
-                )
+                IconButton(
+                    onPressed: () {},
+                    icon: const Icon(FontAwesomeIcons.google)),
+                IconButton(onPressed: () {}, icon: const Icon(Icons.facebook)),
+                IconButton(onPressed: () {}, icon: const Icon(Icons.apple)),
               ],
-            )
+            ),
           ],
         ),
       ),

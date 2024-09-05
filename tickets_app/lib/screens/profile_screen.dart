@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tickets_app/extensions/string_ext.dart';
-import '../extensions/color_ext.dart';
+import '../core/all_file.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});

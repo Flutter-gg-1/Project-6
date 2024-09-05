@@ -1,5 +1,5 @@
 import 'package:get_storage/get_storage.dart';
-import '../extensions/img_ext.dart';
+import '../core/extensions/img_ext.dart';
 import '../model/room.dart';
 import '../utils/box_storage.dart';
 import '../utils/img_converter.dart';
