@@ -1,14 +1,22 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tickets_app/screens/home_screen.dart';
 import '../../core/all_file.dart';
 import '../../core/extensions/img_ext.dart';
+import '../../managers/user_mgr.dart';
 import '../../reusable_components/custom_text_btn.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});
+
+  final userMgr = GetIt.I.get<UserMgr>();
+
+  void getUsers() {
+    userMgr.allUsers.first;
+  }
 
   void _navigateToLogin(BuildContext context) {
     Navigator.of(context).pop();

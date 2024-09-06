@@ -6,11 +6,14 @@ import '../utils/img_converter.dart';
 
 class UserMgr {
   final box = GetStorage();
+  final String currentUserKey = 'currentUser';
   final String key = 'users';
   List<User> allUsers = [];
+  User? currentUser;
 
   UserMgr() {
     _fetchData();
+    _fetchCurrentUser();
   }
 
   Future<void> _fetchData() async {
@@ -21,6 +24,24 @@ class UserMgr {
       allUsers = await BoxStorage.readItems<User>(
           key: key, fromJson: (json) => User.fromJson(json));
     }
+  }
+
+  // MARK: - Current User
+
+  Future<void> _fetchCurrentUser() async {
+    if (box.read(currentUserKey) != null) {
+      currentUser = await BoxStorage.readItem(
+          key: currentUserKey, fromJson: (json) => User.fromJson(json));
+    }
+  }
+
+  Future<void> setCurrentUser(User user) async {
+    currentUser = user;
+    await BoxStorage.writeItem(
+      item: user,
+      key: currentUserKey,
+      toJson: (user) => user.toJson(),
+    );
   }
 
   // MARK: - Default Users
