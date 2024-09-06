@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:project6/data/users_layer.dart';
 import 'package:project6/extensions/nav.dart';
 import 'package:project6/screens/movies_screen.dart';
+import 'package:project6/screens/sign_up_screen.dart';
 import 'package:project6/widgets/fields/text_field_widget.dart';
 import 'package:project6/colors/app_colors.dart';
 import 'package:project6/widgets/login_button_widget.dart';
@@ -35,10 +36,9 @@ class _LogInScreenState extends State<LogInScreen> {
               const Text(
                 "Welcome Back",
                 style: TextStyle(
-                  fontSize: 36,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold
-                ),
+                    fontSize: 36,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 50),
               TextFieldWiedget(
@@ -66,23 +66,40 @@ class _LogInScreenState extends State<LogInScreen> {
               ),
               const SizedBox(height: 150),
               LoginButtonWidget(
-                title: "Login",
-                onLogin: () {
-                  if (_formKey.currentState!.validate()) {
-                    for (var user in usersLayer.users) {
-                      if (emailController.text == user.email && passwordController.text == user.password) {
-                        usersLayer.currentUser = user;
-                        context.push(screen: const MoviesScreen());
-                        return;
+                  title: "Login",
+                  onLogin: () {
+                    if (_formKey.currentState!.validate()) {
+                      for (var user in usersLayer.users) {
+                        if (emailController.text == user.email &&
+                            passwordController.text == user.password) {
+                          usersLayer.currentUser = user;
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const MoviesScreen();
+                          }));
+                          return;
+                        }
                       }
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text('Incorrect email or password')),
+                      );
                     }
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Incorrect email or password')),
-                    );
-                  }
-                  log((usersLayer.currentUser?.name).toString());
-                }
-              ),
+                    log((usersLayer.currentUser?.name).toString());
+                  }),
+                              Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const SizedBox(width: 110),
+                const Text("Don't have an account ?",
+                    style: TextStyle(color: Colors.white)),
+                InkWell(
+                    onTap: () => context.push(screen: const SignUpScreen()),
+                    child: const Text(" Sign Up",
+                        style: TextStyle(color: ColorSelect.brandColor)))
+              ],
+            ),
             ],
           ),
         ),

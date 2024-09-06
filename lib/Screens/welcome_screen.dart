@@ -21,7 +21,12 @@ class WelcomeScreen extends StatelessWidget {
             // const SizedBox(height: 120),
             ButtonWidget(
                 title: "Log in",
-                onPressed: () => context.push(screen: const LogInScreen())),
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) {
+                    return const LogInScreen();
+                  }));
+                }),
             const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
