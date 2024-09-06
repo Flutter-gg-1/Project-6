@@ -1,14 +1,50 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:clothes_app/helper/extinsion/size_config.dart';
+import 'package:clothes_app/widget/card/item_card.dart';
 import 'package:clothes_app/widget/text_field/search_field.dart';
+import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
+import 'package:icons_plus/icons_plus.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: FlashyTabBar(
+        items: [
+          FlashyTabBarItem(
+            icon: const Icon(
+              Iconsax.home_bold,
+              color: Color.fromARGB(255, 214, 169, 100),
+              size: 30,
+            ),
+            title: const Text('Home'),
+          ),
+          FlashyTabBarItem(
+            icon: const Icon(
+              Iconsax.card_add_bold,
+              color: Color.fromARGB(122, 18, 140, 156),
+              size: 30,
+            ),
+            title: const Text('Add'),
+          ),
+          FlashyTabBarItem(
+            icon: const Icon(
+              Iconsax.profile_2user_bold,
+              color: Colors.blueGrey,
+              size: 30,
+            ),
+            title: const Text('Profile'),
+          ),
+        ],
+        onItemSelected: (index) {}),
       appBar: AppBar(
         leading: const Icon(
           Icons.menu,
@@ -86,68 +122,6 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       )),
-    );
-  }
-}
-
-class ItemCard extends StatelessWidget {
-  final String itemName, price;
-  const ItemCard({
-    super.key,
-    required this.itemName,
-    required this.price,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: Container(
-        width: context.getWidth() * 0.35,
-        height: context.getHeight() * 0.25,
-        decoration: BoxDecoration(
-            color: Colors.transparent, borderRadius: BorderRadius.circular(18)),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Stack(
-              clipBehavior: Clip.none,
-              children: [
-                Image.asset(
-                  'assets/image/card_image1.png',
-                  height: context.getHeight() * 0.18,
-                  width: context.getWidth() * 0.35,
-                ),
-                Positioned(
-                  left: (context.getWidth() * 0.35) / 1.7,
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.delete),
-                    color: const Color.fromARGB(255, 207, 55, 55),
-                  ),
-                )
-              ],
-            ),
-             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  itemName,
-                  style: const TextStyle(
-                      color: Color(0x34000000),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18),
-                ),
-                Text('$price Rs',
-                    style: const TextStyle(
-                        color: Color(0x34000000),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15))
-              ],
-            )
-          ],
-        ),
-      ),
     );
   }
 }
