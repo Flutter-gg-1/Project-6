@@ -54,11 +54,21 @@ class MoviesScreen extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               child: TabBarView(children: List.generate(categories.length, (index)=>ShowMovies(category: categories[index]))),
             )),
-        floatingActionButton: FloatingActionButton(onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return const AddMovieScreen();
-          }));
-        }),
+        floatingActionButton: FloatingActionButton(
+            backgroundColor: ColorSelect.backgroundColor,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+                side: BorderSide(color: ColorSelect.brandColor, width: 2)),
+            child: Icon(
+              Icons.add,
+              color: Colors.grey.shade400,
+              size: 35,
+            ),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const AddMovieScreen();
+              }));
+            }),
       ),
     );
   }

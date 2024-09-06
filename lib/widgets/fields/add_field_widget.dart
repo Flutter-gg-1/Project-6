@@ -18,6 +18,7 @@ class AddFieldWidget extends StatelessWidget {
         SizedBox(
           width: MediaQuery.of(context).size.width / 0.5,
           child: TextField(
+            style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
                 hintStyle:
                     const TextStyle(color: Color.fromARGB(152, 255, 255, 255)),
