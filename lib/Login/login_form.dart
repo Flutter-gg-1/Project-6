@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:project6/Home/home_screen.dart';
 import 'package:project6/Login/custom_text_field.dart';
 import 'package:project6/Singup/singup.dart';
-import 'package:project6/data_layer/recipe_data.dart';
-import 'package:project6/services/setup.dart';
 import 'package:project6/theme/app_colors.dart';
 
 class LoginForm extends StatelessWidget {
@@ -76,18 +74,22 @@ class LoginForm extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                for (var user in locator.get<RecipeData>().users) {
-                  if (user.username == usernameController.text &&
-                      user.password == passwordController.text) {
-                    locator.get<RecipeData>().saveLoginOrLogout(user);
-                    Navigator.push(
+                 Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => const HomePage()),
                     );
-                  } else {
-                    // show failed Login dialog
-                  }
-                }
+                // for (var user in locator.get<RecipeData>().users) {
+                //   if (user.username == usernameController.text &&
+                //       user.password == passwordController.text) {
+                //     locator.get<RecipeData>().saveLoginOrLogout(user);
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(builder: (context) => const HomePage()),
+                //     );
+                //   } else {
+                //     // show failed Login dialog
+                //   }
+                // }
               },
               child: const Text(
                 'Login',

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project6/Singup/SignUpForm.dart';
 import 'package:project6/theme/app_colors.dart';
+
+import 'signup_form.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
