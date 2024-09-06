@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project6/bloc/movie_bloc.dart';
+import 'package:project6/bloc_movie/movie_bloc.dart';
 import 'package:project6/screens/welcome_screen.dart';
 import 'package:project6/services/setup.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

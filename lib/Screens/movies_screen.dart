@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project6/bloc/movie_bloc.dart';
+import 'package:project6/bloc_movie/movie_bloc.dart';
 import 'package:project6/colors/app_colors.dart';
 import 'package:project6/data/movies_layer.dart';
 import 'package:project6/data/users_layer.dart';

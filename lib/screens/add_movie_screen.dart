@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:project6/bloc/movie_bloc.dart';
+import 'package:project6/bloc_movie/movie_bloc.dart';
 import 'package:project6/extensions/nav.dart';
 import 'package:project6/widgets/button_widget.dart';
 import 'package:project6/widgets/fields/add_field_widget.dart';

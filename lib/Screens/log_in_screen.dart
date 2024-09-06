@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:project6/data/users_layer.dart';
 import 'package:project6/extensions/nav.dart';
 import 'package:project6/screens/movies_screen.dart';
@@ -32,13 +33,12 @@ class _LogInScreenState extends State<LogInScreen> {
             children: [
               // Image.asset('assets/logo.png', width: 350,),
               // SizedBox(height: 100),
-              const Text(
+              Text(
                 "Welcome Back",
-                style: TextStyle(
-                  fontSize: 36,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold
-                ),
+                style: GoogleFonts.mulish(
+                    color: Colors.white,
+                    fontSize: 32,
+                    fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 50),
               TextFieldWiedget(
@@ -66,23 +66,24 @@ class _LogInScreenState extends State<LogInScreen> {
               ),
               const SizedBox(height: 150),
               LoginButtonWidget(
-                title: "Login",
-                onLogin: () {
-                  if (_formKey.currentState!.validate()) {
-                    for (var user in usersLayer.users) {
-                      if (emailController.text == user.email && passwordController.text == user.password) {
-                        usersLayer.currentUser = user;
-                        context.push(screen: const MoviesScreen());
-                        return;
+                  title: "Login",
+                  onLogin: () {
+                    if (_formKey.currentState!.validate()) {
+                      for (var user in usersLayer.users) {
+                        if (emailController.text == user.email &&
+                            passwordController.text == user.password) {
+                          usersLayer.currentUser = user;
+                          context.push(screen: const MoviesScreen());
+                          return;
+                        }
                       }
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text('Incorrect email or password')),
+                      );
                     }
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Incorrect email or password')),
-                    );
-                  }
-                  log((usersLayer.currentUser?.name).toString());
-                }
-              ),
+                    log((usersLayer.currentUser?.name).toString());
+                  }),
             ],
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:project6/data/users_layer.dart';
 import 'package:project6/widgets/fields/text_field_widget.dart';
 import 'package:project6/colors/app_colors.dart';
@@ -35,12 +36,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
               const SizedBox(
                 height: 20,
               ),
-              const Text(
+              Text(
                 "Get Started",
-                style: TextStyle(
-                    fontSize: 36,
+                style: GoogleFonts.mulish(
                     color: Colors.white,
-                    fontWeight: FontWeight.bold),
+                    fontSize: 32,
+                    fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 40),
               TextFieldWiedget(
