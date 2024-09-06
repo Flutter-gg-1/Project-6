@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:project6/screens/add_movie_screen.dart';
 import 'package:project6/widgets/show_movies.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class MoviesScreen extends StatelessWidget {
+  const MoviesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

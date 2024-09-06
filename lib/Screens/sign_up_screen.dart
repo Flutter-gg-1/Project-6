@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:project6/screens/movies_screen.dart';
 import 'package:project6/widgets/fields/text_field_widget.dart';
 import 'package:project6/colors/app_colors.dart';
 import 'package:project6/extensions/nav.dart';
-import 'package:project6/screens/home_screen.dart';
 import 'package:project6/screens/log_in_screen.dart';
 import 'package:project6/widgets/button_widget.dart';
 
@@ -45,7 +45,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             const SizedBox(height: 20),
             TextFieldWiedget(controllerof: paswoordController!,text: "Password", prefixIcon: Icon(Icons.key),),
             const SizedBox(height: 150),
-            const ButtonWidget(title: "Sign Up", toScreen: HomeScreen()),
+            const ButtonWidget(title: "Sign Up", toScreen: MoviesScreen()),
             const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,

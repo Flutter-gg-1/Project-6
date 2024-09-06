@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:project6/screens/movies_screen.dart';
 import 'package:project6/widgets/fields/text_field_widget.dart';
 import 'package:project6/colors/app_colors.dart';
-import 'package:project6/screens/home_screen.dart';
 import 'package:project6/widgets/button_widget.dart';
 
 class LogInScreen extends StatelessWidget {
@@ -30,7 +30,7 @@ class LogInScreen extends StatelessWidget {
             SizedBox(height: 24),
             TextFieldWiedget(text: "Password", prefixIcon: Icon(Icons.key),),
             SizedBox(height: 150),
-            ButtonWidget(title: "Login", toScreen: HomeScreen())
+            ButtonWidget(title: "Login", toScreen: MoviesScreen())
           ],
         ),
       ),
