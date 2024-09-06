@@ -16,30 +16,28 @@ class TextFieldWiedget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 350,
-      height: 45,
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 350, minHeight: 45),
       child: TextFormField(
-          autovalidateMode: AutovalidateMode.onUnfocus,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           onTapOutside: (e) => FocusManager.instance.primaryFocus?.unfocus(),
+          validator: validator,
           controller: controllerof,
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
           decoration: InputDecoration(
             prefixIcon: prefixIcon,
             prefixIconColor: Colors.white,
             filled: true,
             fillColor: ColorSelect.cardsColor,
             hintText: text,
-            hintStyle: const TextStyle(
-                color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),
+            hintStyle: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
             focusedBorder: OutlineInputBorder(
-              // Border when the field is focused
-              borderSide: BorderSide(color: ColorSelect.brandColor, width: 1),
+              borderSide: const BorderSide(color: ColorSelect.brandColor, width: 1),
               borderRadius: BorderRadius.circular(10),
             ),
           ),
-          validator: validator),
+        ),
     );
   }
 }

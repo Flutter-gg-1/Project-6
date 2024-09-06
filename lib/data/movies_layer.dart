@@ -4,45 +4,55 @@ class MoviesLayer {
   final List<Movie> movies = [
     Movie.fromJson(
       {
+        'name' : "Fox Puss in Boots",
+        'category' : 'Comedy',
+        'year' : '2017',
+        'posterImg' : 'assets/fox_puss.png'
+      }
+    ),
+    Movie.fromJson(
+      {
+        'name' : "Me Time",
+        'category' : 'Comedy',
+        'year' : '2020',
+        'posterImg' : 'assets/me_time.png'
+      }
+    ),
+    Movie.fromJson(
+      {
         'name' : "Avatar",
-        'category' : 'Comedy',
-        'year' : '2022',
-        'posterImg' : 'assets/1.png'
+        'category' : 'Sci-Fi',
+        'year' : '2009',
+        'posterImg' : 'assets/avatar.png'
       }
     ),
     Movie.fromJson(
       {
-        'name' : "Puss Fox",
-        'category' : 'Comedy',
-        'year' : '2022',
-        'posterImg' : 'assets/2.png'
+        'name' : "The Arrival",
+        'category' : 'Sci-Fi',
+        'year' : '2021',
+        'posterImg' : 'assets/arrival.png'
       }
     ),
     Movie.fromJson(
       {
-        'name' : "Puss Fox",
-        'category' : 'Comedy',
-        'year' : '2022',
-        'posterImg' : 'assets/2.png'
+        'name' : "Shawshank Redemption",
+        'category' : 'Drama',
+        'year' : '1994',
+        'posterImg' : 'assets/shawshank.png'
       }
     ),
     Movie.fromJson(
       {
-        'name' : "Puss Fox",
+        'name' : "Hangover",
         'category' : 'Comedy',
-        'year' : '2022',
-        'posterImg' : 'assets/2.png'
-      }
-    ),
-    Movie.fromJson(
-      {
-        'name' : "Puss Fox",
-        'category' : 'Comedy',
-        'year' : '2022',
-        'posterImg' : 'assets/2.png'
+        'year' : '2009',
+        'posterImg' : 'assets/hangover.png'
       }
     )
   ];
+
+  final List<String> categories = ['Comedy', 'Drama', 'Sci-Fi', 'Action'];
 
   // add movie
   // edit movie

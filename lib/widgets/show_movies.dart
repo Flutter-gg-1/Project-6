@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:project6/data/movies_layer.dart';
@@ -13,10 +15,11 @@ class ShowMovies extends StatelessWidget {
   Widget build(BuildContext context) {
     // 5
     List<Movie> movies = GetIt.I.get<MoviesLayer>().movies.where((movie)=>movie.category==category).toList();
+    log(movies.length.toString());
     return movies.isEmpty ? 
-    NoMoviesWidget()
+    const NoMoviesWidget()
     : ListView.builder(
-      itemCount: (movies.length~/2)+1, // number of rows = 3 (0,1,2)
+      itemCount: movies.length.isOdd ? (movies.length~/2)+1 : (movies.length~/2), // number of rows = 3 (0,1,2)
       itemBuilder: (context, index) {
         return Row(mainAxisAlignment: MainAxisAlignment.center,
         children: [

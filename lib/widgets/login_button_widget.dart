@@ -13,7 +13,7 @@ class LoginButtonWidget extends StatelessWidget {
       child: ElevatedButton(
           style: ButtonStyle(
               backgroundColor:
-                  WidgetStatePropertyAll<Color>(ColorSelect.brandColor),
+                  const WidgetStatePropertyAll<Color>(ColorSelect.brandColor),
               shape: WidgetStatePropertyAll<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)))),
