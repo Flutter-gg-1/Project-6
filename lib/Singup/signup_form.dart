@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project6/Login/text_feld_pass.dart';
-import 'package:project6/Login/text_feld_user.dart';
 import 'package:project6/theme/app_colors.dart';
+
+import '../Login/custom_text_field.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({super.key});
@@ -23,7 +23,7 @@ class SignUpForm extends StatelessWidget {
             color: Colors.black.withOpacity(0.5), // Shadow color with opacity
             blurRadius: 10, // How much to blur the shadow
             spreadRadius: 2, // How far the shadow spreads
-            offset: Offset(4, 4), // Offset of the shadow (x, y)
+            offset: const Offset(4, 4), // Offset of the shadow (x, y)
           ),
         ],
       ),
@@ -35,7 +35,7 @@ class SignUpForm extends StatelessWidget {
             style: TextStyle(color: AppColors.lighthread, fontSize: 19),
           ),
           const SizedBox(height: 8),
-          CustomTextFieldUsername(
+          CustomTextField(
             hintText: 'Enter your username',
             controller: usernameController,
           ),
@@ -45,7 +45,7 @@ class SignUpForm extends StatelessWidget {
             style: TextStyle(color: AppColors.lighthread, fontSize: 19),
           ),
           const SizedBox(height: 8),
-          CustomTextFieldUsername(
+          CustomTextField(
             hintText: 'Enter your email',
             controller: emailController,
           ),
@@ -55,8 +55,9 @@ class SignUpForm extends StatelessWidget {
             style: TextStyle(color: AppColors.lighthread, fontSize: 19),
           ),
           const SizedBox(height: 8),
-          CustomTextFieldPassword(
+          CustomTextField(
             hintText: 'Enter your password',
+            obscureText: true,
             controller: passwordController,
           ),
           const SizedBox(height: 16),

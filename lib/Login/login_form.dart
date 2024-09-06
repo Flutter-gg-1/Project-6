@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:project6/Home/home.dart';
-import 'package:project6/Login/text_feld_pass.dart';
-import 'package:project6/Login/text_feld_user.dart';
+import 'package:project6/Home/home_screen.dart';
+import 'package:project6/Login/custom_text_field.dart';
 import 'package:project6/Singup/singup.dart';
+import 'package:project6/data_layer/recipe_data.dart';
+import 'package:project6/services/setup.dart';
 import 'package:project6/theme/app_colors.dart';
 
 class LoginForm extends StatelessWidget {
@@ -24,7 +25,7 @@ class LoginForm extends StatelessWidget {
             color: Colors.black.withOpacity(0.5), // Shadow color with opacity
             blurRadius: 10, // How much to blur the shadow
             spreadRadius: 2, // How far the shadow spreads
-            offset: Offset(4, 4), // Offset of the shadow (x, y)
+            offset: const Offset(4, 4), // Offset of the shadow (x, y)
           ),
         ],
       ),
@@ -36,7 +37,7 @@ class LoginForm extends StatelessWidget {
             style: TextStyle(color: AppColors.lighthread, fontSize: 19),
           ),
           const SizedBox(height: 8),
-          CustomTextFieldUsername(
+          CustomTextField(
             hintText: 'Enter your username',
             controller: usernameController,
           ),
@@ -46,8 +47,9 @@ class LoginForm extends StatelessWidget {
             style: TextStyle(color: AppColors.lighthread, fontSize: 19),
           ),
           const SizedBox(height: 8),
-          CustomTextFieldPassword(
+          CustomTextField(
             hintText: 'Enter your password',
+            obscureText: true,
             controller: passwordController,
           ),
           Align(
@@ -74,10 +76,18 @@ class LoginForm extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomePage()),
-                );
+                for (var user in locator.get<RecipeData>().users) {
+                  if (user.username == usernameController.text &&
+                      user.password == passwordController.text) {
+                    locator.get<RecipeData>().saveLoginOrLogout(user);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const HomePage()),
+                    );
+                  } else {
+                    // show failed Login dialog
+                  }
+                }
               },
               child: const Text(
                 'Login',
@@ -102,7 +112,7 @@ class LoginForm extends StatelessWidget {
                 "Sign up",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color:AppColors.white,
+                  color: AppColors.white,
                   fontSize: 16,
                   shadows: [
                     Shadow(

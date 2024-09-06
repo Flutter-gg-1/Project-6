@@ -4,8 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project6/Add_Recipe/add_recipe.dart';
 import 'package:project6/Home/RecipeCard.dart';
-import 'package:project6/Home/custom_rawer.dart';
+import 'package:project6/Home/custom_drawer.dart';
+import 'package:project6/data_layer/recipe_data.dart';
+import 'package:project6/services/setup.dart';
 import 'package:project6/theme/app_colors.dart';
+
+import '../models/recipe.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,18 +19,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Map<String, dynamic>> recipes = []; // قائمة الوصفات المضافة
+  List<Recipe> recipes =
+      locator.get<RecipeData>().recipes; // قائمة الوصفات المضافة
 
   // وظيفة لإضافة وصفة جديدة
   void _addNewRecipe(
       XFile image, String recipeTitle, String recipeDescription) {
-    setState(() {
-      recipes.add({
-        'recipeTitle': recipeTitle,
-        'imageUrl': image.path,
-        'description': recipeDescription,
-      });
-    });
+    locator.get<RecipeData>().addRecipe((Recipe.fromJson({
+          'recipeTitle': recipeTitle,
+          'imageUrl': image.path,
+          'description': recipeDescription,
+        })));
   }
 
   @override
@@ -110,9 +113,9 @@ class _HomePageState extends State<HomePage> {
                           itemBuilder: (context, index) {
                             final recipe = recipes[index];
                             return RecipeCard(
-                              recipeTitle: recipe['recipeTitle'],
-                              imageFile: File(recipe['imageUrl']),
-                              description: recipe['description'],
+                              recipeTitle: recipe.recipeName,
+                              imageFile: recipe.image,
+                              description: recipe.description,
                             );
                           },
                         ),

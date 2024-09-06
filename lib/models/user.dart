@@ -2,6 +2,7 @@ class User {
   final String username;
   final String password;
   final String email;
+  bool isLogged = false;
 
   User({
     required this.username,

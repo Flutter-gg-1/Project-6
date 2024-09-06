@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:project6/theme/app_colors.dart';
 
-class CustomTextFieldUsername extends StatelessWidget {
+class CustomTextField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
   final TextEditingController controller;
 
-  const CustomTextFieldUsername({
+  const CustomTextField({
     super.key,
     required this.hintText,
     this.obscureText = false,
@@ -39,7 +39,7 @@ class CustomTextFieldUsername extends StatelessWidget {
         ),
         validator: (value) {
           if (controller.text.isEmpty) {
-            return 'Kindly Enter your Password';
+            return 'Kindly $hintText';
           }
           return null;
         },

@@ -141,10 +141,6 @@ class _AddRecipePageState extends State<AddRecipePage> {
               Center(
                 child: ElevatedButton(
                   onPressed: _submitRecipe,
-                  child: const Text(
-                    'Add Recipe',
-                    style: TextStyle(color: AppColors.white),
-                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.lighthread,
                     padding: const EdgeInsets.symmetric(
@@ -152,6 +148,10 @@ class _AddRecipePageState extends State<AddRecipePage> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
+                  ),
+                  child: const Text(
+                    'Add Recipe',
+                    style: TextStyle(color: AppColors.white),
                   ),
                 ),
               ),
