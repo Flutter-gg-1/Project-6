@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 0.1.0
 
 environment:
-  sdk: ^3.5.0
+  sdk: ^3.3.3
 
 dependencies:
   custom_radio_grouped_button: ^2.2.1
