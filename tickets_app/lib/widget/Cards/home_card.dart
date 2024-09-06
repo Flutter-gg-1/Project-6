@@ -32,7 +32,6 @@ class HomeCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
- 
           children: [
             SizedBox(
               width: context.getScreenSize(multiplyWidth: 0.30),
@@ -100,7 +99,6 @@ class HomeCard extends StatelessWidget {
                         style: TextStyle(
                             color: C.text3, fontWeight: FontWeight.w600)),
                   ])),
-                 
                 ],
               ),
             ),
