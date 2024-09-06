@@ -1,10 +1,7 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:project6/Screens/movies_screen.dart';
 import 'package:project6/bloc/movie_bloc.dart';
 import 'package:project6/extensions/nav.dart';
 import 'package:project6/widgets/button_widget.dart';

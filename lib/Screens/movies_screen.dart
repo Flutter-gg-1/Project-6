@@ -56,7 +56,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
                 title: 'Sign Out',
                 color: Colors.red,
                 width: 200,
-                onPressed: () => context.push(screen: WelcomeScreen()),
+                onPressed: () => context.push(screen: const WelcomeScreen()),
               ),
             ],
           ),
@@ -91,13 +91,20 @@ class _MoviesScreenState extends State<MoviesScreen> {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const AddMovieScreen();
-            }));
-          },
-          child: const Icon(Icons.add),
-        ),
+            backgroundColor: ColorSelect.backgroundColor,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+                side: const BorderSide(color: ColorSelect.brandColor, width: 2)),
+            child: Icon(
+              Icons.add,
+              color: Colors.grey.shade400,
+              size: 35,
+            ),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const AddMovieScreen();
+              }));
+        }),
       ),
     );
   }

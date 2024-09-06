@@ -2,8 +2,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project6/widgets/button_widget.dart';
-import 'package:project6/widgets/fields/add_field_widget.dart';
-import 'package:project6/widgets/fields/catgories_widget.dart';
 import 'package:project6/widgets/fields/image_field_widget.dart';
 
 class EditMoiveScreen extends StatelessWidget {
