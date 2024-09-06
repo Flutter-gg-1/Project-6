@@ -17,20 +17,23 @@ class WelcomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(height: 70),
-            Image.asset("assets/logo.png",width: 350),
+            Image.asset("assets/logo.png", width: 350),
             // const SizedBox(height: 120),
-            const ButtonWidget(title: "Log in", toScreen: LogInScreen()),
+            ButtonWidget(
+                title: "Log in",
+                onPressed: () => context.push(screen: const LogInScreen())),
             const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               mainAxisSize: MainAxisSize.min,
               children: [
                 const SizedBox(width: 110),
-                const Text("Don't have an account ?",style: TextStyle(color: Colors.white)),
+                const Text("Don't have an account ?",
+                    style: TextStyle(color: Colors.white)),
                 InkWell(
-                  onTap: () => context.push(screen: const SignUpScreen()),
-                  child: const Text(" Sign Up",style: TextStyle(color: ColorSelect.brandColor))
-                )
+                    onTap: () => context.push(screen: const SignUpScreen()),
+                    child: const Text(" Sign Up",
+                        style: TextStyle(color: ColorSelect.brandColor)))
               ],
             ),
           ],

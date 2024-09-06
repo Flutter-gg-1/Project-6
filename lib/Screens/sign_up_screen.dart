@@ -27,36 +27,56 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             const Text(
               "Get Started",
               style: TextStyle(
-                fontSize: 36,
-                color: Colors.white,
-                fontWeight: FontWeight.bold
-              ),
+                  fontSize: 36,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 40),
-            TextFieldWiedget(text: "Name",controllerof: nameController!, prefixIcon: Icon(Icons.person_outlined),),
+            TextFieldWiedget(
+              text: "Name",
+              controllerof: nameController!,
+              prefixIcon: const Icon(Icons.person_outlined),
+            ),
             const SizedBox(height: 20),
-            TextFieldWiedget(controllerof: emailController!,text: "Email", prefixIcon: Icon(Icons.email_outlined),),
+            TextFieldWiedget(
+              controllerof: emailController!,
+              text: "Email",
+              prefixIcon: const Icon(Icons.email_outlined),
+            ),
             const SizedBox(height: 20),
-            TextFieldWiedget(controllerof: phoneController!,text: "Phone", prefixIcon: Icon(Icons.phone),),
+            TextFieldWiedget(
+              controllerof: phoneController!,
+              text: "Phone",
+              prefixIcon: const Icon(Icons.phone),
+            ),
             const SizedBox(height: 20),
-            TextFieldWiedget(controllerof: paswoordController!,text: "Password", prefixIcon: Icon(Icons.key),),
+            TextFieldWiedget(
+              controllerof: paswoordController!,
+              text: "Password",
+              prefixIcon: const Icon(Icons.key),
+            ),
             const SizedBox(height: 150),
-            const ButtonWidget(title: "Sign Up", toScreen: MoviesScreen()),
+            ButtonWidget(
+                title: "Sign Up",
+                onPressed: () => context.push(screen: const MoviesScreen())),
             const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               mainAxisSize: MainAxisSize.min,
               children: [
                 const SizedBox(width: 110),
-                const Text("Already have an account ? ",style: TextStyle(color: Colors.white)),
+                const Text("Already have an account ? ",
+                    style: TextStyle(color: Colors.white)),
                 InkWell(
-                  onTap: () => context.push(screen: const LogInScreen()),
-                  child: const Text("Login",style: TextStyle(color: ColorSelect.brandColor))
-                )
+                    onTap: () => context.push(screen: const LogInScreen()),
+                    child: const Text("Login",
+                        style: TextStyle(color: ColorSelect.brandColor)))
               ],
             ),
           ],

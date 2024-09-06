@@ -2,8 +2,8 @@ import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:flutter/material.dart';
 
 class CatgoriesWidget extends StatelessWidget {
-  const CatgoriesWidget({super.key});
-
+  const CatgoriesWidget({super.key, required this.radioButtonValue});
+  final Function(String) radioButtonValue;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -41,7 +41,7 @@ class CatgoriesWidget extends StatelessWidget {
                 selectedColor: Color(0xff6F43F5),
                 unSelectedColor: Colors.white,
                 textStyle: TextStyle(fontSize: 16)),
-            radioButtonValue: (value) {},
+            radioButtonValue: radioButtonValue,
             radius: 10,
             selectedColor: Colors.transparent),
       ],

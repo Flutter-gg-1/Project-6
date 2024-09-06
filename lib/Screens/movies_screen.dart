@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project6/bloc/movie_bloc.dart';
 import 'package:project6/screens/add_movie_screen.dart';
 import 'package:project6/widgets/show_movies.dart';
 
@@ -8,6 +10,8 @@ class MoviesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = context.read<MovieBloc>();
+    bloc.add(LoadMoivesEvent());
     return DefaultTabController(
       length: 4,
       child: Scaffold(
@@ -42,14 +46,20 @@ class MoviesScreen extends StatelessWidget {
             ],
           ),
         ),
-        body: const SafeArea(
-            child: TabBarView(
-          children: [
-            ShowMovies(category: 'Comedy'),
-            ShowMovies(category: 'Drama'),
-            ShowMovies(category: 'Romance'),
-            ShowMovies(category: 'Action'),
-          ],
+        body: SafeArea(child: BlocBuilder<MovieBloc, MovieState>(
+          builder: (context, state) {
+            if (state is ShowMovieState) {
+              return TabBarView(
+                children: [
+                  ShowMovies(category: 'Comedy', bloc: bloc),
+                  ShowMovies(category: 'Drama', bloc: bloc),
+                  ShowMovies(category: 'Romance', bloc: bloc),
+                  ShowMovies(category: 'Action', bloc: bloc),
+                ],
+              );
+            }
+            return Text("data");
+          },
         )),
         floatingActionButton: FloatingActionButton(onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {

@@ -9,4 +9,8 @@ extension Nav on BuildContext {
       }
     });
   }
+
+  pop() {
+    Navigator.pop(this);
+  }
 }

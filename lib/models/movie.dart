@@ -1,21 +1,35 @@
+import 'dart:math';
+
 class Movie {
+  int id;
   String name;
   String category;
   String year;
   String posterImg;
 
-  Movie({required this.name, required this.category, required this.year, required this.posterImg});
+  Movie(
+      {required this.id,
+      required this.name,
+      required this.category,
+      required this.year,
+      required this.posterImg});
 
   factory Movie.fromJson(Map<String, dynamic> json) {
-    return Movie(name: json['name'], category: json['category'], year: json['year'], posterImg: json['posterImg']);
+    return Movie(
+        id: json["id"] ?? Random().nextInt(9999),
+        name: json['name'],
+        category: json['category'],
+        year: json['year'],
+        posterImg: json['posterImg']);
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'name' : name,
-      'category' : category,
-      'year' : year,
-      'posterImg' : posterImg
+      'id': id,
+      'name': name,
+      'category': category,
+      'year': year,
+      'posterImg': posterImg
     };
   }
 }
