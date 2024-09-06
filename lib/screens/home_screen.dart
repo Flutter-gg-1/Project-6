@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
                 coffeeImg: 'assets/images/Espresso.png',
               ),
               const CoffeeMenue(
-                coffee: 'cappuccino',
+                coffee: 'Cappuccino',
                 coffeeImg: 'assets/images/Cappuccino.png',
               ),
               const CoffeeMenue(
@@ -69,8 +69,12 @@ class CoffeeMenue extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 25),
       child: Row(
         children: [
-          Image(
-            image: AssetImage(coffeeImg),
+          Container(
+            width: 50,
+            height: 50,
+            child: Image(
+              image: AssetImage(coffeeImg),
+            ),
           ),
           const SizedBox(
             width: 60,
