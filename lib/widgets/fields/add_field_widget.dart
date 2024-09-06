@@ -2,14 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:project6/extensions/screen_size.dart';
 
 class AddFieldWidget extends StatelessWidget {
-  const AddFieldWidget(
-      {super.key,
-      required this.label,
-      required this.hint,
-      required this.controller});
   final String label;
   final String hint;
   final TextEditingController controller;
+  const AddFieldWidget({super.key,required this.label,required this.hint,required this.controller});
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,7 +20,7 @@ class AddFieldWidget extends StatelessWidget {
         SizedBox(
           width: context.getWidth() / 0.5,
           child: TextField(
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
             controller: controller,
             decoration: InputDecoration(
                 hintStyle:

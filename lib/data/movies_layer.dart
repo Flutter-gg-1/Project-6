@@ -39,13 +39,6 @@ class MoviesLayer {
       'posterImg': 'assets/arrival.png'
     }),
     Movie.fromJson({
-      'id': 6,
-      'name': "The Arrival",
-      'category': 'Sci-Fi',
-      'year': '2021',
-      'posterImg': 'assets/arrival.png'
-    }),
-    Movie.fromJson({
       'id': 7,
       'name': "Shawshank Redemption",
       'category': 'Drama',
@@ -65,19 +58,21 @@ class MoviesLayer {
 
   final box = GetStorage();
 
-  
-
   addMovie({required Movie movie}) {
     movies.add(movie);
   }
 
-  // edit movie
+  editMovie({required int id, required Movie newMovie}) {
+    for (var movie in movies) {
+      if (movie.id == id) {
+        movie.name = newMovie.name;
+        movie.category = newMovie.category;
+        movie.year = newMovie.year;
+      }
+    }
+  }
 
-  // delete movie
   deleteMovie({required int id}) {
-    print(id.toString());
-    print(movies.map((e) => e.id).toList().toString());
     movies.removeWhere((element) => element.id == id);
-    print(movies.length.toString());
   }
 }

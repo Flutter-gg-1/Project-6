@@ -46,7 +46,7 @@ class MoviesScreen extends StatelessWidget {
               final bloc = context.read<MovieBloc>();
               bloc.add(LoadMoivesEvent());
               if (state is ShowMovieState) {
-                return TabBarView(children: List.generate(categories.length, (index)=>ShowMovies(category: categories[index])));
+                return TabBarView(children: List.generate(categories.length, (index)=>ShowMovies(category: categories[index], bloc: bloc,)));
               }
               return const Center(child: CircularProgressIndicator());
             },

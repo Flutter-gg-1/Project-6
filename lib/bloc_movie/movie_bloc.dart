@@ -22,6 +22,7 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
     on<AddMovieEvent>(addMovieMethod);
     on<LoadMoivesEvent>(loadMovieMethod);
     on<DeleteMovieEvent>(deleteMovieMethod);
+    on<EditMovieEvent>(editMovieMethod);
   }
 
   FutureOr<void> loadMovieMethod(LoadMoivesEvent event, Emitter<MovieState> emit) {
@@ -30,11 +31,11 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
 
   FutureOr<void> addMovieMethod(AddMovieEvent event, Emitter<MovieState> emit) {
     Movie movie = Movie(
-          id: id,
-          name: nameController.text,
-          category: event.category,
-          year: dateController.text,
-          posterImg: image?.path ?? "assets/poster_holder.jpg");
+        id: id,
+        name: nameController.text,
+        category: event.category,
+        year: dateController.text,
+        posterImg: image?.path ?? "assets/poster_holder.jpg");
     log(movie.category);
     nameController.clear();
     dateController.clear();
@@ -43,9 +44,22 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
     emit(ShowMovieState(movies: movieLayer.movies));
   }
 
-  FutureOr<void> deleteMovieMethod(
-      DeleteMovieEvent event, Emitter<MovieState> emit) {
+  FutureOr<void> deleteMovieMethod(DeleteMovieEvent event, Emitter<MovieState> emit) {
     movieLayer.deleteMovie(id: event.id);
+    emit(ShowMovieState(movies: movieLayer.movies));
+  }
+
+  FutureOr<void> editMovieMethod(EditMovieEvent event, Emitter<MovieState> emit) {
+    movieLayer.editMovie(
+      id: event.id,
+      newMovie: Movie(
+        id: event.id,
+        name: event.name,
+        category: event.category,
+        year: event.year,
+        posterImg: event.posterImg
+      )
+    );
     emit(ShowMovieState(movies: movieLayer.movies));
   }
 }

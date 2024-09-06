@@ -47,7 +47,7 @@ class DrawerContent extends StatelessWidget {
           width: 200,
           onPressed: () {
             GetIt.I.get<UsersLayer>().signOut();
-            context.pushReplacement(screen: WelcomeScreen());
+            context.pushReplacement(screen: const WelcomeScreen());
           }
         )
       ]
