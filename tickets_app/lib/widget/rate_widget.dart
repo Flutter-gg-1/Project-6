@@ -20,7 +20,7 @@ class RateWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Icon(
+          const Icon(
             Icons.star,
             color: C.text1,
           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tickets_app/core/extensions/color_ext.dart';
 import 'package:tickets_app/core/extensions/get_size.dart';
+import 'package:tickets_app/core/extensions/string_ext.dart';
 import 'package:tickets_app/widget/rate_widget.dart';
 
 class HomeCard extends StatelessWidget {
@@ -68,17 +69,14 @@ class HomeCard extends StatelessWidget {
                     contentPadding: EdgeInsets.zero,
                     title: Text(
                       title,
-                      style: const TextStyle(
-                        color: C.black,
-                        fontWeight: FontWeight.w800,
-                        fontSize: 16,
-                      ),
+                    ).styled(
+                      color: C.black,
+                      weight: FontWeight.w800,
+                      size: 16,
                     ),
                     subtitle: Text(
                       subTitle,
-                      style: const TextStyle(
-                          color: C.text3, fontWeight: FontWeight.w600),
-                    ),
+                    ).styled(color: C.text3, weight: FontWeight.w600),
                     isThreeLine: true,
                   ),
                   RichText(
