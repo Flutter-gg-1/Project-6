@@ -22,5 +22,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-  - assets/undraw_jewelry_iima 1.png
-  - assets/profile.png
+  - assets/
+

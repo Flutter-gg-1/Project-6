@@ -82,17 +82,24 @@ class HomeScreen extends StatelessWidget {
                 width: context.getWidth() * 0.35,
                 height: context.getHeight() * 0.22,
                 decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(18)
-                ),
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(18)),
                 child: Column(
                   children: [
-                    Image.asset('name'),
-                    const Row(children: [Text('Item name'),Icon(Icons.delete,color: Colors.red,)],)
+                    Image.asset('assets/profile.png'),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text('Item name'),
+                        Icon(
+                          Icons.delete,
+                          color: Colors.red,
+                        )
+                      ],
+                    )
                   ],
                 ),
               ),
-              
             ],
           ),
         ),
