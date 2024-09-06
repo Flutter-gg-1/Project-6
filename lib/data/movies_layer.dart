@@ -32,14 +32,12 @@ class MoviesLayer {
       'year': '2021',
       'posterImg': 'assets/arrival.png'
     }),
-        Movie.fromJson(
-      {
-        'name' : "The Arrival",
-        'category' : 'Sci-Fi',
-        'year' : '2021',
-        'posterImg' : 'assets/arrival.png'
-      }
-    ),
+    Movie.fromJson({
+      'name': "The Arrival",
+      'category': 'Sci-Fi',
+      'year': '2021',
+      'posterImg': 'assets/arrival.png'
+    }),
     Movie.fromJson({
       'name': "Shawshank Redemption",
       'category': 'Drama',
@@ -63,6 +61,15 @@ class MoviesLayer {
   }
 
   // edit movie
+  editMoive({required int id, required Movie movie}) {
+    for (var element in movies) {
+      if (element.id == id) {
+        element.name == movie.name;
+        element.category == movie.category;
+        element.year == movie.year;
+      }
+    }
+  }
 
   // delete movie
   deleteMovie({required int id}) {

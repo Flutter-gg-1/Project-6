@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:project6/bloc/movie_bloc.dart';
+import 'package:project6/extensions/nav.dart';
 import 'package:project6/models/movie.dart';
+import 'package:project6/screens/edit_movie_screen.dart';
 import 'package:project6/widgets/cards/movie_card.dart';
 import 'package:project6/widgets/no_movies_widget.dart';
 
@@ -28,10 +31,22 @@ class ShowMovies extends StatelessWidget {
                   ),
                   itemCount: movies.length,
                   itemBuilder: (context, index) {
-                    return Expanded(
-                      child: MovieCard(
-                        movie: movies[index],
-                      ),
+                    return MovieCard(
+                      movie: movies[index],
+                      onEdit: () {
+                        context.push(
+                            screen: EditMoiveScreen(
+                          id: movies[index].id,
+                          currentName: movies[index].name,
+                          currentCategory: movies[index].category,
+                          currentDate: movies[index].year,
+                          currentImage: movies[index].posterImg,
+                        ));
+                      },
+                      onDelete: () {
+                        bloc.add(DeleteMovieEvent(id: movies[index].id));
+                        context.pop();
+                      },
                     );
                   },
                   shrinkWrap: true,

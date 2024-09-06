@@ -5,7 +5,11 @@ import 'package:project6/data/movies_layer.dart';
 
 class CatgoriesWidget extends StatelessWidget {
   final Function(String) radioButtonValue;
-  const CatgoriesWidget({super.key, required this.radioButtonValue});
+
+  const CatgoriesWidget({
+    super.key,
+    required this.radioButtonValue,
+  });
 
   @override
   Widget build(BuildContext context) {

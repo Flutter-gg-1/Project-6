@@ -20,46 +20,48 @@ class AddMovieScreen extends StatelessWidget {
     final bloc = context.read<MovieBloc>();
     String selectedCategory = GetIt.I.get<MoviesLayer>().categories.first;
     return Scaffold(
-        backgroundColor: const Color(0xff15141F),
-        appBar: AppBar(
-          forceMaterialTransparency: true,
-          automaticallyImplyLeading: true,
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(26.0),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                AddFieldWidget(
-                    label: "Name",
-                    hint: "Enter movie name",
-                    controller: bloc.nameController),
-                const SizedBox(height: 40),
-                CatgoriesWidget(radioButtonValue: (value) => selectedCategory = value),
-                const SizedBox(height: 40),
-                AddFieldWidget(
-                    label: "Date",
-                    hint: "Add movie date",
-                    controller: bloc.dateController),
-                const SizedBox(height: 40),
-                ImageFieldWidget(
-                  onSelect: () async {
-                    final selectedImage = await ImagePicker()
-                        .pickImage(source: ImageSource.gallery);
-                    bloc.image = File(selectedImage!.path);
-                  },
-                ),
-                const SizedBox(height: 40),
-                ButtonWidget(
-                    title: 'Add',
-                    onPressed: () {
-                      bloc.add(AddMovieEvent(category : selectedCategory));
-                      context.pop();
-                    }),
-              ],
-            ),
+      backgroundColor: const Color(0xff15141F),
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
+        forceMaterialTransparency: true,
+        automaticallyImplyLeading: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(26.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              AddFieldWidget(
+                  label: "Name",
+                  hint: "Enter movie name",
+                  controller: bloc.nameController),
+              const SizedBox(height: 40),
+              CatgoriesWidget(
+                  radioButtonValue: (value) => selectedCategory = value),
+              const SizedBox(height: 40),
+              AddFieldWidget(
+                  label: "Date",
+                  hint: "Add movie date",
+                  controller: bloc.dateController),
+              const SizedBox(height: 40),
+              ImageFieldWidget(
+                onSelect: () async {
+                  final selectedImage = await ImagePicker()
+                      .pickImage(source: ImageSource.gallery);
+                  bloc.image = File(selectedImage!.path);
+                },
+              ),
+              const SizedBox(height: 40),
+              ButtonWidget(
+                  title: 'Add',
+                  onPressed: () {
+                    bloc.add(AddMovieEvent(category: selectedCategory));
+                    context.pop();
+                  }),
+            ],
           ),
         ),
-      );
+      ),
+    );
   }
 }
