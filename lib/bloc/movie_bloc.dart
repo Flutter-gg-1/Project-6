@@ -32,14 +32,14 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
     Movie movie = Movie(
           id: id,
           name: nameController.text,
-          category: event.category ?? "No categoray",
+          category: event.category,
           year: dateController.text,
           posterImg: image?.path ?? "assets/poster_holder.jpg");
     log(movie.category);
     nameController.clear();
     dateController.clear();
     movieLayer.addMovie(movie: movie);
-          log(movieLayer.movies.length.toString());
+    log(movieLayer.movies.length.toString());
     emit(ShowMovieState(movies: movieLayer.movies));
   }
 

@@ -1,3 +1,4 @@
+import 'package:get_storage/get_storage.dart';
 import 'package:project6/models/movie.dart';
 
 class MoviesLayer {
@@ -32,14 +33,12 @@ class MoviesLayer {
       'year': '2021',
       'posterImg': 'assets/arrival.png'
     }),
-        Movie.fromJson(
-      {
-        'name' : "The Arrival",
-        'category' : 'Sci-Fi',
-        'year' : '2021',
-        'posterImg' : 'assets/arrival.png'
-      }
-    ),
+    Movie.fromJson({
+      'name' : "The Arrival",
+      'category' : 'Sci-Fi',
+      'year' : '2021',
+      'posterImg' : 'assets/arrival.png'
+    }),
     Movie.fromJson({
       'name': "Shawshank Redemption",
       'category': 'Drama',
@@ -56,7 +55,9 @@ class MoviesLayer {
 
   final List<String> categories = ['Comedy', 'Drama', 'Sci-Fi', 'Action'];
 
-  // add movie
+  final box = GetStorage();
+
+  
 
   addMovie({required Movie movie}) {
     movies.add(movie);
