@@ -1,10 +1,10 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
-import 'dart:math';
-import 'package:bloc/bloc.dart';
+import 'dart:math' as dd;
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:meta/meta.dart';
 import 'package:project6/data/movies_layer.dart';
 import 'package:project6/models/movie.dart';
 
@@ -17,30 +17,33 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
   final TextEditingController dateController = TextEditingController();
   String? catValue;
   File? image;
-  int id = Random().nextInt(9999);
+  int id = dd.Random().nextInt(9999);
   MovieBloc() : super(MovieInitial()) {
-    on<AddMovieEvent>(loadMovieMehtod);
-    on<LoadMoivesEvent>(addMovieMehtod);
-    on<DeleteMovieEvent>(deleteMovieMehtod);
+    on<AddMovieEvent>(addMovieMethod);
+    on<LoadMoivesEvent>(loadMovieMethod);
+    on<DeleteMovieEvent>(deleteMovieMethod);
   }
 
-  FutureOr<void> loadMovieMehtod(
-      AddMovieEvent event, Emitter<MovieState> emit) {
+  FutureOr<void> loadMovieMethod(LoadMoivesEvent event, Emitter<MovieState> emit) {
     emit(ShowMovieState(movies: movieLayer.movies));
   }
 
-  FutureOr<void> addMovieMehtod(MovieEvent event, Emitter<MovieState> emit) {
-    movieLayer.addMovie(
-        movie: Movie(
-            id: id,
-            name: nameController.text,
-            category: catValue ?? "No categoray",
-            year: dateController.text,
-            posterImg: image?.path ?? "assets/poster_holder.jpg"));
+  FutureOr<void> addMovieMethod(AddMovieEvent event, Emitter<MovieState> emit) {
+    Movie movie = Movie(
+          id: id,
+          name: nameController.text,
+          category: event.category ?? "No categoray",
+          year: dateController.text,
+          posterImg: image?.path ?? "assets/poster_holder.jpg");
+    log(movie.category);
+    nameController.clear();
+    dateController.clear();
+    movieLayer.addMovie(movie: movie);
+          log(movieLayer.movies.length.toString());
     emit(ShowMovieState(movies: movieLayer.movies));
   }
 
-  FutureOr<void> deleteMovieMehtod(
+  FutureOr<void> deleteMovieMethod(
       DeleteMovieEvent event, Emitter<MovieState> emit) {
     movieLayer.deleteMovie(id: id);
     emit(ShowMovieState(movies: movieLayer.movies));

@@ -1,8 +1,11 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project6/bloc/movie_bloc.dart';
+import 'package:project6/data/movies_layer.dart';
 import 'package:project6/extensions/nav.dart';
 import 'package:project6/widgets/button_widget.dart';
 import 'package:project6/widgets/fields/add_field_widget.dart';
@@ -15,6 +18,7 @@ class AddMovieScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<MovieBloc>();
+    String selectedCategory = GetIt.I.get<MoviesLayer>().categories.first;
     return Scaffold(
         backgroundColor: const Color(0xff15141F),
         appBar: AppBar(
@@ -31,12 +35,7 @@ class AddMovieScreen extends StatelessWidget {
                     hint: "Enter movie name",
                     controller: bloc.nameController),
                 const SizedBox(height: 40),
-                CatgoriesWidget(
-                  radioButtonValue: (value) {
-                    bloc.catValue = value;
-                    print(bloc.catValue);
-                  },
-                ),
+                CatgoriesWidget(radioButtonValue: (value) => selectedCategory = value),
                 const SizedBox(height: 40),
                 AddFieldWidget(
                     label: "Date",
@@ -54,8 +53,7 @@ class AddMovieScreen extends StatelessWidget {
                 ButtonWidget(
                     title: 'Add',
                     onPressed: () {
-                      bloc.add(AddMovieEvent());
-
+                      bloc.add(AddMovieEvent(category : selectedCategory));
                       context.pop();
                     }),
               ],

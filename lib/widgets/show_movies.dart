@@ -17,7 +17,7 @@ class ShowMovies extends StatelessWidget {
     return movies.isEmpty
         ? const NoMoviesWidget()
         : ListView.builder(
-            itemCount: (movies.length ~/ 2) + 1, // number of rows = 3 (0,1,2)
+            itemCount: movies.length.isEven ? (movies.length~/2) : ((movies.length ~/ 2) + 1), // number of rows = 3 (0,1,2)
             itemBuilder: (context, index) {
               return Row(
                   mainAxisAlignment: MainAxisAlignment.center,
