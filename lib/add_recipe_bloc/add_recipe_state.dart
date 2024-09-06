@@ -21,4 +21,10 @@ final class FailedAddState extends AddRecipeState {
   FailedAddState({required this.message});
 }
 
+final class ImageUploadState extends AddRecipeState {
+  final XFile image;
+
+    ImageUploadState({required this.image});
+}
+
 final class ErrorState extends AddRecipeState {}

@@ -21,6 +21,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> loadDataMethod(LoadDataEvent event, Emitter<HomeState> emit) {
     if (dataLayer.recipes.isNotEmpty) {
+      
       emit(SuccessfulLoadState());
     }
   }

@@ -11,12 +11,12 @@ class Recipe {
 
   factory Recipe.fromJson(Map json) {
     return Recipe(
-      image: File(json['image_path']),
-        recipeName: json['recipe_name'],
-        description: json['description'],
+      image: File(json['image']),
+        recipeName: json['recipeTitle'],
+        description: json['recipeDescription'],
         reviews: (json['reviews'] as List)
             .map((comment) => Review.fromJson(comment))
-            .toList());
+            .toList()) ;
   }
 
   toJson() {
