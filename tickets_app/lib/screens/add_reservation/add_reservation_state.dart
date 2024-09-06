@@ -5,6 +5,12 @@ sealed class AddReservationState {}
 
 final class AddReservationInitial extends AddReservationState {}
 
+final class UpdateDateState extends AddReservationState {
+  final String dateStr;
+
+  UpdateDateState({required this.dateStr});
+}
+
 final class UpdateNightsState extends AddReservationState {
   final int nights;
   final int totalPrice;

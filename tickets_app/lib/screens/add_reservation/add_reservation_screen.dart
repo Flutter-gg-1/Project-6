@@ -9,11 +9,8 @@ import '../../model/room.dart';
 class AddReservationScreen extends StatelessWidget {
   const AddReservationScreen({super.key, required this.room});
   final Room room;
-  final int total = 250;
 
-  void _navigateBack(BuildContext context) {
-    Navigator.pop(context);
-  }
+  void _navigateBack(BuildContext context) => Navigator.pop(context);
 
   @override
   Widget build(BuildContext context) {
@@ -69,8 +66,13 @@ class AddReservationScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text('Date:'),
-                          Text(
-                              '${DateTime.now().day.toString()}/${DateTime.now().month.toString()}/${DateTime.now().year.toString()}'),
+                          BlocBuilder<AddReservationBloc, AddReservationState>(
+                            builder: (context, state) {
+                              return Text((state is UpdateDateState)
+                                  ? state.dateStr
+                                  : bloc.initialDate);
+                            },
+                          ),
                           IconButton(
                             onPressed: () => (),
                             icon: const Icon(Icons.calendar_month),

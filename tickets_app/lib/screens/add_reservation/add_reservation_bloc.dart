@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:bloc/bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:meta/meta.dart';
+import 'package:tickets_app/core/extensions/date_ext.dart';
 import 'package:tickets_app/managers/reservation_mgr.dart';
 import 'package:tickets_app/managers/user_mgr.dart';
 import 'package:tickets_app/model/reservation.dart';
@@ -18,13 +19,22 @@ class AddReservationBloc
   final userMgr = GetIt.I.get<UserMgr>();
   final reservationMgr = GetIt.I.get<ReservationMgr>();
   final int initialNightsValue = 1;
+  final String initialDate = DateTime.now().toFormattedString();
 
   AddReservationBloc() : super(AddReservationInitial()) {
     on<AddReservationEvent>((event, emit) {});
 
+    on<SelectDateEvent>(updateDate);
+
     on<SelectNightsEvent>(updateNights);
 
     on<ConfirmBookingEvent>(confirmBooking);
+  }
+
+  FutureOr<void> updateDate(
+      SelectDateEvent event, Emitter<AddReservationState> emit) {
+    var dateStr = event.date.toFormattedString();
+    emit(UpdateDateState(dateStr: dateStr));
   }
 
   FutureOr<void> updateNights(
