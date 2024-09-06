@@ -10,11 +10,6 @@ import 'package:tickets_app/widget/Cards/home_card.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  void _navigateToReservations(BuildContext context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => ReservationsScreen()));
-  }
-
   void _navigateToProfile(BuildContext context) {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => ProfileScreen()));
@@ -26,9 +21,6 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: C.bg,
       appBar: AppBar(
         backgroundColor: C.bg,
-        leading: IconButton(
-            onPressed: () => _navigateToReservations(context),
-            icon: Icon(Icons.hotel)),
         title: Text("Home")
             .styled(color: C.black, size: 30, weight: FontWeight.bold),
         centerTitle: true,
