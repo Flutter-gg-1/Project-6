@@ -1,5 +1,7 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:project6/theme/app_colors.dart';
 
 class RecipeDetailsPage extends StatelessWidget {
   final String recipeTitle;
@@ -27,16 +29,14 @@ class RecipeDetailsPage extends StatelessWidget {
             fontSize: 22,
           ),
         ),
-        backgroundColor: const Color(0xff7baaff),
+        backgroundColor: AppColors.lighthread,
         iconTheme: const IconThemeData(
-          color: Colors.white, 
+          color: Colors.white,
         ),
         actions: [
           IconButton(
             icon: const Icon(Icons.edit),
-            onPressed: () {
-             
-            },
+            onPressed: () {},
           ),
         ],
       ),
@@ -46,14 +46,12 @@ class RecipeDetailsPage extends StatelessWidget {
           children: [
             Stack(
               children: [
-             
                 Image.file(
                   imageFile,
                   width: double.infinity,
                   height: screenSize.height * 0.4,
                   fit: BoxFit.cover,
                 ),
-               
                 Container(
                   height: screenSize.height * 0.4,
                   decoration: BoxDecoration(
@@ -74,39 +72,36 @@ class RecipeDetailsPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-               
                   const Text(
                     'Meal',
                     style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xff333333),
-                    ),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.darkread),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     recipeTitle,
                     style: const TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: Color(0xff333333),
                     ),
                   ),
                   const SizedBox(height: 16),
-             
                   const Text(
                     'Recipe',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xff666666),
+                      color: AppColors.darkread,
                     ),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     description,
                     style: const TextStyle(
-                      fontSize: 18,
+                      fontSize: 16,
                       color: Color(0xff666666),
                     ),
                   ),

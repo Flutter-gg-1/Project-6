@@ -1,6 +1,8 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:project6/theme/app_colors.dart';
 
 class AddRecipePage extends StatefulWidget {
   const AddRecipePage({super.key});
@@ -12,7 +14,8 @@ class AddRecipePage extends StatefulWidget {
 class _AddRecipePageState extends State<AddRecipePage> {
   // Controllers for name and description input
   final TextEditingController _recipeNameController = TextEditingController();
-  final TextEditingController _recipeDescriptionController = TextEditingController();
+  final TextEditingController _recipeDescriptionController =
+      TextEditingController();
 
   // Image picker and selected image file
   XFile? _selectedImage;
@@ -41,7 +44,8 @@ class _AddRecipePageState extends State<AddRecipePage> {
     } else {
       // Show a message if the user tries to submit an incomplete form
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please fill in all fields and select an image')),
+        const SnackBar(
+            content: Text('Please fill in all fields and select an image')),
       );
     }
   }
@@ -49,10 +53,10 @@ class _AddRecipePageState extends State<AddRecipePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.primary,
       appBar: AppBar(
-        title: const Text('Add New Recipe'),
-        backgroundColor: const Color(0xff7baaff),
-      ),
+          title: const Text('Add New Recipe'),
+          backgroundColor: AppColors.lighthread),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
@@ -68,7 +72,7 @@ class _AddRecipePageState extends State<AddRecipePage> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     gradient: const LinearGradient(
-                      colors: [Color(0xff7baaff), Color(0xffe29578)],
+                      colors: [AppColors.lighthread, AppColors.darkread],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
@@ -91,7 +95,7 @@ class _AddRecipePageState extends State<AddRecipePage> {
                 ),
               ),
               const SizedBox(height: 20),
-              
+
               // Recipe name input
               const Text(
                 'Recipe Name',
@@ -105,13 +109,13 @@ class _AddRecipePageState extends State<AddRecipePage> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   filled: true,
-                  fillColor: const Color(0xffEDF6F9),
+                  fillColor: AppColors.white,
                   hintText: 'Enter the recipe name',
                   contentPadding: const EdgeInsets.all(16),
                 ),
               ),
               const SizedBox(height: 20),
-              
+
               // Recipe description input
               const Text(
                 'Recipe Description',
@@ -126,21 +130,25 @@ class _AddRecipePageState extends State<AddRecipePage> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   filled: true,
-                  fillColor: const Color(0xffEDF6F9),
+                  fillColor: AppColors.white,
                   hintText: 'Enter the recipe description',
                   contentPadding: const EdgeInsets.all(16),
                 ),
               ),
               const SizedBox(height: 20),
-              
+
               // Submit button
               Center(
                 child: ElevatedButton(
                   onPressed: _submitRecipe,
-                  child: const Text('Add Recipe'),
+                  child: const Text(
+                    'Add Recipe',
+                    style: TextStyle(color: AppColors.white),
+                  ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xff7baaff),
-                    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                    backgroundColor: AppColors.lighthread,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 50, vertical: 15),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),

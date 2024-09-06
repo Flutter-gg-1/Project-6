@@ -1,6 +1,8 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:project6/theme/app_colors.dart';
 
 class ImagePickerWidget extends StatefulWidget {
   const ImagePickerWidget({super.key});
@@ -30,7 +32,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           gradient: const LinearGradient(
-            colors: [Color(0xff7baaff), Color(0xffe29578)],
+            colors: [AppColors.darkread, AppColors.lighthread],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),

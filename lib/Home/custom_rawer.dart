@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project6/theme/app_colors.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -16,9 +17,7 @@ class CustomDrawer extends StatelessWidget {
               child: Icon(Icons.person, size: 50, color: Colors.white),
               backgroundColor: Colors.blueGrey,
             ),
-            decoration: BoxDecoration(
-              color: Color(0xffe29578),
-            ),
+            decoration: BoxDecoration(color: AppColors.lighthread),
           ),
           ListTile(
             leading: const Icon(Icons.person, color: Colors.blueGrey),

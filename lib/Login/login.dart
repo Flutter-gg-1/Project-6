@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import 'package:project6/Login/login_form.dart';
+import 'package:project6/theme/app_colors.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -10,6 +11,7 @@ class Login extends StatelessWidget {
     var screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: AppColors.white,
       body: Stack(
         children: [
           Align(
@@ -20,9 +22,19 @@ class Login extends StatelessWidget {
                 topRight: Radius.circular(50),
               ),
               child: Container(
-                height: screenSize.height * 0.6,
+                height: screenSize.height * 0.45,
                 width: screenSize.width,
-                color: Colors.blueAccent.withOpacity(0.7),
+                // color: AppColors.primaryColor,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      AppColors.lighthread,
+                      AppColors.darkread,
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
@@ -31,15 +43,27 @@ class Login extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  'Welcome back',
-                  style: TextStyle(
-                    fontSize: screenSize.width * 0.1,
-                    color: Color(0xff7baaff),
+                ShaderMask(
+                  shaderCallback: (bounds) => const LinearGradient(
+                    colors: [
+                      AppColors.lighthread,
+                      AppColors.darkread,
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ).createShader(bounds),
+                  child: Text(
+                    'Welcome back',
+                    style: GoogleFonts.lora(
+                      fontSize: 30,
+                      color: Colors
+                          .white, // The color is ignored due to the ShaderMask
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 SizedBox(
-                  height: screenSize.height * 0.02,
+                  height: screenSize.height * 0.08,
                 ),
                 SizedBox(
                   width: screenSize.width * 0.8,

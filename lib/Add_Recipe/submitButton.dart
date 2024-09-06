@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project6/theme/app_colors.dart';
 
 class SubmitButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -14,7 +15,7 @@ class SubmitButton extends StatelessWidget {
         style: TextStyle(color: Colors.white),
       ),
       style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xff7baaff),
+        backgroundColor: AppColors.lighthread,
         padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
