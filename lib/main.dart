@@ -1,6 +1,9 @@
+import 'package:clothes_app/services/setup.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await setup();
   runApp(const MainApp());
 }
 
