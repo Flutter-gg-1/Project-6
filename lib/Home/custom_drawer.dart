@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project6/Home/profile/profile.dart';
 import 'package:project6/theme/app_colors.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -23,7 +24,10 @@ class CustomDrawer extends StatelessWidget {
             leading: const Icon(Icons.person, color: Colors.blueGrey),
             title: const Text('Profile'),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ProfilePage()),
+              );
             },
           ),
           ListTile(

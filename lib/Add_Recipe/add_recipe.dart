@@ -33,7 +33,12 @@ class AddRecipePage extends StatelessWidget {
             return Scaffold(
               backgroundColor: AppColors.primary,
               appBar: AppBar(
-                  title: const Text('Add New Recipe'),
+                  iconTheme: const IconThemeData(
+                    color: Colors.white,
+                  ),
+                  title: const Text('Add New Recipe',
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold)),
                   backgroundColor: AppColors.lighthread),
               body: Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -44,7 +49,6 @@ class AddRecipePage extends StatelessWidget {
                       // Image picker section
                       BlocBuilder<AddRecipeBloc, AddRecipeState>(
                         builder: (context, state) {
-                          
                           return GestureDetector(
                             onTap: () async {
                               final pickedImage = await ImagePicker()
