@@ -29,12 +29,6 @@ class AddRecipeBloc extends Bloc<AddRecipeEvent, AddRecipeState> {
     if (selectedImage != null &&
         recipeNameController.text.isNotEmpty &&
         recipeDescriptionController.text.isNotEmpty) {
-          log('added recipe');
-      await locator.get<RecipeData>().addRecipe(Recipe.fromJson({
-            'image': selectedImage!.path,
-            'recipeTitle': recipeNameController.text,
-            'recipeDescription': recipeDescriptionController.text,
-          }));
       emit(SuccessfullAddState(
         image: selectedImage!,
         recipeName: recipeNameController.text,

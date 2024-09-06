@@ -15,26 +15,24 @@ class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   // قائمة الوصفات المضافة
-  void _addNewRecipe(
-      XFile image, String recipeTitle, String recipeDescription, HomeBloc bloc) {
-    locator.get<RecipeData>().addRecipe((Recipe.fromJson({
+  void _addNewRecipe(XFile image, String recipeTitle, String recipeDescription,
+      HomeBloc bloc) {
+    locator.get<RecipeData>().addRecipe(Recipe.fromJson({
           'recipeTitle': recipeTitle,
           'image': image.path,
           'recipeDescription': recipeDescription,
-        })));
-        bloc.add(LoadNewRecipeEvent());
+        }));
+    bloc.add(LoadNewRecipeEvent());
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Recipe> recipes = locator.get<RecipeData>().recipes;
     var screenSize = MediaQuery.of(context).size;
 
     return BlocProvider(
-      create: (context) => HomeBloc(),
+      create: (context) => HomeBloc()..add(LoadDataEvent()),
       child: Builder(builder: (context) {
         final bloc = context.read<HomeBloc>();
-        bloc.add(LoadDataEvent());
         return Scaffold(
           appBar: AppBar(
             actions: [
@@ -49,13 +47,9 @@ class HomePage extends StatelessWidget {
                   );
 
                   if (newRecipe != null) {
-                    _addNewRecipe(
-                      newRecipe['image'],
-                      newRecipe['recipeTitle'],
-                      newRecipe['recipeDescription'],
-                      bloc
-                    );
-                    bloc.add(LoadNewRecipeEvent());
+                    _addNewRecipe(newRecipe['image'], newRecipe['recipeTitle'],
+                        newRecipe['recipeDescription'], bloc);
+                    // bloc.add(LoadNewRecipeEvent());
                   }
                 },
               ),
@@ -75,61 +69,81 @@ class HomePage extends StatelessWidget {
             centerTitle: true,
           ),
           drawer: const Drawer(child: CustomDrawer()), // قائمة جانبية
-          body: Stack(
-            children: [
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(50),
-                    topRight: Radius.circular(50),
-                  ),
-                  child: Container(
-                    height: screenSize.height * 0.4,
-                    width: screenSize.width,
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          AppColors.lighthread,
-                          AppColors.darkread,
-                        ],
+          body: BlocBuilder<HomeBloc, HomeState>(
+              //       buildWhen: (previous, current) {
+              //   if (current is LoadDataState) {
+              //     return true;
+              //   }
+              //   if (current is SuccessfulLoadState && previous is HomeInitial) {
+              //     return true;
+              //   }
+              //   return false;
+              // },
+              builder: (context, state) {
+            if (state is SuccessfulLoadState) {
+              final recipes = state.recipes;
+
+              return Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(50),
+                        topRight: Radius.circular(50),
+                      ),
+                      child: Container(
+                        height: screenSize.height * 0.4,
+                        width: screenSize.width,
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              AppColors.lighthread,
+                              AppColors.darkread,
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
-              Column(
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: recipes.isEmpty
-                          ? const Center(
-                              child: Text(
-                                'No recipes yet. Add some!',
-                                style:
-                                    TextStyle(fontSize: 18, color: Colors.grey),
-                              ),
-                            )
-                          : ListView.builder(
-                              itemCount: recipes.length,
-                              itemBuilder: (context, index) {
-                                final recipe = recipes[index];
-                                return RecipeCard(
-                                  recipeTitle: recipe.recipeName,
-                                  imageFile: recipe.image,
-                                  description: recipe.description,
-                                );
-                              },
-                            ),
-                    ),
+                  Column(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: recipes.isEmpty
+                              ? const Center(
+                                  child: Text(
+                                    'No recipes yet. Add some!',
+                                    style: TextStyle(
+                                        fontSize: 18, color: Colors.grey),
+                                  ),
+                                )
+                              : ListView.builder(
+                                  itemCount: recipes.length,
+                                  itemBuilder: (context, index) {
+                                    final recipe = recipes[index];
+                                    return RecipeCard(
+                                      recipeTitle: recipe.recipeName,
+                                      imageFile: recipe.image,
+                                      description: recipe.description,
+                                    );
+                                  },
+                                ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
-              ),
-            ],
-          ),
+              );
+            } else if (state is ErrorState) {
+              return Center(child: Text('Error: ${state.message}'));
+            } else {
+              return const Center(child: CircularProgressIndicator());
+            }
+          }),
         );
       }),
     );
