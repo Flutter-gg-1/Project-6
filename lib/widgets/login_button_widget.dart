@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project6/colors/app_colors.dart';
-import 'package:project6/extensions/nav.dart';
 
 class LoginButtonWidget extends StatelessWidget {
   final String title;

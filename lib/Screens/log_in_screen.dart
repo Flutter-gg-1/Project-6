@@ -1,10 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:project6/data/users_layer.dart';
 import 'package:project6/screens/movies_screen.dart';
 import 'package:project6/widgets/fields/text_field_widget.dart';
 import 'package:project6/colors/app_colors.dart';
-import 'package:project6/widgets/button_widget.dart';
 import 'package:project6/widgets/login_button_widget.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -25,7 +26,7 @@ class _LogInScreenState extends State<LogInScreen> {
       backgroundColor: ColorSelect.backgroundColor,
       body: Center(
         child: Form(
-          key: _formKey, 
+          key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -93,6 +94,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         );
                       }
                     }
+                    log(usersLayer.users.last.name);
                   }),
             ],
           ),
