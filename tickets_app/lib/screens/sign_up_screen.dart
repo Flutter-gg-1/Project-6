@@ -15,8 +15,9 @@ class SignUpScreen extends StatelessWidget {
   }
 
   void _navigateToHome(BuildContext context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => HomeScreen()));
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+        (Route<dynamic> route) => false);
   }
 
   File? selectedImg;

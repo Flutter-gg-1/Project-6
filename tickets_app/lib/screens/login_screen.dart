@@ -4,13 +4,20 @@ import 'package:tickets_app/reusable_components/custom_text_btn.dart';
 import 'package:tickets_app/screens/sign_up_screen.dart';
 import '../core/all_file.dart';
 import '../core/extensions/img_ext.dart';
+import 'home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
-  void _navigate(BuildContext context) {
+  void _navigateToSignUp(BuildContext context) {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => SignUpScreen()));
+  }
+
+  void _navigateToHome(BuildContext context) {
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+        (Route<dynamic> route) => false);
   }
 
   @override
@@ -53,7 +60,7 @@ class LoginScreen extends StatelessWidget {
                             const SizedBox(width: 4),
                             CustomTextBtn(
                                 title: 'Sign Up',
-                                callback: () => _navigate(context)),
+                                callback: () => _navigateToSignUp(context)),
                           ],
                         ),
                       ),
@@ -75,6 +82,15 @@ class LoginScreen extends StatelessWidget {
                     ],
                   ),
                 ]),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomTextBtn(
+                      title: 'Continue as Guest?',
+                      fontSize: 16,
+                      callback: () => _navigateToHome(context)),
+                ],
               ),
             ],
           ),
