@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tickets_app/screens/home_screen.dart';
-import '../core/all_file.dart';
-import '../core/extensions/img_ext.dart';
-import '../reusable_components/custom_text_btn.dart';
+import '../../core/all_file.dart';
+import '../../core/extensions/img_ext.dart';
+import '../../reusable_components/custom_text_btn.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});

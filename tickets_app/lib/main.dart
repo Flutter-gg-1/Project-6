@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tickets_app/screens/login_screen.dart';
+import 'package:tickets_app/screens/login/login_screen.dart';
 import 'package:tickets_app/services/di_container.dart';
 
 void main() async {

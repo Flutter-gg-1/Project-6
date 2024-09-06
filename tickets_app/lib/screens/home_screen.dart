@@ -4,7 +4,7 @@ import 'package:tickets_app/core/extensions/get_size.dart';
 import 'package:tickets_app/core/extensions/img_ext.dart';
 import 'package:tickets_app/core/extensions/string_ext.dart';
 import 'package:tickets_app/screens/profile_screen.dart';
-import 'package:tickets_app/screens/reservations_screen.dart';
+import 'package:tickets_app/screens/reservations/reservations_screen.dart';
 import 'package:tickets_app/widget/Cards/home_card.dart';
 
 class HomeScreen extends StatelessWidget {

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tickets_app/reusable_components/custom_text_btn.dart';
-import 'package:tickets_app/screens/sign_up_screen.dart';
-import '../core/all_file.dart';
-import '../core/extensions/img_ext.dart';
-import 'home_screen.dart';
+import '../../core/all_file.dart';
+import '../../core/extensions/img_ext.dart';
+import '../home_screen.dart';
+import '../sign_up/sign_up_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
