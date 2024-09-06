@@ -1,6 +1,6 @@
 name: clothes_app
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: none'
 version: 0.1.0
 
 environment:
@@ -9,6 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.6
+  get_it: ^7.7.0
+  get_storage: ^2.1.1
 
 dev_dependencies:
   flutter_test:
