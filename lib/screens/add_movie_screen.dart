@@ -33,7 +33,6 @@ class AddMovieScreen extends StatelessWidget {
                 onSelect: () async {
                   final selectedImage = await ImagePicker()
                       .pickImage(source: ImageSource.gallery);
-
                   image = File(selectedImage!.path);
                 },
               ),

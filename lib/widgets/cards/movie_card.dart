@@ -51,125 +51,122 @@ class MovieCard extends StatelessWidget {
                 ),
               ],
             ),
-            ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 173),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.calendar_month,
-                        size: 16,
-                        color: Color(0xffF2F2F2),
-                      ),
-                      Text(
-                        movie.date,
-                        style: const TextStyle(
-                            color: Color(0xffDEDEDE), fontSize: 12),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.edit_outlined,
-                        size: 20,
-                        color: Color(0xffF8F8F8),
-                      ),
-                      IconButton(
-                          onPressed: () {
-                            showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    backgroundColor: const Color(0xff333333)
-                                        .withOpacity(0.95),
-                                    content: SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.20,
-                                      width: MediaQuery.of(context).size.width,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          const Text(
-                                            "Are you sure?",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 18),
-                                          ),
-                                          const Text(
-                                            "  you can’t undo this action",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 18),
-                                          ),
-                                          const SizedBox(
-                                            height: 30,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              GestureDetector(
-                                                onTap: () {},
-                                                child: Container(
-                                                  height: 30,
-                                                  width: 110,
-                                                  decoration: BoxDecoration(
-                                                      color: const Color(
-                                                          0xff6F43F5),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10)),
-                                                  child: const Center(
-                                                    child: Text(
-                                                      "Delete",
-                                                      style: TextStyle(
-                                                          color: Colors.white),
-                                                    ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.calendar_month,
+                      size: 16,
+                      color: Color(0xffF2F2F2),
+                    ),
+                    Text(
+                      movie.year,
+                      style: const TextStyle(
+                          color: Color(0xffDEDEDE), fontSize: 12),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.edit_outlined,
+                      size: 20,
+                      color: Color(0xffF8F8F8),
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  backgroundColor: const Color(0xff333333)
+                                      .withOpacity(0.95),
+                                  content: SizedBox(
+                                    height:
+                                        MediaQuery.of(context).size.height *
+                                            0.20,
+                                    width: MediaQuery.of(context).size.width,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        const Text(
+                                          "Are you sure?",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18),
+                                        ),
+                                        const Text(
+                                          "  you can’t undo this action",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18),
+                                        ),
+                                        const SizedBox(
+                                          height: 30,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            GestureDetector(
+                                              onTap: () {},
+                                              child: Container(
+                                                height: 30,
+                                                width: 110,
+                                                decoration: BoxDecoration(
+                                                    color: const Color(
+                                                        0xff6F43F5),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10)),
+                                                child: const Center(
+                                                  child: Text(
+                                                    "Delete",
+                                                    style: TextStyle(
+                                                        color: Colors.white),
                                                   ),
                                                 ),
                                               ),
-                                              GestureDetector(
-                                                onTap: () {},
-                                                child: Container(
-                                                  height: 30,
-                                                  width: 110,
-                                                  decoration: BoxDecoration(
-                                                      color: const Color(
-                                                          0xff8F8D9C),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10)),
-                                                  child: const Center(
-                                                    child: Text(
-                                                      "Cancel",
-                                                      style: TextStyle(
-                                                          color: Colors.white),
-                                                    ),
+                                            ),
+                                            GestureDetector(
+                                              onTap: () {},
+                                              child: Container(
+                                                height: 30,
+                                                width: 110,
+                                                decoration: BoxDecoration(
+                                                    color: const Color(
+                                                        0xff8F8D9C),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10)),
+                                                child: const Center(
+                                                  child: Text(
+                                                    "Cancel",
+                                                    style: TextStyle(
+                                                        color: Colors.white),
                                                   ),
                                                 ),
-                                              )
-                                            ],
-                                          )
-                                        ],
-                                      ),
+                                              ),
+                                            )
+                                          ],
+                                        )
+                                      ],
                                     ),
-                                  );
-                                });
-                          },
-                          icon: Icon(
-                            Icons.delete_outline_outlined,
-                            size: 20,
-                            color: Color(0xffCE4949),
-                          )),
-                    ],
-                  )
-                ],
-              ),
+                                  ),
+                                );
+                              });
+                        },
+                        icon: Icon(
+                          Icons.delete_outline_outlined,
+                          size: 20,
+                          color: Color(0xffCE4949),
+                        )),
+                  ],
+                )
+              ],
             )
           ],
         ),

@@ -6,7 +6,7 @@ class MoviesLayer {
       {
         'name' : "Avatar",
         'category' : 'Comedy',
-        'date' : '2022-11-11',
+        'year' : '2022',
         'posterImg' : 'assets/1.png'
       }
     ),
@@ -14,7 +14,7 @@ class MoviesLayer {
       {
         'name' : "Puss Fox",
         'category' : 'Comedy',
-        'date' : '2022-1-11',
+        'year' : '2022',
         'posterImg' : 'assets/2.png'
       }
     ),
@@ -22,7 +22,7 @@ class MoviesLayer {
       {
         'name' : "Puss Fox",
         'category' : 'Comedy',
-        'date' : '2022-1-11',
+        'year' : '2022',
         'posterImg' : 'assets/2.png'
       }
     ),
@@ -30,7 +30,7 @@ class MoviesLayer {
       {
         'name' : "Puss Fox",
         'category' : 'Comedy',
-        'date' : '2022-1-11',
+        'year' : '2022',
         'posterImg' : 'assets/2.png'
       }
     ),
@@ -38,9 +38,13 @@ class MoviesLayer {
       {
         'name' : "Puss Fox",
         'category' : 'Comedy',
-        'date' : '2022-1-11',
+        'year' : '2022',
         'posterImg' : 'assets/2.png'
       }
     )
   ];
+
+  // add movie
+  // edit movie
+  // delete movie
 }
