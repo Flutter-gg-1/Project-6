@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:project6/Singup/SignUpForm.dart';
+import 'package:project6/theme/app_colors.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
@@ -19,9 +21,18 @@ class SignUp extends StatelessWidget {
                 topRight: Radius.circular(50),
               ),
               child: Container(
-                height: screenSize.height * 0.6,
+                height: screenSize.height * 0.45,
                 width: screenSize.width,
-                color: Colors.blueAccent.withOpacity(0.7),
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      AppColors.lighthread,
+                      AppColors.darkread,
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
@@ -29,15 +40,27 @@ class SignUp extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  'Create Account',
-                  style: TextStyle(
-                    fontSize: screenSize.width * 0.08,
-                    color: const Color(0xff7baaff),
+                ShaderMask(
+                  shaderCallback: (bounds) => const LinearGradient(
+                    colors: [
+                      AppColors.lighthread,
+                      AppColors.darkread,
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ).createShader(bounds),
+                  child: Text(
+                    'Create Account',
+                    style: GoogleFonts.lora(
+                      fontSize: 30,
+                      color: Colors
+                          .white, // The color is ignored due to the ShaderMask
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 SizedBox(
-                  height: screenSize.height * 0.02,
+                  height: screenSize.height * 0.08,
                 ),
                 SizedBox(
                   width: screenSize.width * 0.8,

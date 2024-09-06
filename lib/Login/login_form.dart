@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project6/Home/home.dart';
 import 'package:project6/Login/text_feld_pass.dart';
-
 import 'package:project6/Login/text_feld_user.dart';
 import 'package:project6/Singup/singup.dart';
+import 'package:project6/theme/app_colors.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
@@ -17,15 +17,23 @@ class LoginForm extends StatelessWidget {
       width: 337,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xffE29578),
+        color: AppColors.primary.withOpacity(.8),
         borderRadius: BorderRadius.circular(8),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.5), // Shadow color with opacity
+            blurRadius: 10, // How much to blur the shadow
+            spreadRadius: 2, // How far the shadow spreads
+            offset: Offset(4, 4), // Offset of the shadow (x, y)
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
             'Username',
-            style: TextStyle(color: Colors.white, fontSize: 19),
+            style: TextStyle(color: AppColors.lighthread, fontSize: 19),
           ),
           const SizedBox(height: 8),
           CustomTextFieldUsername(
@@ -35,7 +43,7 @@ class LoginForm extends StatelessWidget {
           const SizedBox(height: 16),
           const Text(
             'Password',
-            style: TextStyle(color: Colors.white, fontSize: 19),
+            style: TextStyle(color: AppColors.lighthread, fontSize: 19),
           ),
           const SizedBox(height: 8),
           CustomTextFieldPassword(
@@ -48,7 +56,7 @@ class LoginForm extends StatelessWidget {
               onPressed: () {},
               child: const Text(
                 'Forget password?',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.darkread),
               ),
             ),
           ),
@@ -56,7 +64,7 @@ class LoginForm extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xff006D77),
+                backgroundColor: AppColors.lighthread,
                 padding: const EdgeInsets.symmetric(
                   vertical: 10,
                   horizontal: 60,
@@ -74,7 +82,7 @@ class LoginForm extends StatelessWidget {
               child: const Text(
                 'Login',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: AppColors.white,
                   fontSize: 16,
                 ),
               ),
@@ -94,8 +102,15 @@ class LoginForm extends StatelessWidget {
                 "Sign up",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
+                  color:AppColors.white,
+                  fontSize: 16,
+                  shadows: [
+                    Shadow(
+                      color: Colors.black54, // Shadow color
+                      offset: Offset(0.1, 0.1), // Position of the shadow (x, y)
+                      blurRadius: 2, // Blur effect of the shadow
+                    ),
+                  ],
                 ),
               ),
             ),

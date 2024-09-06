@@ -1,9 +1,11 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project6/Add_Recipe/add_recipe.dart';
 import 'package:project6/Home/RecipeCard.dart';
 import 'package:project6/Home/custom_rawer.dart';
+import 'package:project6/theme/app_colors.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -54,7 +56,7 @@ class _HomePageState extends State<HomePage> {
         iconTheme: const IconThemeData(
           color: Colors.white,
         ),
-        backgroundColor: const Color(0xff7baaff),
+        backgroundColor: AppColors.lighthread,
         title: Text(
           'Cooking Recipes',
           style: TextStyle(
@@ -76,9 +78,18 @@ class _HomePageState extends State<HomePage> {
                 topRight: Radius.circular(50),
               ),
               child: Container(
-                height: screenSize.height * 0.6,
+                height: screenSize.height * 0.4,
                 width: screenSize.width,
-                color: Colors.blueAccent.withOpacity(0.7),
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      AppColors.lighthread,
+                      AppColors.darkread,
+                    ],
+                  ),
+                ),
               ),
             ),
           ),

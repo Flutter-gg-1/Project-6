@@ -1,6 +1,8 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:project6/Home/Details/RecipeDetailsPage.dart.dart';
+import 'package:project6/theme/app_colors.dart';
 
 class RecipeCard extends StatelessWidget {
   final String recipeTitle;
@@ -30,7 +32,9 @@ class RecipeCard extends StatelessWidget {
         );
       },
       child: Card(
-        color: const Color(0xffe29578),
+        // shadowColor:AppColors.black,
+        color: AppColors.primary.withOpacity(0.8),
+
         margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
@@ -59,19 +63,26 @@ class RecipeCard extends StatelessWidget {
                   const Text(
                     'Meal',
                     style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.lighthread),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     recipeTitle,
                     style: const TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+                        fontSize: 16,
+                        fontWeight: FontWeight.normal,
+                        color: AppColors.grey
+                        // shadows: [
+                        //   Shadow(
+                        //     color: Colors.black54, // Shadow color
+                        //     offset:
+                        //         Offset(0.1, 0.1), // Position of the shadow (x, y)
+                        //     blurRadius: 2, // Blur effect of the shadow
+                        //   ),
+                        // ],
+                        ),
                   ),
                   const SizedBox(height: 16),
                   const Text(
@@ -79,16 +90,13 @@ class RecipeCard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: AppColors.lighthread,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     description,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                    ),
+                    style: const TextStyle(fontSize: 16, color: AppColors.grey),
                   ),
                 ],
               ),
