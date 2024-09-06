@@ -6,8 +6,8 @@ import 'package:tickets_app/core/extensions/string_ext.dart';
 import 'package:tickets_app/managers/room_mgr.dart';
 import 'package:tickets_app/screens/profile_screen.dart';
 import 'package:tickets_app/utils/img_converter.dart';
-import 'package:tickets_app/widget/Cards/home_card.dart';
 import '../model/room.dart';
+import '../widget/Cards/room_card.dart';
 import 'add_reservation/add_reservation_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -53,7 +53,7 @@ class HomeScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: ListView(
               children: roomMgr.allRooms
-                  .map((room) => HomeCard(
+                  .map((room) => RoomCard(
                         title: room.title,
                         subTitle: room.description,
                         price: '${room.price}',

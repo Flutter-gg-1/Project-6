@@ -4,7 +4,7 @@ import 'package:tickets_app/core/extensions/get_size.dart';
 import 'package:tickets_app/core/extensions/string_ext.dart';
 import 'package:tickets_app/widget/rate_widget.dart';
 
-class HomeCard extends StatelessWidget {
+class RoomCard extends StatelessWidget {
   final String title;
   final String subTitle;
   final String price;
@@ -12,7 +12,7 @@ class HomeCard extends StatelessWidget {
   final Image image;
   final Function()? onPressed;
 
-  const HomeCard({
+  const RoomCard({
     super.key,
     required this.title,
     required this.subTitle,
