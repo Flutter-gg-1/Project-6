@@ -86,7 +86,7 @@ class HomeScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(18)),
                 child: Column(
                   children: [
-                    Image.asset('assets/profile.png'),
+                    Image.asset('assets/image/profile.png'),
                     const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [

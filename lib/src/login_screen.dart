@@ -33,7 +33,7 @@ class LoginScreen extends StatelessWidget {
             height: context.getHeight() / 15,
           ),
           Center(
-            child: Image.asset("assets/undraw_jewelry_iima 1.png"),
+            child: Image.asset("assets/image/undraw_jewelry_iima 1.png"),
           ),
           SizedBox(
             height: context.getHeight() / 35,
