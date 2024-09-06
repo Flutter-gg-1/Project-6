@@ -31,9 +31,7 @@ class EditMoiveScreen extends StatelessWidget {
               const SizedBox(height: 40),
               ImageFieldWidget(
                 onSelect: () async {
-                  final selectedImage = await ImagePicker()
-                      .pickImage(source: ImageSource.gallery);
-
+                  final selectedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
                   image = File(selectedImage!.path);
                 },
               ),

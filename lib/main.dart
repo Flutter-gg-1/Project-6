@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project6/screens/home_screen.dart';
+import 'package:project6/screens/welcome_screen.dart';
 import 'package:project6/services/setup.dart';
 
 void main() {
@@ -14,7 +14,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: HomeScreen()
+      home: WelcomeScreen()
     );
   }
 }
