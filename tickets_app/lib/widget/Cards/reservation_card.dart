@@ -6,12 +6,13 @@ class ReservationCard extends StatelessWidget {
   final String roomId;
   final String nights;
   final String date;
+  final Function()? onPressed;
 
   const ReservationCard({
     super.key,
     required this.roomId,
     required this.nights,
-    required this.date,
+    required this.date, required this.onPressed,
   });
   @override
   Widget build(BuildContext context) {
@@ -63,11 +64,13 @@ class ReservationCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 8),
-              const Icon(
-                Icons.edit,
-                color: C.accent,
-                size: 24,
-              ),
+              IconButton(
+                  onPressed:onPressed,
+                  icon: Icon(
+                    Icons.edit,
+                    color: C.accent,
+                    size: 24,
+                  )),
             ],
           )),
     );
