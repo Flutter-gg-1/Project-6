@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project6/add_recipe_bloc/add_recipe_bloc.dart';
-import 'package:project6/data_layer/recipe_data.dart';
-import 'package:project6/services/setup.dart';
+
 import 'package:project6/theme/app_colors.dart';
 
 class AddRecipePage extends StatelessWidget {
@@ -49,49 +48,6 @@ class AddRecipePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Image picker section
-<<<<<<< HEAD
-                      BlocBuilder<AddRecipeBloc, AddRecipeState>(
-                        builder: (context, state) {
-                          return GestureDetector(
-                            onTap: () async {
-                              final pickedImage = await ImagePicker()
-                                  .pickImage(source: ImageSource.gallery);
-                              if (pickedImage != null) {
-                                bloc.selectedImage = pickedImage;
-                              }
-                            },
-                            child: Container(
-                              height: 200,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                gradient: const LinearGradient(
-                                  colors: [
-                                    AppColors.lighthread,
-                                    AppColors.darkread
-                                  ],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                ),
-                              ),
-                              child: bloc.selectedImage == null
-                                  ? const Center(
-                                      child: Icon(
-                                        Icons.add_a_photo,
-                                        size: 50,
-                                        color: Colors.white,
-                                      ),
-                                    )
-                                  : ClipRRect(
-                                      borderRadius: BorderRadius.circular(12),
-                                      child: Image.file(
-                                        File(bloc.selectedImage!.path),
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                            ),
-                          );
-=======
                       GestureDetector(
                         onTap: () async {
                           final pickedImage = await ImagePicker()
@@ -100,7 +56,6 @@ class AddRecipePage extends StatelessWidget {
                             bloc.selectedImage = pickedImage;
                             bloc.add(UploadImageEvent(image: pickedImage));
                           }
->>>>>>> f06138a5e1347d52847091d8f2592eb6c7b1a7f9
                         },
                         child: BlocBuilder<AddRecipeBloc, AddRecipeState>(
                           builder: (context, state) {
