@@ -28,7 +28,7 @@ class ShowMovies extends StatelessWidget {
                   ),
                   itemCount: movies.length,
                   itemBuilder: (context, index) {
-                    return Expanded(
+                    return SizedBox(
                       child: MovieCard(
                         movie: movies[index],
                       ),
