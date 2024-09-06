@@ -9,7 +9,12 @@ class CustomTextField extends StatelessWidget {
     this.editTextValue,
     required this.hasSuffixIcon,
     this.controller,
+
+    this.validate
   });
+
+
+   final  String? Function(String?)?  validate;
 
   final String hintText;
   final String? editTextValue;
@@ -20,6 +25,7 @@ class CustomTextField extends StatelessWidget {
     return SizedBox(
       width: context.getWidth() / 1.3,
       child: TextFormField(
+        validator:  validate,
         initialValue: editTextValue,
         style: TextStyle(color: const Color(0xff5F3636).withOpacity(0.64)),
         controller: controller,
