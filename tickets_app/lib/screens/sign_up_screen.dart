@@ -69,12 +69,10 @@ class SignUpScreen extends StatelessWidget {
                           children: [
                             ConstrainedBox(
                               constraints: const BoxConstraints(
-                                minWidth: 75, // Minimum width
-                                minHeight: 75, // Minimum height
+                                maxWidth: 75, // Minimum width
+                                maxHeight: 75,
                               ),
                               child: Container(
-                                width: 100,
-                                height: 100,
                                 decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                 ),
