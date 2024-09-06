@@ -1,6 +1,7 @@
 import 'package:clothes_app/data_layer/models/app_model.dart';
 import 'package:clothes_app/helper/extinsion/size_config.dart';
 import 'package:clothes_app/services/setup.dart';
+import 'package:clothes_app/src/login_screen.dart';
 
 import 'package:clothes_app/widget/button/button_text.dart';
 import 'package:clothes_app/widget/text_field/custome_text_field.dart';
@@ -209,6 +210,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           getIt.get<AppModel>().addUser(name: controllerName!.text, email: controllerEmail!.text,password: controllerPassword!.text);
 
 
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
+
+                            return const  LoginScreen();
+                            
+                          },));
+
+
               
                           
                         }
@@ -226,6 +234,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   TextButton(
                       onPressed: () {
+
+                         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
+
+                            return const  LoginScreen();
+                            
+                          },));
 
                         
                        
