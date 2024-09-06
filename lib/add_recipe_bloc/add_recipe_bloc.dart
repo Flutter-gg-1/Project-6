@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
@@ -19,19 +20,18 @@ class AddRecipeBloc extends Bloc<AddRecipeEvent, AddRecipeState> {
   XFile? selectedImage;
 
   AddRecipeBloc() : super(AddRecipeInitial()) {
-    on<AddRecipeEvent>((event, emit) {
-      on<SaveRecipeEvent>(saveRecipeMethod);
+     on<SaveRecipeEvent>(saveRecipeMethod);
       on<UploadImageEvent>(uploadImageMethod);
-    });
   }
 
   FutureOr<void> saveRecipeMethod(
-      SaveRecipeEvent event, Emitter<AddRecipeState> emit) {
+      SaveRecipeEvent event, Emitter<AddRecipeState> emit) async{
     if (selectedImage != null &&
         recipeNameController.text.isNotEmpty &&
         recipeDescriptionController.text.isNotEmpty) {
-      locator.get<RecipeData>().addRecipe(Recipe.fromJson({
-            'image': selectedImage,
+          log('added recipe');
+      await locator.get<RecipeData>().addRecipe(Recipe.fromJson({
+            'image': selectedImage!.path,
             'recipeTitle': recipeNameController.text,
             'recipeDescription': recipeDescriptionController.text,
           }));

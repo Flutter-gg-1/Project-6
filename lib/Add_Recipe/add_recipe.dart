@@ -1,9 +1,11 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project6/add_recipe_bloc/add_recipe_bloc.dart';
+
 import 'package:project6/theme/app_colors.dart';
 
 class AddRecipePage extends StatelessWidget {
@@ -18,18 +20,30 @@ class AddRecipePage extends StatelessWidget {
         return BlocConsumer<AddRecipeBloc, AddRecipeState>(
           listener: (context, state) {
             if (state is SuccessfullAddState) {
-              Navigator.pop(context, true);
+              log('popped');
+              Navigator.pop(context, {
+                'image': state.image,
+                'recipeTitle': state.recipeName,
+                'recipeDescription': state.recipeDescription,
+              });
             } else if (state is FailedAddState) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.message)),
               );
+            }else{
+              log('nothing');
             }
           },
           builder: (context, state) {
             return Scaffold(
               backgroundColor: AppColors.primary,
               appBar: AppBar(
-                  title: const Text('Add New Recipe'),
+                  iconTheme: const IconThemeData(
+                    color: Colors.white,
+                  ),
+                  title: const Text('Add New Recipe',
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold)),
                   backgroundColor: AppColors.lighthread),
               body: Padding(
                 padding: const EdgeInsets.all(16.0),

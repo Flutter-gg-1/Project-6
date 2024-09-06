@@ -1,6 +1,6 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:project6/Home/Details/EditRecipePage.dart';
 import 'package:project6/theme/app_colors.dart';
 
 class RecipeDetailsPage extends StatelessWidget {
@@ -36,7 +36,23 @@ class RecipeDetailsPage extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.edit),
-            onPressed: () {},
+            onPressed: () async {
+              final result = await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EditRecipePage(
+                    initialRecipeTitle: recipeTitle,
+                    initialDescription: description,
+                    imageFile: imageFile,
+                  ),
+                ),
+              );
+              if (result != null) {
+                // قم بتحديث الصفحة بالتفاصيل المعدلة
+                print(
+                    "Edited Recipe: ${result['title']}, ${result['description']}");
+              }
+            },
           ),
         ],
       ),

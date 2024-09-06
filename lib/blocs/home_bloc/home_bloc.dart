@@ -21,7 +21,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> loadDataMethod(LoadDataEvent event, Emitter<HomeState> emit) {
     if (dataLayer.recipes.isNotEmpty) {
-      
+
       emit(SuccessfulLoadState());
     }
   }
@@ -30,7 +30,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   //     EditRecipeEvent event, Emitter<HomeState> emit) {}
 
   FutureOr<void> loadNewRecipeMethod(
-      LoadNewRecipeEvent event, Emitter<HomeState> emit) {}
+      LoadNewRecipeEvent event, Emitter<HomeState> emit) {
+        emit(SuccessfulLoadState());
+      }
 
   FutureOr<void> removeRecipeMethod(
       RemoveRecipeEvent event, Emitter<HomeState> emit) {}
