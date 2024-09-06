@@ -15,18 +15,21 @@ class UserCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = userMgr.allUsers.first;
     return Card(
-      
       color: C.card,
       elevation: 8,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),),
-      child: ListTile(
-        leading: const CircleAvatar(
-          backgroundImage: Img.person1,
-          radius: 30,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListTile(
+          leading: const CircleAvatar(
+            backgroundImage: Img.person1,
+            radius: 30,
+          ),
+          title: Text(user.name).styled(weight: FontWeight.bold, size: 20),
+          subtitle: Text("${user.email}").styled(),
         ),
-        title: Text(user.name).styled(weight: FontWeight.bold, size: 20),
-        subtitle: Text("${user.id} \nd${user.email}").styled(),
       ),
     );
   }

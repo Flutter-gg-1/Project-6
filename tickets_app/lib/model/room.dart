@@ -3,6 +3,7 @@ class Room {
   String imgData;
   String title;
   String description;
+  double rating;
   int price;
 
   Room({
@@ -10,6 +11,7 @@ class Room {
     required this.imgData,
     required this.title,
     required this.description,
+    required this.rating,
     required this.price,
   });
 
@@ -19,6 +21,7 @@ class Room {
       imgData: json['imgData'],
       title: json['title'],
       description: json['description'],
+      rating: json['rating'],
       price: json['price'],
     );
   }
@@ -28,6 +31,7 @@ class Room {
         'imgData': imgData,
         'title': title,
         'description': description,
+        'rating': rating,
         'price': price
       };
 }

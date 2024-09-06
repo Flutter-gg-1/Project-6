@@ -22,6 +22,7 @@ class AddReservationScreen extends StatelessWidget {
       child: Builder(builder: (context) {
         final bloc = context.read<AddReservationBloc>();
         return Scaffold(
+          backgroundColor: C.bg,
           body: Column(
             children: [
               Stack(
@@ -68,17 +69,17 @@ class AddReservationScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text('Date:'),
+                          const Text('Date:').styled(weight: FontWeight.bold),
                           BlocBuilder<AddReservationBloc, AddReservationState>(
                             builder: (context, state) {
                               return Text((state is UpdateDateState)
                                   ? state.dateStr
-                                  : bloc.initialDate);
+                                  : bloc.date);
                             },
                           ),
                           IconButton(
                             onPressed: () => BottomPicker.date(
-                              pickerTitle: Text(
+                              pickerTitle: const Text(
                                 'When are you planning to stay with us?',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -89,10 +90,10 @@ class AddReservationScreen extends StatelessWidget {
                               dateOrder: DatePickerDateOrder.dmy,
                               initialDateTime: DateTime.now(),
                               maxDateTime:
-                                  DateTime.now().add(Duration(days: 60)),
+                                  DateTime.now().add(const Duration(days: 60)),
                               minDateTime:
-                                  DateTime.now().add(Duration(days: -1)),
-                              pickerTextStyle: TextStyle(
+                                  DateTime.now().add(const Duration(days: -1)),
+                              pickerTextStyle: const TextStyle(
                                 color: C.text1,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 14,
@@ -101,20 +102,21 @@ class AddReservationScreen extends StatelessWidget {
                                   bloc.add(SelectDateEvent(date: date)),
                               bottomPickerTheme: BottomPickerTheme.plumPlate,
                             ).show(context),
-                            icon: const Icon(Icons.calendar_month),
+                            icon: const Icon(Icons.calendar_month,
+                                color: C.accent),
                           )
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text('Nights:'),
+                          const Text('Nights:').styled(weight: FontWeight.bold),
                           BlocBuilder<AddReservationBloc, AddReservationState>(
                             builder: (context, state) {
                               return NumberPicker(
                                 value: (state is UpdateNightsState)
                                     ? state.nights
-                                    : bloc.initialNightsValue,
+                                    : bloc.numNights,
                                 axis: Axis.horizontal,
                                 selectedTextStyle: const TextStyle(
                                     color: C.accent, fontSize: 24),
@@ -140,12 +142,15 @@ class AddReservationScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Total:').styled(),
+                    const Text('Total:').styled(weight: FontWeight.bold),
                     BlocBuilder<AddReservationBloc, AddReservationState>(
                       builder: (context, state) {
                         return Text((state is UpdateNightsState)
-                            ? '\$${state.totalPrice}'
-                            : '${room.price}');
+                                ? '\$${state.totalPrice}'
+                                : (bloc.totalPrice > 0)
+                                    ? '\$${bloc.totalPrice}'
+                                    : '\$${room.price}')
+                            .styled(size: 18, weight: FontWeight.bold);
                       },
                     ),
                   ],

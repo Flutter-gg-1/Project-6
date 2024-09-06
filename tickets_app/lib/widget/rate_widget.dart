@@ -25,7 +25,7 @@ class RateWidget extends StatelessWidget {
               color: Colors.white,
               size: 16,
             ),
-            Text("$rating").styled(
+            Text(rating.toStringAsPrecision(2)).styled(
                 color: Colors.white,
                 weight: FontWeight.w600,
                 align: TextAlign.left)

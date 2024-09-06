@@ -39,6 +39,7 @@ class RoomMgr {
         title: 'Single Room',
         description:
             'Cozy and ideal for solo travelers, offering a comfortable bed, modern amenities, and a private bathroom.',
+        rating: 3.9,
         price: 100,
       ),
       Room(
@@ -47,6 +48,7 @@ class RoomMgr {
         title: 'Double Room',
         description:
             'Spacious room with two beds, perfect for couples or friends, featuring modern comforts and a relaxing ambiance.',
+        rating: 4.6,
         price: 150,
       ),
       Room(
@@ -55,6 +57,7 @@ class RoomMgr {
         title: 'King Suite',
         description:
             'Luxurious suite with a king-sized bed, living area, and premium amenities for a lavish and comfortable stay.',
+        rating: 4.1,
         price: 250,
       ),
       Room(
@@ -63,6 +66,7 @@ class RoomMgr {
         title: 'Royal Suite',
         description:
             'Elegant and expansive, offering opulent decor, multiple rooms, and exclusive services for a truly regal experience.',
+        rating: 5.0,
         price: 470,
       )
     ];

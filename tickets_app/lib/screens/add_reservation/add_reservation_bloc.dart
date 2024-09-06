@@ -18,8 +18,9 @@ class AddReservationBloc
     extends Bloc<AddReservationEvent, AddReservationState> {
   final userMgr = GetIt.I.get<UserMgr>();
   final reservationMgr = GetIt.I.get<ReservationMgr>();
-  final int initialNightsValue = 1;
-  final String initialDate = DateTime.now().toFormattedString();
+  int numNights = 1;
+  String date = DateTime.now().toFormattedString();
+  int totalPrice = 0;
 
   AddReservationBloc() : super(AddReservationInitial()) {
     on<AddReservationEvent>((event, emit) {});
@@ -33,25 +34,26 @@ class AddReservationBloc
 
   FutureOr<void> updateDate(
       SelectDateEvent event, Emitter<AddReservationState> emit) {
-    var dateStr = event.date.toFormattedString();
-    emit(UpdateDateState(dateStr: dateStr));
+    date = event.date.toFormattedString();
+
+    emit(UpdateDateState(dateStr: date));
   }
 
   FutureOr<void> updateNights(
       SelectNightsEvent event, Emitter<AddReservationState> emit) {
-    var total = event.numNights * event.roomPrice;
-    emit(UpdateNightsState(nights: event.numNights, totalPrice: total));
+    numNights = event.numNights;
+    totalPrice = numNights * event.roomPrice;
+    emit(UpdateNightsState(nights: numNights, totalPrice: totalPrice));
   }
 
   FutureOr<void> confirmBooking(
       ConfirmBookingEvent event, Emitter<AddReservationState> emit) {
-    var strDate = event.date.toString();
     var reservation = Reservation(
         id: Random().nextInt(999),
         userId: userMgr.currentUser?.id ?? 0, // currentUser.id
-        roomId: event.room.id,
-        date: strDate,
-        numNights: event.numNights);
+        roomId: event.roomId,
+        date: date,
+        numNights: numNights);
     try {
       reservationMgr.addReservation(reservation);
       emit(ConfirmBookingState());

@@ -17,15 +17,9 @@ class SelectDateEvent extends AddReservationEvent {
 }
 
 class ConfirmBookingEvent extends AddReservationEvent {
-  final Room room;
-  final int userId;
-  final DateTime date;
-  final int numNights;
+  final int roomId;
 
   ConfirmBookingEvent({
-    required this.room,
-    required this.userId,
-    required this.date,
-    required this.numNights,
+    required this.roomId,
   });
 }
