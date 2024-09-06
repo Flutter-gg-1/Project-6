@@ -113,7 +113,9 @@ class MovieCard extends StatelessWidget {
                                             ),
                                           ),
                                           GestureDetector(
-                                            onTap: () {},
+                                            onTap: () {
+                                              context.pop();
+                                            },
                                             child: Container(
                                               height: 30,
                                               width: 110,
