@@ -32,11 +32,17 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       body: SafeArea(
-        child: Column(
+        child: ListView(
           children: [
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: HomeCard(title: "title", subTitle: "subTitle", price: "price", rate: 4.5, image: Img.room1, onPressed: (){}))
+                child: HomeCard(
+                    title: "title",
+                    subTitle: "subTitle",
+                    price: "price",
+                    rate: 4.5,
+                    image: Img.room1,
+                    onPressed: () {}))
           ],
         ),
       ),
