@@ -16,24 +16,29 @@ class ShowMovies extends StatelessWidget {
         .toList();
     return movies.isEmpty
         ? const NoMoviesWidget()
-        : ListView.builder(
-            itemCount: (movies.length ~/ 2) + 1, // number of rows = 3 (0,1,2)
-            itemBuilder: (context, index) {
-              return Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    MovieCard(movie: movies[index * 2]),
-                    index * 2 + 1 == movies.length
-                        ? const Padding(
-                            padding: EdgeInsets.all(10),
-                            child: SizedBox(
-                              width: 173,
-                              height: 224,
-                            ),
-                          )
-                        : MovieCard(movie: movies[(index * 2 + 1)]),
-                  ]);
-            },
+        : SingleChildScrollView(
+            child: Column(
+              children: [
+                GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 10.0,
+                    crossAxisSpacing: 10.0,
+                    childAspectRatio: 2.67 / 5,
+                  ),
+                  itemCount: movies.length,
+                  itemBuilder: (context, index) {
+                    return Expanded(
+                      child: MovieCard(
+                        movie: movies[index],
+                      ),
+                    );
+                  },
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                ),
+              ],
+            ),
           );
   }
 }
