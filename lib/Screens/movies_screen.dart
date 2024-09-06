@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project6/colors/app_colors.dart';
 import 'package:project6/screens/add_movie_screen.dart';
 import 'package:project6/widgets/show_movies.dart';
 
@@ -51,11 +52,21 @@ class MoviesScreen extends StatelessWidget {
             ShowMovies(category: 'Action'),
           ],
         )),
-        floatingActionButton: FloatingActionButton(onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return const AddMovieScreen();
-          }));
-        }),
+        floatingActionButton: FloatingActionButton(
+            backgroundColor: ColorSelect.backgroundColor,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+                side: BorderSide(color: ColorSelect.brandColor, width: 2)),
+            child: Icon(
+              Icons.add,
+              color: Colors.grey.shade400,
+              size: 35,
+            ),
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const AddMovieScreen();
+              }));
+            }),
       ),
     );
   }
