@@ -14,4 +14,6 @@ extension C on Color {
   static const text1 = Colors.white;
   static const text2 = Color(0xFFB8B8B8);
   static const text3 = Color(0xFF888888);
+  static const black = Colors.black;
+  static const Card = Color.fromARGB(255, 252, 251, 253);
 }
