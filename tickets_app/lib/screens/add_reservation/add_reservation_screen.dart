@@ -1,3 +1,6 @@
+import 'package:bottom_picker/bottom_picker.dart';
+import 'package:bottom_picker/resources/arrays.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:numberpicker/numberpicker.dart';
@@ -74,7 +77,30 @@ class AddReservationScreen extends StatelessWidget {
                             },
                           ),
                           IconButton(
-                            onPressed: () => (),
+                            onPressed: () => BottomPicker.date(
+                              pickerTitle: Text(
+                                'When are you planning to stay with us?',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: C.accent,
+                                ),
+                              ),
+                              dateOrder: DatePickerDateOrder.dmy,
+                              initialDateTime: DateTime.now(),
+                              maxDateTime:
+                                  DateTime.now().add(Duration(days: 60)),
+                              minDateTime:
+                                  DateTime.now().add(Duration(days: -1)),
+                              pickerTextStyle: TextStyle(
+                                color: C.text1,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                              ),
+                              onSubmit: (date) =>
+                                  bloc.add(SelectDateEvent(date: date)),
+                              bottomPickerTheme: BottomPickerTheme.plumPlate,
+                            ).show(context),
                             icon: const Icon(Icons.calendar_month),
                           )
                         ],

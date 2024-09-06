@@ -48,7 +48,7 @@ class AddReservationBloc
     var strDate = event.date.toString();
     var reservation = Reservation(
         id: Random().nextInt(999),
-        userId: 0, // currentUser.id
+        userId: userMgr.currentUser?.id ?? 0, // currentUser.id
         roomId: event.room.id,
         date: strDate,
         numNights: event.numNights);
