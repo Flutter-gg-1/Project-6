@@ -23,15 +23,16 @@ class EditMoiveScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const AddFieldWidget(label: "Name", hint: "Movie name"),
+              // const AddFieldWidget(label: "Name", hint: "Movie name"),
               const SizedBox(height: 40),
-              const CatgoriesWidget(),
+              // const CatgoriesWidget(),
               const SizedBox(height: 40),
-              const AddFieldWidget(label: "Date", hint: "Add movie date"),
+              // const AddFieldWidget(label: "Date", hint: "Add movie date"),
               const SizedBox(height: 40),
               ImageFieldWidget(
                 onSelect: () async {
-                  final selectedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
+                  final selectedImage = await ImagePicker()
+                      .pickImage(source: ImageSource.gallery);
                   image = File(selectedImage!.path);
                 },
               ),

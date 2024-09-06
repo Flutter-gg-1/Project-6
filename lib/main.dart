@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project6/bloc/movie_bloc.dart';
 import 'package:project6/screens/welcome_screen.dart';
 import 'package:project6/services/setup.dart';
 
@@ -13,8 +15,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: WelcomeScreen()
+    return BlocProvider(
+      create: (context) => MovieBloc(),
+      child: const MaterialApp(home: WelcomeScreen()),
     );
   }
 }

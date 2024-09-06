@@ -55,6 +55,15 @@ class MoviesLayer {
   final List<String> categories = ['Comedy', 'Drama', 'Sci-Fi', 'Action'];
 
   // add movie
+
+  addMovie({required Movie movie}) {
+    movies.add(movie);
+  }
+
   // edit movie
+
   // delete movie
+  deleteMovie({required int id}) {
+    movies.removeWhere((element) => element.id == id);
+  }
 }
