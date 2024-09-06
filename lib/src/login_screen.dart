@@ -1,4 +1,5 @@
-import 'package:clothes_app/helper/extenstios/screen.dart';
+
+import 'package:clothes_app/helper/extinsion/size_config.dart';
 import 'package:clothes_app/widget/button/button_text.dart';
 import 'package:clothes_app/widget/text_field/custome_text_field.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,5 @@
-import 'dart:ui';
 
-import 'package:clothes_app/helper/extenstios/screen.dart';
+import 'package:clothes_app/helper/extinsion/size_config.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
