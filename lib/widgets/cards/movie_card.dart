@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project6/bloc/movie_bloc.dart';
+import 'package:project6/bloc_movie/movie_bloc.dart';
 import 'package:project6/extensions/nav.dart';
 import 'package:project6/extensions/screen_size.dart';
 import 'package:project6/models/movie.dart';
@@ -156,3 +156,4 @@ class MovieCard extends StatelessWidget {
     );
   }
 }
+

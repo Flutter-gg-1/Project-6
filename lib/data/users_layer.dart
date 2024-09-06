@@ -21,4 +21,8 @@ class UsersLayer {
   void addUser({required String name,required String email,required String phone,required String password,}) {
     users.add(User(name: name, email: email, phone: phone, password: password));
   }
+
+  void signOut() {
+    currentUser = null;
+  }
 }

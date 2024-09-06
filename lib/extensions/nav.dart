@@ -10,6 +10,13 @@ extension Nav on BuildContext {
     });
   }
 
+  pushReplacement({required Widget screen}) {
+    Navigator.pushReplacement(
+      this,
+      MaterialPageRoute(builder: (context) => screen)
+    );
+  }
+
   pop() {
     Navigator.pop(this);
   }

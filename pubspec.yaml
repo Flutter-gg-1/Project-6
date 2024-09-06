@@ -4,14 +4,15 @@ publish_to: 'none'
 version: 0.1.0
 
 environment:
-  sdk: ^3.5.0
+  sdk: ^3.3.3
 
 dependencies:
   custom_radio_grouped_button: ^2.2.1
   device_preview: ^1.2.0
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.6
+  # flutter_bloc: ^8.1.6
+  flutter_bloc: ^8.1.6  # Ensure this is correctly indented
   get_it: ^7.7.0
   get_storage: ^2.1.1
   google_fonts: ^6.2.1

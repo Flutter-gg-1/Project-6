@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:project6/data/users_layer.dart';
 import 'package:project6/widgets/fields/text_field_widget.dart';
 import 'package:project6/colors/app_colors.dart';
@@ -32,15 +33,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(
-                height: 20,
-              ),
-              const Text(
+              const SizedBox(height: 20),
+              Text(
                 "Get Started",
-                style: TextStyle(
-                    fontSize: 36,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+                style: GoogleFonts.mulish(
+                  color: Colors.white,
+                  fontSize: 32,
+                  fontWeight: FontWeight.w700
+                ),
               ),
               const SizedBox(height: 40),
               TextFieldWiedget(
@@ -96,14 +96,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 onLogin: () {
                   if (_formKey.currentState!.validate()) {
                     usersLayer.addUser(
-                        name: nameController!.text,
-                        email: emailController!.text,
-                        phone: phoneController!.text,
-                        password: passwordController!.text);
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) {
-                      return const LogInScreen();
-                    }));
+                      name: nameController!.text,
+                      email: emailController!.text,
+                      phone: phoneController!.text,
+                      password: passwordController!.text
+                    );
+                    context.pushReplacement(screen: const LogInScreen());
                   }
                 },
               ),
@@ -113,12 +111,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const SizedBox(width: 110),
-                  const Text("Already have an account ? ",
-                      style: TextStyle(color: Colors.white)),
+                  const Text("Already have an account ? ",style: TextStyle(color: Colors.white)),
                   InkWell(
-                      onTap: () => context.push(screen: const LogInScreen()),
-                      child: const Text("Login",
-                          style: TextStyle(color: ColorSelect.brandColor)))
+                    onTap: () => context.push(screen: const LogInScreen()),
+                    child: const Text("Login",style: TextStyle(color: ColorSelect.brandColor))
+                  )
                 ],
               ),
             ],
