@@ -45,7 +45,7 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
 
   FutureOr<void> deleteMovieMethod(
       DeleteMovieEvent event, Emitter<MovieState> emit) {
-    movieLayer.deleteMovie(id: id);
+    movieLayer.deleteMovie(id: event.id);
     emit(ShowMovieState(movies: movieLayer.movies));
   }
 }

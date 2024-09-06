@@ -1,5 +1,3 @@
-import 'dart:math';
-
 class Movie {
   int id;
   String name;
@@ -16,7 +14,7 @@ class Movie {
 
   factory Movie.fromJson(Map<String, dynamic> json) {
     return Movie(
-        id: json["id"] ?? Random().nextInt(9999),
+        id: json["id"],
         name: json['name'],
         category: json['category'],
         year: json['year'],

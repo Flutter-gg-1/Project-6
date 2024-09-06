@@ -19,7 +19,6 @@ class MoviesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     List<String> categories = GetIt.I.get<MoviesLayer>().categories;
     final usersLayer = GetIt.I.get<UsersLayer>();
-    // final bloc = context.read<MovieBloc>();
     return BlocProvider(
       create: (context) => MovieBloc(),
       child: Builder(

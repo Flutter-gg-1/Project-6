@@ -5,7 +5,7 @@ import 'package:project6/widgets/no_movies_widget.dart';
 
 class ShowMovies extends StatelessWidget {
   final String category;
-  final bloc;
+  final dynamic bloc;
   const ShowMovies({super.key, required this.category, this.bloc});
 
   @override
@@ -28,7 +28,7 @@ class ShowMovies extends StatelessWidget {
                   ),
                   itemCount: movies.length,
                   itemBuilder: (context, index) {
-                    return Expanded(
+                    return SizedBox(
                       child: MovieCard(
                         movie: movies[index],
                       ),
