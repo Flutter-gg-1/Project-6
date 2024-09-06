@@ -28,7 +28,7 @@ class HomeCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
-      color: C.Card,
+      color: C.card,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
@@ -44,7 +44,7 @@ class HomeCard extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(width: 8.0),
+            const SizedBox(width: 8.0),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,12 +63,12 @@ class HomeCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 8.0),
+                  const SizedBox(height: 8.0),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
                     title: Text(
                       title,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: C.black,
                         fontWeight: FontWeight.w800,
                         fontSize: 16,
@@ -76,25 +76,25 @@ class HomeCard extends StatelessWidget {
                     ),
                     subtitle: Text(
                       subTitle,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: C.text3, fontWeight: FontWeight.w600),
                     ),
                     isThreeLine: true,
                   ),
                   RichText(
                       text: TextSpan(children: [
-                    TextSpan(
+                    const TextSpan(
                         text: "From ",
                         style: TextStyle(
                             color: C.text3, fontWeight: FontWeight.w600)),
                     TextSpan(
                         text: price,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: C.black,
                           fontWeight: FontWeight.w600,
                           fontSize: 16,
                         )),
-                    TextSpan(
+                    const TextSpan(
                         text: " Night",
                         style: TextStyle(
                             color: C.text3, fontWeight: FontWeight.w600)),
