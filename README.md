@@ -66,7 +66,7 @@ The purpose of this app is to allow admin to discover and CRUD items with more f
 
 ### Screenshot
 
-![alt text](assets/readme/image-.png)
+![alt text](assets/readme/image.png)
 ![alt text](assets/readme/image-1.png)
 ![alt text](assets/readme/image-2.png)
 ![alt text](assets/readme/image-3.png)
@@ -90,7 +90,7 @@ The purpose of this app is to allow admin to discover and CRUD items with more f
 
 ## Contact
 
-For more information, feel free to contact us via team_email@example.com or visit our GitHub profiles:
-- Basel-75
-- Anas-Aljuhani
-- Ammarx9
+For more information, feel free to contact us via Group-7@gmail.com or visit our GitHub profiles:
+- @Basel-75
+- @Anas-Aljuhani
+- @Ammarx9
