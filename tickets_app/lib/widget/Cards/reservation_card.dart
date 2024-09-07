@@ -8,6 +8,7 @@ class ReservationCard extends StatelessWidget {
   final String nights;
   final String date;
   final Function()? onPressed;
+  final Function()? onDelete;
 
   const ReservationCard({
     super.key,
@@ -15,6 +16,7 @@ class ReservationCard extends StatelessWidget {
     required this.nights,
     required this.date,
     required this.onPressed,
+    required this.onDelete,
   });
   @override
   Widget build(BuildContext context) {
@@ -43,29 +45,42 @@ class ReservationCard extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Room number: $roomId",
-                    ).styled(weight: FontWeight.w800, size: 16),
-                    const SizedBox(height: 8),
-                    Text(
-                      "Number of Nights: $nights\nDate: $date",
-                    ).styled(color: C.text3, weight: FontWeight.w600, size: 14),
+                    ListTile(
+                      title: Text(
+                        "Room number: $roomId",
+                      ).styled(weight: FontWeight.w800, size: 16),
+                      subtitle: Text(
+                        "Number of Nights: $nights\nDate: $date",
+                      ).styled(
+                          color: C.text3, weight: FontWeight.w600, size: 14),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        IconButton(
+                          onPressed: onPressed,
+                          icon: const Icon(
+                            Icons.edit,
+                            color: C.accent,
+                            size: 24,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: onDelete,
+                          icon: const Icon(
+                            Icons.delete,
+                            color: C.red,
+                            size: 24,
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
-              const SizedBox(width: 8),
-              IconButton(
-                  onPressed: onPressed,
-                  icon: const Icon(
-                    Icons.edit,
-                    color: C.accent,
-                    size: 24,
-                  )),
             ],
           )),
     );
   }
 }
-
