@@ -8,7 +8,6 @@ import 'package:project6/data_layer/coffee_data.dart';
 import 'package:project6/screens/bloc/coffee_bloc.dart';
 import 'package:project6/setup/init.dart';
 
-
 class CartPage extends StatelessWidget {
   CartPage({
     super.key,
