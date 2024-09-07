@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project6/components/buy_more.dart';
+import 'package:project6/components/custom_button.dart';
 import 'package:project6/components/shimmer_loading.dart';
+import 'package:project6/components/successdialog_signup.dart';
 import 'package:project6/components/text_custom.dart';
 import 'package:project6/screens/bloc/coffee_bloc.dart';
+import 'package:project6/screens/cart_page.dart';
 
 class AddCoffeScreen extends StatelessWidget {
   const AddCoffeScreen({super.key, required this.image});
@@ -51,7 +54,11 @@ class AddCoffeScreen extends StatelessWidget {
                                 color: Colors.black,
                                 weight: FontWeight.w500,
                                 size: 22),
-                             BuyMore(amount:1 , onTapDecrease: (){},onTapIncrease: (){},),
+                            BuyMore(
+                              amount: 1,
+                              onTapDecrease: () {},
+                              onTapIncrease: () {},
+                            ),
                             const SizedBox(
                               height: 20,
                             ),
@@ -68,14 +75,16 @@ class AddCoffeScreen extends StatelessWidget {
                               children: [
                                 SvgPicture.asset(
                                   "assets/svg/Vector.svg",
-                                  colorFilter: const ColorFilter.mode(Color(0xffADA3A1), BlendMode.srcIn),
+                                  colorFilter: const ColorFilter.mode(
+                                      Color(0xffADA3A1), BlendMode.srcIn),
                                 ),
                                 const SizedBox(
                                   width: 26,
                                 ),
                                 SvgPicture.asset(
                                   "assets/svg/Vector.svg",
-                                  colorFilter: const ColorFilter.mode(Color(0xff58352E), BlendMode.srcIn),
+                                  colorFilter: const ColorFilter.mode(
+                                      Color(0xff58352E), BlendMode.srcIn),
                                   width: 36,
                                   height: 36,
                                 ),
@@ -84,7 +93,8 @@ class AddCoffeScreen extends StatelessWidget {
                                 ),
                                 SvgPicture.asset(
                                   "assets/svg/Vector.svg",
-                                  colorFilter: const ColorFilter.mode(Color(0xffADA3A1), BlendMode.srcIn),
+                                  colorFilter: const ColorFilter.mode(
+                                      Color(0xffADA3A1), BlendMode.srcIn),
                                   width: 42,
                                   height: 42,
                                 ),
@@ -167,27 +177,21 @@ class AddCoffeScreen extends StatelessWidget {
                               height: 42,
                             ),
                             Center(
-                              child: Container(
-                                height: 46,
-                                width: 206,
-                                decoration: BoxDecoration(
-                                    color: const Color(0xffB98875),
-                                    borderRadius: BorderRadius.circular(41),
-                                    boxShadow: const [
-                                      BoxShadow(
-                                          color: Colors.black26,
-                                          offset: Offset(0, 4),
-                                          blurRadius: 1)
-                                    ]),
-                                child: const Center(
-                                  child: TextCustom(
-                                      title: "Add to cart",
-                                      color: Colors.white,
-                                      weight: FontWeight.w500,
-                                      size: 15),
-                                ),
-                              ),
-                            )
+                                child: CustomButton(
+                              text: 'Add to cart',
+                              onPressed: () {
+                                //perform adding operations
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        backgroundColor: Color(0xffB98875),
+                                        content: Text(
+                                            'Successfully added to cart!')));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CartPage()));
+                              },
+                            ))
                           ],
                         ),
                       ),
