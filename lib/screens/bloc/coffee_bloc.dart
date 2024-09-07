@@ -34,6 +34,7 @@ class CoffeeBloc extends Bloc<CoffeeEvent, CoffeeState> {
     });
     on<LoadDataEvent>((event, emit) {
       if (datalayer.dataLayer.isNotEmpty) {
+        print(datalayer.dataLayer);
         emit(LoadedDataState());
       }
     });

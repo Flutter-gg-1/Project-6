@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project6/components/buy_more.dart';
+import 'package:project6/components/custom_button.dart';
 import 'package:project6/components/shimmer_loading.dart';
 import 'package:project6/components/text_custom.dart';
 import 'package:project6/data_layer/coffee_data.dart';
@@ -229,6 +230,12 @@ class AddCoffeScreen extends StatelessWidget {
                             Center(
                               child: GestureDetector(
                                 onTap: () {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          backgroundColor: Color(0xffB98875),
+                                          content: Text(
+                                              'Successfully added to cart!')));
+
                                   final sizeCup = switch (bloc.size) {
                                     0 => "small",
                                     1 => "medium",

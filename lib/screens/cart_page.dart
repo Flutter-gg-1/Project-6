@@ -37,106 +37,90 @@ class CartPage extends StatelessWidget {
                   const SizedBox(
                     height: 70,
                   ),
-                  BlocBuilder<CoffeeBloc, CoffeeState>(
-                    builder: (context, state) {
-                      if (state is LoadedDataState) {
-                        Expanded(
-                          child: BlocBuilder<CoffeeBloc, CoffeeState>(
-                            builder: (context, state) {
-                              if (state is LoadedDataState) {
-                                return Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    SingleChildScrollView(
-                                      child: Column(
-                                        children: getIt
-                                            .get<CoffeeData>()
-                                            .dataLayer
-                                            .map(
-                                              (e) => BlocBuilder<CoffeeBloc,
-                                                  CoffeeState>(
-                                                builder: (context, state) {
-                                                  if (state
-                                                      is LoadedDataState) {
-                                                    return CustomCartContainerWidget(
-                                                      image: e.nameOfCoffee!,
-                                                      amount: e.amount!,
-                                                      onAddPressed: () {
-                                                        amount++;
-                                                        context
-                                                            .read<CoffeeBloc>()
-                                                            .add(
-                                                                ChangeAmountEvent());
-                                                      },
-                                                      onRemovePressed: () {
-                                                        context
-                                                            .read<CoffeeBloc>()
-                                                            .add(
-                                                                ChangeAmountEvent());
-
-                                                        if (e.amount! <= 1) {
-                                                          showDialog(
-                                                              context: context,
-                                                              builder:
-                                                                  (context) {
-                                                                return const CustomAlertDialogWidget();
-                                                              });
-                                                        } else {
-                                                          e.amount =
-                                                              e.amount! - 1;
-                                                        }
-                                                      },
-                                                    );
-                                                  }
-                                                  return const Text(
-                                                      "It's empty!");
+                  Expanded(
+                    child: BlocBuilder<CoffeeBloc, CoffeeState>(
+                      builder: (context, state) {
+                        if (state is LoadedDataState) {
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SingleChildScrollView(
+                                child: Column(
+                                  children: getIt
+                                      .get<CoffeeData>()
+                                      .dataLayer
+                                      .map(
+                                        (e) => BlocBuilder<CoffeeBloc,
+                                            CoffeeState>(
+                                          builder: (context, state) {
+                                            if (state is LoadedDataState) {
+                                              return CustomCartContainerWidget(
+                                                image: e.nameOfCoffee!,
+                                                amount: e.amount!,
+                                                onAddPressed: () {
+                                                  amount++;
+                                                  context
+                                                      .read<CoffeeBloc>()
+                                                      .add(ChangeAmountEvent());
                                                 },
-                                              ),
-                                            )
-                                            .toList(),
-                                      ),
-                                    ),
-                                    Column(
-                                      children: [
-                                        const Divider(),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            const Text(
-                                              "Total:",
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                              ),
-                                            ),
-                                            BlocBuilder<CoffeeBloc,
-                                                CoffeeState>(
-                                              builder: (context, state) {
-                                                return Text(
-                                                  "${amount * 19} SAR",
-                                                  style: const TextStyle(
-                                                      fontSize: 20,
-                                                      fontWeight:
-                                                          FontWeight.w700),
-                                                );
-                                              },
-                                            ),
-                                          ],
+                                                onRemovePressed: () {
+                                                  context
+                                                      .read<CoffeeBloc>()
+                                                      .add(ChangeAmountEvent());
+
+                                                  if (e.amount! <= 1) {
+                                                    showDialog(
+                                                        context: context,
+                                                        builder: (context) {
+                                                          return const CustomAlertDialogWidget();
+                                                        });
+                                                  } else {
+                                                    e.amount = e.amount! - 1;
+                                                  }
+                                                },
+                                              );
+                                            }
+                                            return const Text("It's empty!");
+                                          },
                                         ),
-                                      ],
-                                    )
-                                  ],
-                                );
-                              }
-                              return const Text("No data yet.");
-                            },
-                          ),
-                        );
-                      }
-                      return const Text("No data yet.");
-                    },
-                  ),
+                                      )
+                                      .toList(),
+                                ),
+                              ),
+                              Column(
+                                children: [
+                                  const Divider(),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      const Text(
+                                        "Total:",
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                      BlocBuilder<CoffeeBloc, CoffeeState>(
+                                        builder: (context, state) {
+                                          return Text(
+                                            "${amount * 19} SAR",
+                                            style: const TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w700),
+                                          );
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              )
+                            ],
+                          );
+                        }
+                        return const Text("No data yet.");
+                      },
+                    ),
+                  )
                 ],
               ),
             ),
