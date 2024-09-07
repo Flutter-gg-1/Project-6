@@ -58,13 +58,33 @@ The outcome of Fantasy Hotel App:
 
 splash Login and Signup Screens:
 <p align="center">
-<img src="./assets/logo-h.png" alt="Tuwaiq" width="300"/>
+<img src="assets/output/splash_sceen.png" 
+ width="300"/>
+<img src="assets/output/signup.png" 
+width="300"/>
+<img src="assets/output/login.png" 
+ width="300"/>
 
 
 Home Screen: 
+<p align="center">
+<img src="assets/output/home.png" 
+ width="300"/>
+
+
 Add and Edit Screens:
+<p align="center">
+<img src="assets/output/reserv.png" 
+ width="300"/>
+<img src="assets/output/alert.png" 
+ width="300"/>
 
 user and guset Profile Screen:
+<p align="center">
+<img src="assets/output/userprofile.png" 
+ width="300"/>
+<img src="assets/output/guestprofile.png" 
+ width="300"/>
 
 
 ## Resourses
