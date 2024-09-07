@@ -7,11 +7,13 @@ class MyTextField extends StatelessWidget {
       this.hintText,
       this.prefixIcon,
       this.suffixIcon,
-      required this.controller});
+      required this.controller,
+      required this.validation});
   final String? hintText;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final TextEditingController controller;
+  final Function(String value) validation;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,6 +30,7 @@ class MyTextField extends StatelessWidget {
           fillColor: C.lithGray,
           hintText: hintText,
         ),
+        validator: (value) => validation(value ?? ''),
       ),
     );
   }

@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:tickets_app/screens/home_screen.dart';
 import 'package:tickets_app/screens/login/login_bloc.dart';
 import 'package:tickets_app/screens/sign_up/sign_up_bloc.dart';
+import 'package:tickets_app/utils/validations.dart';
 import '../../core/all_file.dart';
 import '../../core/extensions/img_ext.dart';
 import '../../reusable_components/custom_text_btn.dart';
@@ -98,16 +99,19 @@ class SignUpScreen extends StatelessWidget {
                               controller: bloc.nameController,
                               prefixIcon: const Icon(FontAwesomeIcons.user),
                               hintText: 'Username',
+                              validation: Validations.emptyFieldValidation,
                             ),
                             MyTextField(
                               controller: bloc.emailController,
                               prefixIcon: const Icon(FontAwesomeIcons.envelope),
                               hintText: 'Email',
+                              validation: Validations.email,
                             ),
                             MyTextField(
                               controller: bloc.passwordController,
                               prefixIcon: const Icon(FontAwesomeIcons.lock),
                               hintText: 'Password',
+                              validation: Validations.pwd,
                             ),
                             MyButton(
                               text: 'Sign Up',

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tickets_app/reusable_components/custom_text_btn.dart';
 import 'package:tickets_app/screens/login/login_bloc.dart';
+import 'package:tickets_app/utils/validations.dart';
 import '../../core/all_file.dart';
 import '../../core/extensions/img_ext.dart';
 import '../home_screen.dart';
@@ -65,12 +66,15 @@ class LoginScreen extends StatelessWidget {
                             MyTextField(
                                 controller: bloc.emailController,
                                 hintText: 'Email',
-                                prefixIcon: const Icon(Icons.email)),
+                                prefixIcon: const Icon(Icons.email),
+                                validation: Validations.email),
                             MyTextField(
-                                controller: bloc.passwordController,
-                                hintText: 'Password',
-                                prefixIcon: const Icon(Icons.lock),
-                                suffixIcon: const Icon(Icons.remove_red_eye)),
+                              controller: bloc.passwordController,
+                              hintText: 'Password',
+                              prefixIcon: const Icon(Icons.lock),
+                              suffixIcon: const Icon(Icons.remove_red_eye),
+                              validation: Validations.pwd,
+                            ),
                             MyButton(
                                 text: 'Log in',
                                 onPressed: () {

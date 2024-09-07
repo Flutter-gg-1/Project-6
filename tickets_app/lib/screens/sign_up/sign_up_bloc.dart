@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:tickets_app/managers/user_mgr.dart';
+import 'package:tickets_app/screens/login/login_bloc.dart';
 
 import '../../core/extensions/img_ext.dart';
 import '../../model/user.dart';
 import '../../utils/img_converter.dart';
+import '../../utils/validations.dart';
 
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';
@@ -33,14 +35,26 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         ? await ImgConverter.fileImgToBase64(selectedImg!)
         : await ImgConverter.assetImgToData(Img.person2);
 
-    var newUser = User(
-      id: Random().nextInt(999),
-      name: nameController.text,
-      avatarData: imgData,
-      email: emailController.text,
-      password: passwordController.text,
-    );
+    if (isFormValid()) {
+      var newUser = User(
+        id: Random().nextInt(999),
+        name: nameController.text,
+        avatarData: imgData,
+        email: emailController.text,
+        password: passwordController.text,
+      );
 
-    await userMgr.addUser(newUser);
+      await userMgr.addUser(newUser);
+
+      emit(SignUpSuccessState());
+    } else {
+      emit(SignUpErrorState());
+    }
+  }
+
+  bool isFormValid() {
+    return Validations.emptyFieldValidation(nameController.text) == null &&
+        Validations.email(emailController.text) == null &&
+        Validations.pwd(passwordController.text) == null;
   }
 }
