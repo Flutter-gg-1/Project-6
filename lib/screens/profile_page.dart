@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project6/components/custom_button.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -50,7 +51,13 @@ class ProfilePage extends StatelessWidget {
                   ],
                 ),
               ),
-              //add custom button here
+              SizedBox(
+                height: 180,
+              ),
+              CustomButton(
+                text: 'Sign out',
+                onPressed: () {},
+              )
             ],
           ),
         ),
