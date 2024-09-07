@@ -6,6 +6,7 @@ import 'package:tickets_app/screens/login/login_bloc.dart';
 import 'package:tickets_app/utils/validations.dart';
 import '../../core/all_file.dart';
 import '../../core/extensions/img_ext.dart';
+import '../../reusable_components/custom_alert_dialog.dart';
 import '../home_screen.dart';
 import '../sign_up/sign_up_screen.dart';
 
@@ -23,7 +24,16 @@ class LoginScreen extends StatelessWidget {
         (Route<dynamic> route) => false);
   }
 
-  void _showAlert(BuildContext context) {}
+  void _showAlert(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const CustomAlertDialog(
+            title: 'Oops',
+            content: 'No registered user with the provided email and password');
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

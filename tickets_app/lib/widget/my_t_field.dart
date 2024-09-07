@@ -19,6 +19,7 @@ class MyTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: TextFormField(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         controller: controller,
         decoration: InputDecoration(
           prefixIcon: prefixIcon,

@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:tickets_app/managers/user_mgr.dart';
-import 'package:tickets_app/screens/login/login_bloc.dart';
-
 import '../../core/extensions/img_ext.dart';
 import '../../model/user.dart';
 import '../../utils/img_converter.dart';
@@ -45,6 +43,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       );
 
       await userMgr.addUser(newUser);
+      await userMgr.setCurrentUser(newUser);
 
       emit(SignUpSuccessState());
     } else {
