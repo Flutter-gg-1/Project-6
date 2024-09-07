@@ -20,7 +20,7 @@ class MainApp extends StatelessWidget {
             scaffoldBackgroundColor: Colors.white,
             appBarTheme: const AppBarTheme(backgroundColor: Colors.white)),
         debugShowCheckedModeBanner: false,
-        home: const LoginScreen());
+        home: const HomeScreen());
 
   }
 }
