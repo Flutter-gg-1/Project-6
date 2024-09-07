@@ -16,6 +16,17 @@ final class SuccessfullAddState extends AddRecipeState {
       required this.recipeDescription});
 }
 
+final class SuccessfullEditState extends AddRecipeState {
+  final XFile image;
+  final String recipeName;
+  final String recipeDescription;
+
+  SuccessfullEditState(
+      {required this.image,
+      required this.recipeName,
+      required this.recipeDescription});
+}
+
 final class FailedAddState extends AddRecipeState {
   final String message;
   FailedAddState({required this.message});

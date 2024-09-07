@@ -16,7 +16,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<LoadDataEvent>(loadDataMethod);
     on<LoadNewRecipeEvent>(loadNewRecipeMethod);
     // on<RemoveRecipeEvent>(removeRecipeMethod);
-    // on<EditRecipeEvent>(editRecipeMethod);
   }
 
   FutureOr<void> loadDataMethod(LoadDataEvent event, Emitter<HomeState> emit) {
@@ -38,8 +37,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
   }
 
-  // FutureOr<void> editRecipeMethod(
-  //     EditRecipeEvent event, Emitter<HomeState> emit) {}
+  FutureOr<void> editRecipeMethod(
+      EditRecipeEvent event, Emitter<HomeState> emit) {
+    try {
+      dataLayer.editRecipe(
+          oldRecipe: event.oldRecipe, editedRecipe: event.newRecipe);
+      final recipes = dataLayer.recipes;
+      emit(SuccessfulLoadState(recipes: recipes));
+    } catch (e) {
+      emit(ErrorState(message: e.toString()));
+    }
+  }
 
   // FutureOr<void> removeRecipeMethod(
   //     RemoveRecipeEvent event, Emitter<HomeState> emit) {}
