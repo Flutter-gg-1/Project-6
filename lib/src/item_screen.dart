@@ -88,7 +88,7 @@ class ItemScreen extends StatelessWidget {
                       height: 20,
                     ),
                     SizedBox(
-                      height: context.getHeight() * 0.5,
+                      height: context.getHeight() * 0.6,
                       width: double.infinity,
                       child: TabBarView(
                         children: [

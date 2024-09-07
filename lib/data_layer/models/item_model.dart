@@ -8,22 +8,24 @@ class ItemModel {
   Color color;
   String img;
 
-  ItemModel(
-      {required this.id,
-      required this.itemName,
-      required this.price,
-      required this.size,
-      required this.color,
-      required this.img});
+  ItemModel({
+    required this.id,
+    required this.itemName,
+    required this.price,
+    required this.size,
+    required this.color,
+    required this.img,
+  });
 
   factory ItemModel.fromJson(Map<String, dynamic> json) {
     return ItemModel(
-        id: json["id"],
-        itemName: json["itemName"],
-        price: json["price"],
-        size: json["size"],
-        color: json["color"],
-        img: json["img"]);
+      id: json["id"],
+      itemName: json["itemName"],
+      price: json["price"],
+      size: json["size"],
+      color: Color(json["color"]),
+      img: json["img"],
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -32,7 +34,7 @@ class ItemModel {
       "itemName": itemName,
       "price": price,
       "size": size,
-      "color": color,
+      "color": color.value,
       "img": img,
     };
   }

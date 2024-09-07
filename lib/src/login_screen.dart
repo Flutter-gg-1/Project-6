@@ -1,6 +1,7 @@
 import 'package:clothes_app/data_layer/models/app_model.dart';
 import 'package:clothes_app/helper/extinsion/size_config.dart';
 import 'package:clothes_app/services/setup.dart';
+import 'package:clothes_app/src/landing_screen.dart';
 import 'package:clothes_app/src/sign_up_screen.dart';
 import 'package:clothes_app/widget/button/button_text.dart';
 import 'package:clothes_app/widget/text_field/custome_text_field.dart';
@@ -21,7 +22,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Form(
-
       key: formKey,
       child: Scaffold(
         body: SafeArea(
@@ -104,11 +104,20 @@ class _LoginScreenState extends State<LoginScreen> {
                       if (getIt.get<AppModel>().userChecker(
                           name: controllerName.text,
                           password: controllerPass.text)) {
-                        debugPrint("User entered the system");
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const LandingScreen(),
+                            ));
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            content: Text('No User in the system'),
+                            backgroundColor: Colors.red,
+                            content: Text(
+                              'Usernmae or password incorrect',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 16),
+                            ),
                           ),
                         );
                       }
@@ -130,7 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
                             builder: (context) {
-                              return const RegisterScreen();
+                              return const SignUpScreen();
                             },
                           ),
                         );
@@ -151,6 +160,5 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
-
   }
 }

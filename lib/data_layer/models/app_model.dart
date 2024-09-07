@@ -1,7 +1,4 @@
 import 'dart:math';
-
-import 'dart:developer' as lg;
-
 import 'package:clothes_app/data_layer/models/item_model.dart';
 import 'package:clothes_app/data_layer/models/user_model.dart';
 import 'package:flutter/material.dart';
@@ -19,11 +16,11 @@ class AppModel {
   ];
 
   List<UserModel> userList = [];
-
   List<ItemModel> itemList = [];
 
   AppModel() {
     loadItem();
+    loadUser();
   }
 
   void addUser(
@@ -40,11 +37,9 @@ class AppModel {
     for (int i = 0; i < userList.length; i++) {
       if (userList[i].name == name && userList[i].password == password) {
         user = userList[i];
-
         return true;
       }
     }
-
     return false;
   }
 
@@ -66,11 +61,7 @@ class AppModel {
   }
 
   void removeItem({required int id}) {
-    for (int i = 0; i < itemList.length; i++) {
-      if (itemList[i].id == id) {
-        itemList.removeAt(i);
-      }
-    }
+    itemList.removeWhere((item) => item.id == id);
     saveItem();
   }
 
@@ -85,30 +76,33 @@ class AppModel {
         price: price,
         size: size,
         color: color,
-        img: randomImgList[Random().nextInt(3)]));
+        img: randomImgList[Random().nextInt(randomImgList.length)]));
     saveItem();
   }
 
   Future<void> saveItem() async {
-    List<Map<String, dynamic>> itemAsMap = [];
-    for (var element in itemList) {
-      itemAsMap.add(element.toJson());
-    }
+    List<Map<String, dynamic>> itemAsMap =
+        itemList.map((item) => item.toJson()).toList();
     await box.write('items', itemAsMap);
-    
   }
 
   Future<void> saveUser() async {
-    List<Map<String, dynamic>> usersAsMap = [];
-    for (var element in userList) {
-      usersAsMap.add(element.toJson());
-    }
+    List<Map<String, dynamic>> usersAsMap =
+        userList.map((user) => user.toJson()).toList();
     await box.write('users', usersAsMap);
   }
 
-  loadItem(){
-    if (!box.hasData('items')) {
-     lg.log('False') ;
+  void loadItem() {
+    if (box.hasData('items')) {
+      List<dynamic> savedItem = box.read('items');
+      itemList = savedItem.map((item) => ItemModel.fromJson(item)).toList();
+    }
+  }
+
+  void loadUser() {
+    if (box.hasData('users')) {
+      List<dynamic> savedUser = box.read('users');
+      userList = savedUser.map((user) => UserModel.formJson(user)).toList();
     }
   }
 }

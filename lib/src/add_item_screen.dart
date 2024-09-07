@@ -15,15 +15,15 @@ class AddItemScreen extends StatefulWidget {
 }
 
 class _AddItemScreenState extends State<AddItemScreen> {
-   String itemName  = "";
+  String itemName = "";
 
-   String price = "";
+  String price = "";
 
-   String size = "";
+  String size = "";
 
-   Color? color = Colors.blue ;
+  Color? color = Colors.blue;
 
-   final formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -47,55 +47,50 @@ class _AddItemScreenState extends State<AddItemScreen> {
                 SizedBox(
                   height: context.getHeight() * 0.09,
                 ),
-                 CustomTextField(
-                   validate: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Item name is required';
-                          }
-                          itemName = value;
-                          return null;
-                        },
-                    hintText: 'item name', hasSuffixIcon: false),
+                CustomTextField(
+                    validate: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Item name is required';
+                      }
+                      itemName = value;
+                      return null;
+                    },
+                    hintText: 'item name',
+                    hasSuffixIcon: false),
                 SizedBox(
                   height: context.getHeight() * 0.04,
                 ),
-                 CustomTextField(
-      
-      
-                  validate: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Price is required';
-                          }
-                          final doubleValue = double.tryParse(value);
-                          if (doubleValue == null) {
-                            return 'Enter a valid price';
-                          }
-                          price = value;
-                          return null;
-                        },
-                  
-                  
-                  hintText: 'price', hasSuffixIcon: false),
+                CustomTextField(
+                    validate: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Price is required';
+                      }
+                      final doubleValue = double.tryParse(value);
+                      if (doubleValue == null) {
+                        return 'Enter a valid price';
+                      }
+                      price = value;
+                      return null;
+                    },
+                    hintText: 'price',
+                    hasSuffixIcon: false),
                 SizedBox(
                   height: context.getHeight() * 0.04,
                 ),
-                 CustomTextField(
-      
-      
-                  validate: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Size is required';
-                          }
-                          const validSizes = ['S', 'M', 'L', 'XL', 'XXL'];
-                          if (!validSizes.contains(value)) {
-                            return 'Enter a valid size (S, M, L, XL, XXL)';
-                          }
-                          size = value;
-                          return null;
-                        },
-                  
-                  
-                  hintText: 'size', hasSuffixIcon: false),
+                CustomTextField(
+                    validate: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Size is required';
+                      }
+                      const validSizes = ['S', 'M', 'L', 'XL', 'XXL'];
+                      if (!validSizes.contains(value)) {
+                        return 'Enter a valid size (S, M, L, XL, XXL)';
+                      }
+                      size = value;
+                      return null;
+                    },
+                    hintText: 'size',
+                    hasSuffixIcon: false),
                 SizedBox(
                   height: context.getHeight() * 0.04,
                 ),
@@ -114,6 +109,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                         selectedColor = Colors.red;
                         color = selectedColor;
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          duration: const Duration(milliseconds: 500),
                           content: const Text(
                             'Color is selected',
                             style: TextStyle(fontWeight: FontWeight.bold),
@@ -128,6 +124,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                         selectedColor = Colors.blue;
                         color = selectedColor;
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          duration: const Duration(milliseconds: 500),
                           content: const Text(
                             'Color is selected',
                             style: TextStyle(fontWeight: FontWeight.bold),
@@ -142,6 +139,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                         selectedColor = Colors.green;
                         color = selectedColor;
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          duration: const Duration(milliseconds: 500),
                           content: const Text(
                             'Color is selected',
                             style: TextStyle(fontWeight: FontWeight.bold),
@@ -156,6 +154,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                         selectedColor = Colors.amber;
                         color = selectedColor;
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          duration: const Duration(milliseconds: 500),
                           content: const Text(
                             'Color is selected',
                             style: TextStyle(fontWeight: FontWeight.bold),
@@ -169,25 +168,23 @@ class _AddItemScreenState extends State<AddItemScreen> {
                 SizedBox(
                   height: context.getHeight() * 0.04,
                 ),
-                 CustomeTextButton(
-      
-                  onPressed: () {
+                CustomeTextButton(
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        getIt.get<AppModel>().addItem(
+                            itemName: itemName,
+                            price: price,
+                            size: size,
+                            color: color!);
 
-                    if(formKey.currentState!.validate()){
-
-
-                       getIt.get<AppModel>().addItem(itemName: itemName, price: price, size: size, color: color!);
-
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
-
-                        return  const HomeScreen();
-                        
-                      },));
-                    }
-                    
-                  },
-                  
-                  buttonText: 'Add')
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) {
+                            return const HomeScreen();
+                          },
+                        ));
+                      }
+                    },
+                    buttonText: 'Add')
               ],
             ),
           ),

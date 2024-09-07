@@ -7,29 +7,20 @@ import 'package:clothes_app/widget/button/button_text.dart';
 import 'package:clothes_app/widget/text_field/custome_text_field.dart';
 import 'package:flutter/material.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
-
-  
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
-
-  
+class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController? controllerName = TextEditingController();
   final TextEditingController? controllerEmail = TextEditingController();
   final TextEditingController? controllerPassword = TextEditingController();
   final TextEditingController? controllerConfromPass = TextEditingController();
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
-  
-
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +29,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
       child: Scaffold(
         body: SafeArea(
             child: SingleChildScrollView(
-              child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
               SizedBox(
                 height: context.getHeight() / 40,
               ),
@@ -140,7 +131,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: 2,
                     color: const Color(0xff5F3636),
                   ),
-                  //############mediaQ
                   const SizedBox(
                     width: 15,
                   ),
@@ -161,7 +151,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                   ),
-                  //#########mediaQ
                   const SizedBox(
                     width: 15,
                   ),
@@ -203,25 +192,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
               SizedBox(
                 height: context.getWidth() / 12,
               ),
-               CustomeTextButton(
+              CustomeTextButton(
                 onPressed: () {
-                        if (formKey.currentState!.validate()) {
+                  if (formKey.currentState!.validate()) {
+                    getIt.get<AppModel>().addUser(
+                        name: controllerName!.text,
+                        email: controllerEmail!.text,
+                        password: controllerPassword!.text);
 
-                          getIt.get<AppModel>().addUser(name: controllerName!.text, email: controllerEmail!.text,password: controllerPassword!.text);
-
-
-                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
-
-                            return const  LoginScreen();
-                            
-                          },));
-
-
-              
-                          
-                        }
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) {
+                        return const LoginScreen();
                       },
-              
+                    ));
+                  }
+                },
                 buttonText: 'Sign Up',
               ),
               Row(
@@ -234,15 +219,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   TextButton(
                       onPressed: () {
-
-                         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
-
-                            return const  LoginScreen();
-                            
-                          },));
-
-                        
-                       
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) {
+                            return const LoginScreen();
+                          },
+                        ));
                       },
                       child: const Text(
                         'Login',
@@ -252,9 +233,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ))
                 ],
               )
-                        ],
-                      ),
-            )),
+            ],
+          ),
+        )),
       ),
     );
   }

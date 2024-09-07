@@ -1,20 +1,16 @@
-
 import 'package:clothes_app/helper/extinsion/size_config.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({
-    super.key,
-    required this.hintText,
-    this.editTextValue,
-    required this.hasSuffixIcon,
-    this.controller,
+  const CustomTextField(
+      {super.key,
+      required this.hintText,
+      this.editTextValue,
+      required this.hasSuffixIcon,
+      this.controller,
+      this.validate});
 
-    this.validate
-  });
-
-
-   final  String? Function(String?)?  validate;
+  final String? Function(String?)? validate;
 
   final String hintText;
   final String? editTextValue;
@@ -25,13 +21,11 @@ class CustomTextField extends StatelessWidget {
     return SizedBox(
       width: context.getWidth() / 1.3,
       child: TextFormField(
-        validator:  validate,
+        validator: validate,
         initialValue: editTextValue,
         style: TextStyle(color: const Color(0xff5F3636).withOpacity(0.64)),
         controller: controller,
         decoration: InputDecoration(
-
-            //suffixIcon for password
             suffixIcon: hasSuffixIcon == true
                 ? IconButton(
                     onPressed: () {},

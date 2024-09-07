@@ -3,21 +3,14 @@ import 'package:clothes_app/data_layer/models/app_model.dart';
 import 'package:clothes_app/data_layer/models/item_model.dart';
 import 'package:clothes_app/helper/extinsion/size_config.dart';
 import 'package:clothes_app/services/setup.dart';
-import 'package:clothes_app/src/home_screen.dart';
 import 'package:clothes_app/src/item_info_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemCard extends StatelessWidget {
-  // final String itemName, price, size, imagePath;
-  // final Color? color;
-  const ItemCard({
-    super.key,
-   required this.itemModel
-  });
+  const ItemCard({super.key, required this.itemModel});
 
-
- final ItemModel itemModel;
+  final ItemModel itemModel;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +19,7 @@ class ItemCard extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => ItemInfoScreen(
-             itemModel: itemModel ,
+              itemModel: itemModel,
             ),
           )),
       child: Container(
@@ -49,13 +42,9 @@ class ItemCard extends StatelessWidget {
                   left: (context.getWidth() * 0.35) / 1.7,
                   child: IconButton(
                     onPressed: () {
-
-
                       getIt.get<AppModel>().removeItem(id: itemModel.id);
 
-                     
-
-                       context.read<ItemHandleBloc>().add(ShowItemEvent());
+                      context.read<ItemHandleBloc>().add(ShowItemEvent());
                     },
                     icon: const Icon(Icons.delete),
                     color: const Color.fromARGB(255, 207, 55, 55),

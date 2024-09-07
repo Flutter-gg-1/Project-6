@@ -12,7 +12,9 @@ class ProfileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Sorry this featurs is not available now :('))),
+        content: Text('Sorry this featurs is not available now :('),
+        duration:  Duration(milliseconds: 700),
+      )),
       child: Container(
         height: context.getHeight() * 0.06,
         margin: EdgeInsets.only(bottom: context.getHeight() * 0.03),

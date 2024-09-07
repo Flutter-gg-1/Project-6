@@ -1,4 +1,7 @@
+import 'package:clothes_app/data_layer/models/app_model.dart';
 import 'package:clothes_app/helper/extinsion/size_config.dart';
+import 'package:clothes_app/services/setup.dart';
+import 'package:clothes_app/src/home_screen.dart';
 import 'package:clothes_app/widget/card/landing_card.dart';
 import 'package:flutter/material.dart';
 
@@ -18,15 +21,15 @@ class LandingScreen extends StatelessWidget {
             child: Padding(
               padding:
                   EdgeInsets.only(left: MediaQuery.of(context).size.width / 11),
-              child: const Column(
+              child: Column(
                 children: [
-                  Text(
+                  const Text(
                     'Hello,',
                     style: TextStyle(color: Colors.black, fontSize: 34),
                   ),
                   Text(
-                    'Amanda',
-                    style: TextStyle(
+                    getIt.get<AppModel>().user?.name ?? 'Vistors',
+                    style: const TextStyle(
                         color: Color(0xffFFC74A),
                         fontSize: 34,
                         fontWeight: FontWeight.bold),
@@ -41,6 +44,11 @@ class LandingScreen extends StatelessWidget {
             imgCard: 'assets/image/image 19.png',
             colorCard: 0xffFFF3E7,
             textCard: 'Summer\nCollections',
+            onTap: () => Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HomeScreen(),
+                )),
           ),
           SizedBox(height: context.getHeight() / 16),
           CustomeLandScreenCard(
@@ -48,6 +56,11 @@ class LandingScreen extends StatelessWidget {
             imgCard: 'assets/image/image 22.png',
             colorCard: 0xffFCDFEA,
             textCard: 'Winter\nCollections',
+            onTap: () => Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HomeScreen(),
+                )),
           ),
           SizedBox(height: context.getHeight() / 40),
           Align(
@@ -70,10 +83,13 @@ class LandingScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 InkWell(
-                  //navigator
-                  onTap: () {},
+                  onTap: () => Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomeScreen(),
+                      )),
                   child: Container(
-                    width: context.getWidth() / 1.2,
+                    width: context.getWidth() * 0.9,
                     height: context.getHeight() / 6,
                     decoration: BoxDecoration(
                         color: const Color(0xffEAF0FF),
@@ -114,8 +130,6 @@ class LandingScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-
-                          //6B63DD
                         ],
                       ),
                     ),

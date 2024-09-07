@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:clothes_app/data_layer/models/app_model.dart';
 import 'package:clothes_app/data_layer/models/item_model.dart';
 import 'package:clothes_app/helper/extinsion/size_config.dart';
@@ -27,13 +25,12 @@ class _UpdateItemScreenState extends State<UpdateItemScreen> {
   late String size;
   late Color color;
 
-
   @override
   void initState() {
-  itemName = widget.itemModel.itemName;
-  price = widget.itemModel.price;
-  size = widget.itemModel.size;
-  color = widget.itemModel.color;
+    itemName = widget.itemModel.itemName;
+    price = widget.itemModel.price;
+    size = widget.itemModel.size;
+    color = widget.itemModel.color;
     super.initState();
   }
 
@@ -122,6 +119,7 @@ class _UpdateItemScreenState extends State<UpdateItemScreen> {
                           selectedColor = Colors.red;
                           color = selectedColor;
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            duration: const Duration(milliseconds: 500),
                             content: const Text(
                               'Color is selected',
                               style: TextStyle(fontWeight: FontWeight.bold),
@@ -134,8 +132,9 @@ class _UpdateItemScreenState extends State<UpdateItemScreen> {
                         color: Colors.blue,
                         onTap: () {
                           selectedColor = Colors.blue;
-                           color = selectedColor;
+                          color = selectedColor;
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            duration: const Duration(milliseconds: 500),
                             content: const Text(
                               'Color is selected',
                               style: TextStyle(fontWeight: FontWeight.bold),
@@ -148,8 +147,9 @@ class _UpdateItemScreenState extends State<UpdateItemScreen> {
                         color: Colors.green,
                         onTap: () {
                           selectedColor = Colors.green;
-                           color = selectedColor;
+                          color = selectedColor;
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            duration: const Duration(milliseconds: 500),
                             content: const Text(
                               'Color is selected',
                               style: TextStyle(fontWeight: FontWeight.bold),
@@ -162,8 +162,9 @@ class _UpdateItemScreenState extends State<UpdateItemScreen> {
                         color: Colors.amber,
                         onTap: () {
                           selectedColor = Colors.amber;
-                           color = selectedColor;
+                          color = selectedColor;
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            duration: const Duration(milliseconds: 500),
                             content: const Text(
                               'Color is selected',
                               style: TextStyle(fontWeight: FontWeight.bold),
@@ -177,31 +178,25 @@ class _UpdateItemScreenState extends State<UpdateItemScreen> {
                   SizedBox(
                     height: context.getHeight() * 0.04,
                   ),
-                  CustomeTextButton(onPressed: () {
+                  CustomeTextButton(
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          getIt.get<AppModel>().updateItem(
+                              itemName: itemName,
+                              price: price,
+                              size: size,
+                              color: color,
+                              id: widget.itemModel.id);
 
-                    if(formKey.currentState!.validate()){
-                      log("good");
-
-                      print(itemName);
-                      print(price);
-                      print(size);
-                      print(color);
-
-
-                      getIt.get<AppModel>().updateItem(itemName: itemName, price: price, size: size, color: color, id: widget.itemModel.id);
-
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
-
-                        return  const HomeScreen();
-                        
-                      },));
-
-                    }
-                     
-
-
-
-                  }, buttonText: 'Update')
+                          Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
+                            builder: (context) {
+                              return const HomeScreen();
+                            },
+                          ));
+                        }
+                      },
+                      buttonText: 'Update')
                 ],
               ),
             ),

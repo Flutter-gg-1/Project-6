@@ -25,7 +25,7 @@ class CustomeLandScreenCard extends StatelessWidget {
           InkWell(
             onTap: onTap,
             child: Container(
-              width: context.getWidth() / 1.2,
+              width: context.getWidth() *0.9,
               height: heightCard,
               decoration: BoxDecoration(
                   color: Color(colorCard),
@@ -40,10 +40,10 @@ class CustomeLandScreenCard extends StatelessWidget {
                     Text(
                       textCard,
                       style: const TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                          fontFamily: 'Sen'),
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
                     ),
                     Image.asset(imgCard)
                   ],
