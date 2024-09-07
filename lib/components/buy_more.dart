@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:project6/components/text_custom.dart';
 
 class BuyMore extends StatelessWidget {
-  const BuyMore({super.key, this.onTapIncrease, this.onTapDecrease});
+  const BuyMore(
+      {super.key,
+      this.onTapIncrease,
+      this.onTapDecrease,
+      required this.amount});
   final Function()? onTapIncrease;
   final Function()? onTapDecrease;
+  final int amount;
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +47,9 @@ class BuyMore extends StatelessWidget {
               width: 33.58,
               height: 29,
               decoration: const BoxDecoration(color: Color(0xffD9D9D9)),
-              child: const Center(
+              child: Center(
                 child: TextCustom(
-                    title: "1",
+                    title: amount.toString(),
                     color: Colors.black,
                     weight: FontWeight.w700,
                     size: 18),

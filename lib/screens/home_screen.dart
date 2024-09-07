@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const CoffeeMenue(
+               CoffeeMenue(onPressed: (){},
                 coffee: 'Espresso',
                 coffeeImg: 'assets/images/Espresso.png',
               ),

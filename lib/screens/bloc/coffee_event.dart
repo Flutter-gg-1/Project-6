@@ -9,4 +9,14 @@ final class ShowPasswordEvent extends CoffeeEvent{}
 final class AddCoffeeLoadEvent extends CoffeeEvent {}
 
 final class LoadDataEvent extends CoffeeEvent{}
+final class ChooseCupEvent extends CoffeeEvent{
+  final int? sugarCubes;
+  ChooseCupEvent({this.sugarCubes});
+}
+
+final class ChooseCupSizeEvent extends CoffeeEvent{
+  final int? cupSize;
+  ChooseCupSizeEvent({this.cupSize});
+}
+
 

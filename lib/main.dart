@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project6/screens/add_coffe_screen.dart';
 import 'package:project6/screens/welcome_screen.dart';
 import 'package:project6/setup/init.dart';
 
@@ -14,7 +15,9 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: WelcomeScreen(),
+      home: AddCoffeScreen(
+        image: "assets/images/Latte.png",
+      ),
     );
   }
 }

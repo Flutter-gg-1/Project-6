@@ -20,6 +20,7 @@ class CartPage extends StatelessWidget {
       create: (context) => CoffeeBloc(),
       child: Builder(builder: (context) {
         context.read<CoffeeBloc>().add(ChangeAmountEvent());
+        context.read<CoffeeBloc>().add(LoadDataEvent());
         return Scaffold(
           backgroundColor: const Color(0xffFAF4EE),
           appBar: const CustomAppBarWidget(),
@@ -55,7 +56,7 @@ class CartPage extends StatelessWidget {
                                           builder: (context, state) {
                                             if (state is CoffeeAmountState) {
                                               return CustomCartContainerWidget(
-                                                image: e.coffe!,
+                                                image: e.nameOfCoffee!,
                                                 amount: e.amount!,
                                                 onAddPressed: () {
                                                   amount++;

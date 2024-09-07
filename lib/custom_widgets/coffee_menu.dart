@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
 class CoffeeMenue extends StatelessWidget {
-  const CoffeeMenue({super.key, required this.coffee, required this.coffeeImg});
+  const CoffeeMenue(
+      {super.key,
+      required this.coffee,
+      required this.coffeeImg,
+      this.onPressed});
 
   final String coffee;
   final String coffeeImg;
+  final Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -27,9 +32,7 @@ class CoffeeMenue extends StatelessWidget {
           ),
           const Spacer(),
           IconButton(
-              onPressed: () {
-                //navigate to coffee info screen
-              },
+              onPressed: onPressed,
               icon: const Icon(
                 Icons.arrow_forward_ios_sharp,
                 color: Color(0xffB98875),

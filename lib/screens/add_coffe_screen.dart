@@ -7,14 +7,16 @@ import 'package:project6/components/text_custom.dart';
 import 'package:project6/screens/bloc/coffee_bloc.dart';
 
 class AddCoffeScreen extends StatelessWidget {
-  const AddCoffeScreen({super.key});
+  const AddCoffeScreen({super.key, required this.image});
+  final String image;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => CoffeeBloc(),
       child: Builder(builder: (context) {
-        context.read<CoffeeBloc>().add(AddCoffeeLoadEvent());
+        final bloc = context.read<CoffeeBloc>();
+        bloc.add(AddCoffeeLoadEvent());
         return Scaffold(
           body: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -29,10 +31,7 @@ class AddCoffeScreen extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                Positioned(
-                    top: 145,
-                    left: 145,
-                    child: Image.asset("assets/images/macci.png")),
+                Positioned(top: 145, left: 145, child: Image.asset(image)),
               ]),
               BlocBuilder<CoffeeBloc, CoffeeState>(
                 builder: (context, state) {
@@ -52,7 +51,7 @@ class AddCoffeScreen extends StatelessWidget {
                                 color: Colors.black,
                                 weight: FontWeight.w500,
                                 size: 22),
-                            const BuyMore(),
+                             BuyMore(amount:1 , onTapDecrease: (){},onTapIncrease: (){},),
                             const SizedBox(
                               height: 20,
                             ),
@@ -64,32 +63,60 @@ class AddCoffeScreen extends StatelessWidget {
                             const SizedBox(
                               height: 6,
                             ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                SvgPicture.asset(
-                                  "assets/svg/Vector.svg",
-                                  color: const Color(0xffADA3A1),
-                                ),
-                                const SizedBox(
-                                  width: 26,
-                                ),
-                                SvgPicture.asset(
-                                  "assets/svg/Vector.svg",
-                                  color: const Color(0xff58352E),
-                                  width: 36,
-                                  height: 36,
-                                ),
-                                const SizedBox(
-                                  width: 26,
-                                ),
-                                SvgPicture.asset(
-                                  "assets/svg/Vector.svg",
-                                  color: const Color(0xffADA3A1),
-                                  width: 42,
-                                  height: 42,
-                                ),
-                              ],
+                            BlocBuilder<CoffeeBloc, CoffeeState>(
+                              builder: (context, state) {
+                                return Row(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        bloc.add(
+                                            ChooseCupSizeEvent(cupSize: 0));
+                                      },
+                                      child: SvgPicture.asset(
+                                        "assets/svg/Vector.svg",
+                                        color: Color(bloc.size == 0
+                                            ? 0xff58352E
+                                            : 0xffADA3A1),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 26,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        bloc.add(
+                                            ChooseCupSizeEvent(cupSize: 1));
+                                      },
+                                      child: SvgPicture.asset(
+                                        "assets/svg/Vector.svg",
+                                        color: Color(bloc.size == 1
+                                            ? 0xff58352E
+                                            : 0xffADA3A1),
+                                        width: 36,
+                                        height: 36,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 26,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        bloc.add(
+                                            ChooseCupSizeEvent(cupSize: 2));
+                                      },
+                                      child: SvgPicture.asset(
+                                        "assets/svg/Vector.svg",
+                                        color: Color(bloc.size == 2
+                                            ? 0xff58352E
+                                            : 0xffADA3A1),
+                                        width: 42,
+                                        height: 42,
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
                             ),
                             const SizedBox(
                               height: 20,
@@ -102,25 +129,67 @@ class AddCoffeScreen extends StatelessWidget {
                             const SizedBox(
                               height: 6,
                             ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                SvgPicture.asset(
-                                    "assets/svg/iconoir_delete-circle.svg"),
-                                const SizedBox(
-                                  width: 26,
-                                ),
-                                SvgPicture.asset(
-                                    "assets/svg/arcticons_cube-escape.svg"),
-                                const SizedBox(
-                                  width: 21,
-                                ),
-                                SvgPicture.asset("assets/svg/Frame 7.svg"),
-                                const SizedBox(
-                                  width: 21,
-                                ),
-                                SvgPicture.asset("assets/svg/Frame 8.svg")
-                              ],
+                            BlocBuilder<CoffeeBloc, CoffeeState>(
+                              builder: (context, state) {
+                                return Row(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        bloc.add(ChooseCupEvent(sugarCubes: 0));
+                                      },
+                                      child: SvgPicture.asset(
+                                        "assets/svg/iconoir_delete-circle.svg",
+                                        color: Color(bloc.sugar == 0
+                                            ? 0xff58352E
+                                            : 0xffADA3A1),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 26,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        bloc.add(ChooseCupEvent(sugarCubes: 1));
+                                      },
+                                      child: SvgPicture.asset(
+                                        "assets/svg/arcticons_cube-escape.svg",
+                                        color: Color(bloc.sugar == 1
+                                            ? 0xff58352E
+                                            : 0xffADA3A1),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 21,
+                                    ),
+                                    InkWell(
+                                        onTap: () {
+                                          bloc.add(
+                                              ChooseCupEvent(sugarCubes: 2));
+                                        },
+                                        child: SvgPicture.asset(
+                                          "assets/svg/Frame 7.svg",
+                                          color: Color(bloc.sugar == 2
+                                              ? 0xff58352E
+                                              : 0xffADA3A1),
+                                        )),
+                                    const SizedBox(
+                                      width: 21,
+                                    ),
+                                    InkWell(
+                                        onTap: () {
+                                          bloc.add(
+                                              ChooseCupEvent(sugarCubes: 3));
+                                        },
+                                        child: SvgPicture.asset(
+                                          "assets/svg/Frame 8.svg",
+                                          color: Color(bloc.sugar == 3
+                                              ? 0xff58352E
+                                              : 0xffADA3A1),
+                                        ))
+                                  ],
+                                );
+                              },
                             ),
                             const SizedBox(
                               height: 42,
