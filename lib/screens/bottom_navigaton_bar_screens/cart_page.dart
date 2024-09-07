@@ -63,6 +63,15 @@ class CartPage extends StatelessWidget {
                                                   amount: e.amount!,
                                                   onAddPressed: () {
                                                     e.amount = e.amount! + 1;
+                                                    getIt
+                                                        .get<CoffeeData>()
+                                                        .box
+                                                        .write(
+                                                            "listOfCoffees",
+                                                            getIt
+                                                                .get<
+                                                                    CoffeeData>()
+                                                                .dataLayer);
                                                     context
                                                         .read<CoffeeBloc>()
                                                         .add(
@@ -85,6 +94,15 @@ class CartPage extends StatelessWidget {
                                                               DeleteDataEvent());
                                                     } else {
                                                       e.amount = e.amount! - 1;
+                                                      getIt
+                                                          .get<CoffeeData>()
+                                                          .box
+                                                          .write(
+                                                              "listOfCoffees",
+                                                              getIt
+                                                                  .get<
+                                                                      CoffeeData>()
+                                                                  .dataLayer);
                                                     }
                                                   },
                                                 );
