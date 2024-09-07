@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:tickets_app/core/extensions/color_ext.dart';
 import 'package:tickets_app/core/extensions/img_ext.dart';
+import 'package:tickets_app/core/extensions/string_ext.dart';
 
 class ReservationCard extends StatelessWidget {
   final String roomId;
   final String nights;
   final String date;
   final Function()? onPressed;
+  final Function()? onDelete;
 
   const ReservationCard({
     super.key,
     required this.roomId,
     required this.nights,
-    required this.date, required this.onPressed,
+    required this.date,
+    required this.onPressed,
+    required this.onDelete,
   });
   @override
   Widget build(BuildContext context) {
@@ -41,36 +45,40 @@ class ReservationCard extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Room number: $roomId",
-                      style: const TextStyle(
-                        color: C.black,
-                        fontWeight: FontWeight.w800,
-                        fontSize: 16,
-                      ),
+                    ListTile(
+                      title: Text(
+                        "Room number: $roomId",
+                      ).styled(weight: FontWeight.w800, size: 16),
+                      subtitle: Text(
+                        "Number of Nights: $nights\nDate: $date",
+                      ).styled(
+                          color: C.text3, weight: FontWeight.w600, size: 14),
                     ),
-                    const SizedBox(height: 8),
-                    Text(
-                      "Number of Nights: $nights\nDate: $date",
-                      style: const TextStyle(
-                        color: C.text3,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        IconButton(
+                          onPressed: onPressed,
+                          icon: const Icon(
+                            Icons.edit,
+                            color: C.accent,
+                            size: 24,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: onDelete,
+                          icon: const Icon(
+                            Icons.delete,
+                            color: C.red,
+                            size: 24,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
-              const SizedBox(width: 8),
-              IconButton(
-                  onPressed:onPressed,
-                  icon: Icon(
-                    Icons.edit,
-                    color: C.accent,
-                    size: 24,
-                  )),
             ],
           )),
     );

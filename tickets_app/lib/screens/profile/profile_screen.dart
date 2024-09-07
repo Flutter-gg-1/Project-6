@@ -4,6 +4,7 @@ import 'package:tickets_app/managers/reservation_mgr.dart';
 import 'package:tickets_app/widget/Cards/reservation_card.dart';
 import 'package:tickets_app/widget/Cards/user_card.dart';
 import '../../core/all_file.dart';
+import '../../core/extensions/img_ext.dart';
 import '../edit_reservation/edit_reservation_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -29,7 +30,7 @@ class ProfileScreen extends StatelessWidget {
           padding: const EdgeInsets.all(24),
           child: Column(
             children: [
-              UserCard(),
+              UserCard(name: 'asd', email: 'asdf', img: Img.person1),
               Expanded(
                 child: ListView(
                   children: [
@@ -44,6 +45,7 @@ class ProfileScreen extends StatelessWidget {
                         nights: '${res.numNights}',
                         date: res.date,
                         onPressed: () => _navigateToEdit(context),
+                        onDelete: () {},
                       ),
                     ),
                   ],
