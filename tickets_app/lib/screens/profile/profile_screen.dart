@@ -13,8 +13,6 @@ import '../edit_reservation/edit_reservation_screen.dart';
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
 
-  final resMgr = GetIt.I.get<ReservationMgr>();
-
   void _navigateToEdit(BuildContext context) {
     Navigator.of(context).push(
         MaterialPageRoute(builder: (context) => const EditReservationScreen()));
@@ -57,7 +55,7 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         const Text("Reservations")
                             .styled(size: 18, weight: FontWeight.w600),
-                        ...resMgr.allReservations.map(
+                        ...bloc.userReservations.map(
                           (res) => ReservationCard(
                             roomId: '${res.roomId}',
                             nights: '${res.numNights}',
