@@ -17,29 +17,36 @@ class ShowMovies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // filtered movies based on given category
-    List<Movie> movies = GetIt.I.get<UsersLayer>().currentUser!.userMovies.where((movie) => movie.category == category).toList();
-    return movies.isEmpty ? const NoMoviesWidget()
-    : GridView.builder(
-      padding: EdgeInsets.all(10),
-      physics: ScrollPhysics(),
-      shrinkWrap: true,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: context.getWidth() < 810 ? 2 : 3,
-        mainAxisSpacing: 10.0,
-        crossAxisSpacing: 10.0,
-        childAspectRatio: 2.67 / 5,
-      ),
-      itemCount: movies.length,
-      itemBuilder: (context, index) {
-        return MovieCard(
-          movie: movies[index],
-          onEdit: () => context.push(screen: EditMovieScreen(movie: movies[index])),
-          onDelete: () {
-            bloc.add(DeleteMovieEvent(id: movies[index].id));
-            context.pop();
-          },
-        );
-      },
-    );
+    List<Movie> movies = GetIt.I
+        .get<UsersLayer>()
+        .currentUser!
+        .userMovies
+        .where((movie) => movie.category == category)
+        .toList();
+    return movies.isEmpty
+        ? const NoMoviesWidget()
+        : GridView.builder(
+            // padding: EdgeInsets.all(1),
+            physics: ScrollPhysics(),
+            shrinkWrap: true,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: context.getWidth() < 810 ? 2 : 3,
+              mainAxisSpacing: 10.0,
+              crossAxisSpacing: 10.0,
+              childAspectRatio: 2.67 / 5,
+            ),
+            itemCount: movies.length,
+            itemBuilder: (context, index) {
+              return MovieCard(
+                movie: movies[index],
+                onEdit: () =>
+                    context.push(screen: EditMovieScreen(movie: movies[index])),
+                onDelete: () {
+                  bloc.add(DeleteMovieEvent(id: movies[index].id));
+                  context.pop();
+                },
+              );
+            },
+          );
   }
 }

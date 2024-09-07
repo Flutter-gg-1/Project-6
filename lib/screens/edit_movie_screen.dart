@@ -13,52 +13,49 @@ import 'package:project6/widgets/fields/image_field_widget.dart';
 
 class EditMovieScreen extends StatelessWidget {
   final Movie movie;
-  const EditMovieScreen({super.key,required this.movie});
+  const EditMovieScreen({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<MovieBloc>();
-    TextEditingController nameController = TextEditingController(text: movie.name);
-    TextEditingController yearController = TextEditingController(text: movie.year);
+    TextEditingController nameController =
+        TextEditingController(text: movie.name);
+    TextEditingController yearController =
+        TextEditingController(text: movie.year);
     String category = movie.category;
     File? image;
     return Scaffold(
       backgroundColor: const Color(0xff15141F),
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: const Color(0xff15141F),
-        centerTitle: true,
-        title: Text(
-          "Edit Movie",
-          style: GoogleFonts.mulish(
-            color: Colors.white,
-            fontSize: 30,
-            fontWeight: FontWeight.w700
-          ),
-        )
-      ),
+          iconTheme: const IconThemeData(color: Colors.white),
+          backgroundColor: const Color(0xff15141F),
+          centerTitle: true,
+          title: Text(
+            "Edit Movie",
+            style: GoogleFonts.mulish(
+                color: Colors.white, fontSize: 30, fontWeight: FontWeight.w700),
+          )),
       body: Padding(
         padding: const EdgeInsets.all(26.0),
         child: SingleChildScrollView(
           child: Column(
             children: [
               AddFieldWidget(
-                label: "Name",
-                hint: "Movie name",
-                controller: nameController
-              ),
+                  label: "Name",
+                  hint: "Movie name",
+                  controller: nameController),
               const SizedBox(height: 40),
               CatgoriesWidget(radioButtonValue: (value) => category = value),
               const SizedBox(height: 40),
               AddFieldWidget(
-                label: "Year",
-                hint: "Add movie year",
-                controller: yearController
-              ),
+                  label: "Year",
+                  hint: "Add movie year",
+                  controller: yearController),
               const SizedBox(height: 40),
               ImageFieldWidget(
                 onSelect: () async {
-                  final selectedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
+                  final selectedImage = await ImagePicker()
+                      .pickImage(source: ImageSource.gallery);
                   image = File(selectedImage!.path);
                 },
               ),
@@ -67,12 +64,11 @@ class EditMovieScreen extends StatelessWidget {
                 title: 'Submit Changes',
                 onPressed: () {
                   bloc.add(EditMovieEvent(
-                    id: movie.id,
-                    name: nameController.text,
-                    year: yearController.text,
-                    posterImg: image?.path ?? movie.posterImg,
-                    category: category
-                  ));
+                      id: movie.id,
+                      name: nameController.text,
+                      year: yearController.text,
+                      posterImg: image?.path ?? movie.posterImg,
+                      category: category));
                   context.pop();
                 },
               )
