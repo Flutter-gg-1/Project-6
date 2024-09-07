@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project6/blocs/home_bloc/home_bloc.dart';
@@ -8,6 +7,7 @@ import 'package:project6/src/Home/Details/bloc/recp_bloc.dart';
 import 'package:project6/src/Home/Details/bloc/recp_event.dart';
 import 'package:project6/src/Home/Details/bloc/recp_state.dart';
 import 'package:project6/theme/app_colors.dart';
+import 'dart:io';
 
 class RecipeDetailsPage extends StatelessWidget {
   final String recipeTitle;
@@ -20,7 +20,7 @@ class RecipeDetailsPage extends StatelessWidget {
     required this.recipeTitle,
     required this.imageFile,
     required this.description,
-    required this.homeBloc
+    required this.homeBloc,
   });
 
   void _showEditBottomSheet(
@@ -28,55 +28,97 @@ class RecipeDetailsPage extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(25.0),
+        ),
+      ),
       builder: (BuildContext context) {
         String updatedTitle = recipeTitle;
         String updatedDescription = description;
 
-        return Padding(
-          padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom, top: 16),
+        return FractionallySizedBox(
+          heightFactor: 0.7,
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextField(
-                  decoration: const InputDecoration(labelText: 'Meal Name'),
-                  controller: TextEditingController(text: updatedTitle),
-                  onChanged: (value) {
-                    updatedTitle = value;
-                  },
-                ),
-                const SizedBox(height: 10),
-                TextField(
-                  decoration: const InputDecoration(labelText: 'Description'),
-                  controller: TextEditingController(text: updatedDescription),
-                  onChanged: (value) {
-                    updatedDescription = value;
-                  },
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    // Trigger the update in both RecipeBloc and HomeBloc
-                    bloc.add(UpdateRecipeEvent(
-                      updatedTitle,
-                      updatedDescription,
-                      
-                    ));
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom, top: 16),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: 50,
+                    height: 5,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  TextField(
+                    decoration: const InputDecoration(
+                      labelText: 'Meal Name',
+                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: Colors.white,
+                    ),
+                    controller: TextEditingController(text: updatedTitle),
+                    onChanged: (value) {
+                      updatedTitle = value;
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  TextField(
+                    maxLines: 5,
+                    decoration: const InputDecoration(
+                      labelText: 'Description',
+                      border: OutlineInputBorder(borderSide: BorderSide()),
+                      filled: true,
+                      fillColor: Colors.white,
+                    ),
+                    controller: TextEditingController(text: updatedDescription),
+                    onChanged: (value) {
+                      updatedDescription = value;
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.lighthread, // لون الزر
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      minimumSize: const Size.fromHeight(50), // حجم الزر
+                    ),
+                    onPressed: () {
+                      bloc.add(UpdateRecipeEvent(
+                        updatedTitle,
+                        updatedDescription,
+                      ));
 
-                    // Trigger event to update the recipe in the HomeBloc
-                    homeBloc.add(UpdateRecipeInHomeEvent(
-                      updatedTitle,
-                      updatedDescription,
-                      locator.get<RecipeData>().recipes.firstWhere((e)=> e.recipeName == recipeTitle)
-                    ));
+                      homeBloc.add(UpdateRecipeInHomeEvent(
+                        updatedTitle,
+                        updatedDescription,
+                        locator
+                            .get<RecipeData>()
+                            .recipes
+                            .firstWhere((e) => e.recipeName == recipeTitle),
+                      ));
 
-                    Navigator.pop(context);
-                  },
-                  child: const Text('Save Changes'),
-                ),
-              ],
+                      Navigator.pop(context);
+                    },
+                    child: const Text(
+                      'Save Changes',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         );
@@ -111,7 +153,7 @@ class RecipeDetailsPage extends StatelessWidget {
               IconButton(
                 icon: const Icon(Icons.edit),
                 onPressed: () {
-                  _showEditBottomSheet(context, bloc,homeBloc);
+                  _showEditBottomSheet(context, bloc, homeBloc);
                 },
               ),
             ],
