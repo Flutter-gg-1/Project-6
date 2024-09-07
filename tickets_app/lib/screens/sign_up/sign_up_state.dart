@@ -4,5 +4,7 @@ part of 'sign_up_bloc.dart';
 sealed class SignUpState {}
 
 final class SignUpInitial extends SignUpState {}
-final class StateAfterWritingSignUp extends SignUpState {}
 
+final class SignUpSuccessState extends SignUpState {}
+
+final class SignUpErrorState extends SignUpState {}

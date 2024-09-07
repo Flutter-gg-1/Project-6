@@ -9,7 +9,7 @@ part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  final userMgr = GetIt.I.get<UserMgr>();
+  var userMgr = GetIt.I.get<UserMgr>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool loginSuccessful = false;
@@ -27,8 +27,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     var user = userMgr.allUsers
         .where((user) => (user.email == email && user.password == password))
         .firstOrNull;
-
-    print('Hello');
 
     if (user != null) {
       userMgr.setCurrentUser(user);

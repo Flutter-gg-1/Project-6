@@ -30,104 +30,103 @@ class LoginScreen extends StatelessWidget {
       create: (context) => LoginBloc(),
       child: Builder(builder: (context) {
         final bloc = BlocProvider.of<LoginBloc>(context);
-        return Scaffold(
-          backgroundColor: C.bg,
-          body: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: ListView(children: [
-                      const Padding(
-                        padding: EdgeInsets.all(24.0),
-                        child: AspectRatio(
-                            aspectRatio: 2, child: Image(image: Img.logo)),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text('Sign In').styled(
-                              size: 24,
-                              color: C.text1,
-                              weight: FontWeight.bold),
-                          MyTextField(
-                              controller: bloc.emailController,
-                              hintText: 'Email',
-                              prefixIcon: const Icon(Icons.email)),
-                          MyTextField(
-                              controller: bloc.passwordController,
-                              hintText: 'Password',
-                              prefixIcon: const Icon(Icons.lock),
-                              suffixIcon: const Icon(Icons.remove_red_eye)),
-                          MyButton(
-                              text: 'Log in',
-                              onPressed: () {
-                                bloc.add(
-                                  LoginAttemptEvent(
-                                      email: bloc.emailController.text,
-                                      password: bloc.passwordController.text),
-                                );
-
-                                // MARK: - TO DO: FIX BOTTOM PART OF LISTENER
-
-                                BlocListener<LoginBloc, LoginState>(
-                                    listener: (context, state) {
-                                  if (state is SuccessfulState) {
-                                    print('Successful');
-                                    _navigateToHome(context);
-                                  }
-                                  if (state is ErrorState) {
-                                    print(state.msg);
-                                    _showAlert(context);
-                                  }
-                                });
-                              }),
-                          CustomTextBtn(
-                              title: 'Forgot Password?', callback: () => ()),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 4.0),
-                            child: Row(
+        return BlocListener<LoginBloc, LoginState>(
+          listener: (context, state) {
+            if (state is SuccessfulState) {
+              _navigateToHome(context);
+            }
+            if (state is ErrorState) {
+              _showAlert(context);
+            }
+          },
+          child: Scaffold(
+            backgroundColor: C.bg,
+            body: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: ListView(children: [
+                        const Padding(
+                          padding: EdgeInsets.all(24.0),
+                          child: AspectRatio(
+                              aspectRatio: 2, child: Image(image: Img.logo)),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text('Sign In').styled(
+                                size: 24,
+                                color: C.text1,
+                                weight: FontWeight.bold),
+                            MyTextField(
+                                controller: bloc.emailController,
+                                hintText: 'Email',
+                                prefixIcon: const Icon(Icons.email)),
+                            MyTextField(
+                                controller: bloc.passwordController,
+                                hintText: 'Password',
+                                prefixIcon: const Icon(Icons.lock),
+                                suffixIcon: const Icon(Icons.remove_red_eye)),
+                            MyButton(
+                                text: 'Log in',
+                                onPressed: () {
+                                  bloc.add(
+                                    LoginAttemptEvent(
+                                        email: bloc.emailController.text,
+                                        password: bloc.passwordController.text),
+                                  );
+                                }),
+                            CustomTextBtn(
+                                title: 'Forgot Password?', callback: () => ()),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 4.0),
+                              child: Row(
+                                children: [
+                                  const Text("Don't have an account?"),
+                                  const SizedBox(width: 4),
+                                  CustomTextBtn(
+                                      title: 'Sign Up',
+                                      callback: () =>
+                                          _navigateToSignUp(context)),
+                                ],
+                              ),
+                            ),
+                            const Divider(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                const Text("Don't have an account?"),
-                                const SizedBox(width: 4),
-                                CustomTextBtn(
-                                    title: 'Sign Up',
-                                    callback: () => _navigateToSignUp(context)),
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(FontAwesomeIcons.google)),
+                                IconButton(
+                                    onPressed: () {},
+                                    icon:
+                                        const Icon(FontAwesomeIcons.facebook)),
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(FontAwesomeIcons.apple)),
                               ],
                             ),
-                          ),
-                          const Divider(),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(FontAwesomeIcons.google)),
-                              IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(FontAwesomeIcons.facebook)),
-                              IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(FontAwesomeIcons.apple)),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ]),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CustomTextBtn(
-                          title: 'Continue as Guest?',
-                          fontSize: 16,
-                          callback: () => _navigateToHome(context)),
-                    ],
-                  ),
-                ],
+                          ],
+                        ),
+                      ]),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CustomTextBtn(
+                            title: 'Continue as Guest?',
+                            fontSize: 16,
+                            callback: () => _navigateToHome(context)),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
