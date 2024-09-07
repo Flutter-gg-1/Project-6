@@ -11,8 +11,8 @@ import '../sign_up/sign_up_screen.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
-  final email = TextEditingController();
-  final password = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   void _navigateToSignUp(BuildContext context) {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => SignUpScreen()));
@@ -56,15 +56,19 @@ class LoginScreen extends StatelessWidget {
                                   color: C.text1,
                                   weight: FontWeight.bold),
                               MyTextField(
-                                  controller: email,
+                                  controller: emailController,
                                   hintText: 'Email',
                                   prefixIcon: const Icon(Icons.email)),
                               MyTextField(
-                                  controller: password,
+                                  controller: passwordController,
                                   hintText: 'Password',
                                   prefixIcon: const Icon(Icons.lock),
                                   suffixIcon: const Icon(Icons.remove_red_eye)),
-                              MyButton(text: 'Log in', onPressed: () {}),
+                              MyButton(
+                                  text: 'Log in',
+                                  onPressed: () {
+                                    print(emailController.text);
+                                  }),
                               CustomTextBtn(
                                   title: 'Forgot Password?',
                                   callback: () => ()),
