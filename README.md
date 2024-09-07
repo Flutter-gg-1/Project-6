@@ -2,7 +2,7 @@
 
 ## Overview
 
-'Coffee Hub' is a coffee ordering App is a fully functional application designed to provide users with an intuitive experience for ordering coffee. It implements core features and essential concepts, allowing users to browse coffee types, customize their orders, and manage their cart seamlessly.
+'Coffee Hub' is a coffee ordering App is a fully functional application designed to provide users with an intuitive experience for ordering coffee. It implements core features and essential concepts, allowing users to browse coffee types, customize their orders, and manage their cart seamlessly. The following link displays the interfaces design: https://www.figma.com/design/Ue7vb97b9EtBQqtgDlBm72/Simple-looking-Coffee-Shop-app-Minimal-Clean-UI-design-(Community)?node-id=4-12&t=CwfWQNjXda2sFVRJ-1
 
 ## Core Functionality
 
