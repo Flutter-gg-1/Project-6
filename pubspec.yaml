@@ -23,6 +23,10 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: Romanesco
+      fonts:
+        - asset: assets/fonts/Romanesco-Regular.ttf
   assets:
   - assets/image/
 

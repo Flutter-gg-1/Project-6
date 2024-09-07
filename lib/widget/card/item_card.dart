@@ -1,19 +1,33 @@
-
 import 'package:clothes_app/helper/extinsion/size_config.dart';
+import 'package:clothes_app/src/item_info_screen.dart';
 import 'package:flutter/material.dart';
 
 class ItemCard extends StatelessWidget {
-  final String itemName, price;
+  final String itemName, price, size, imagePath;
+  final Color? color;
   const ItemCard({
     super.key,
     required this.itemName,
     required this.price,
+    this.color,
+    required this.size,
+    required this.imagePath,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ItemInfoScreen(
+              imagePath: imagePath,
+              name: itemName,
+              price: price,
+              size: size,
+              color: color,
+            ),
+          )),
       child: Container(
         width: context.getWidth() * 0.35,
         height: context.getHeight() * 0.25,
@@ -26,8 +40,8 @@ class ItemCard extends StatelessWidget {
               clipBehavior: Clip.none,
               children: [
                 Image.asset(
-                  'assets/image/card_image1.png',
-                  height: context.getHeight() * 0.18,
+                  imagePath,
+                  height: context.getHeight() * 0.19,
                   width: context.getWidth() * 0.35,
                 ),
                 Positioned(
@@ -40,7 +54,7 @@ class ItemCard extends StatelessWidget {
                 )
               ],
             ),
-             Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(

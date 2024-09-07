@@ -1,5 +1,6 @@
 import 'package:clothes_app/services/setup.dart';
 import 'package:clothes_app/src/home_screen.dart';
+import 'package:clothes_app/src/login_screen.dart';
 
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class MainApp extends StatelessWidget {
             scaffoldBackgroundColor: Colors.white,
             appBarTheme: const AppBarTheme(backgroundColor: Colors.white)),
         debugShowCheckedModeBanner: false,
-        home: const HomeScreen());
-        // dhhdhdhdh
+        home: const LoginScreen());
+
   }
 }

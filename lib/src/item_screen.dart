@@ -92,6 +92,9 @@ class ItemScreen extends StatelessWidget {
                       ItemCard(
                         itemName: 'item one',
                         price: '10.5',
+                        size: 's',
+                        imagePath: 'assets/image/card_image1.png',
+                        color: Colors.blue,
                       ),
                     ],
                   ),
@@ -101,6 +104,9 @@ class ItemScreen extends StatelessWidget {
                       ItemCard(
                         itemName: 'item one',
                         price: '10.5',
+                        size: 'm',
+                        imagePath: 'assets/image/card_image1.png',
+                        color: Colors.amber,
                       ),
                     ],
                   ),
@@ -110,6 +116,9 @@ class ItemScreen extends StatelessWidget {
                       ItemCard(
                         itemName: 'item one',
                         price: '10.5',
+                        size: 'l',
+                        imagePath: 'assets/image/card_image1.png',
+                        color: Colors.green,
                       ),
                     ],
                   ),
