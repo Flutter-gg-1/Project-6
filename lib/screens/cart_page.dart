@@ -57,7 +57,10 @@ class CartPage extends StatelessWidget {
                                             builder: (context, state) {
                                               if (state is LoadedDataState) {
                                                 return CustomCartContainerWidget(
-                                                  image: e.nameOfCoffee ??
+                                                  coffeeName:
+                                                      e.nameOfCoffee ?? "Latte",
+                                                  price: e.price!,
+                                                  image: e.coffeeImage ??
                                                       "assets/images/Latte.png",
                                                   amount: e.amount!,
                                                   onAddPressed: () {
@@ -74,28 +77,21 @@ class CartPage extends StatelessWidget {
                                                             ChangeAmountEvent());
 
                                                     if (e.amount! <= 1) {
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (context) {
-                                                            return CustomAlertDialogWidget(
-                                                                onPressedYes:
-                                                                    () {
-                                                              getIt
-                                                                  .get<
-                                                                      CoffeeData>()
-                                                                  .removeCoffee(
-                                                                      e.nameOfCoffee!);
-                                                              Navigator.pop(
-                                                                  context);
-                                                            });
-                                                          });
+                                                      getIt
+                                                          .get<CoffeeData>()
+                                                          .removeCoffee(
+                                                              e.nameOfCoffee!);
+                                                      context
+                                                          .read<CoffeeBloc>()
+                                                          .add(
+                                                              DeleteDataEvent());
                                                     } else {
                                                       e.amount = e.amount! - 1;
                                                     }
                                                   },
                                                 );
                                               }
-                                              return const Text("It's empty!");
+                                              return const SizedBox();
                                             },
                                           ),
                                         )
@@ -133,7 +129,7 @@ class CartPage extends StatelessWidget {
                             ],
                           );
                         }
-                        return const Text("No data yet.");
+                        return const SizedBox();
                       },
                     ),
                   )

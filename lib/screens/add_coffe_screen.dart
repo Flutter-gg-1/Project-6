@@ -248,7 +248,7 @@ class AddCoffeScreen extends StatelessWidget {
                                       coffee: CoffeeModel(
                                           coffeeImage: image,
                                           amount: amount,
-                                          nameOfCoffee: image,
+                                          nameOfCoffee: nameOfCoffee,
                                           price: price,
                                           size: sizeCup,
                                           sugar: bloc.sugar));

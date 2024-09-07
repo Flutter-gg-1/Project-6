@@ -9,6 +9,7 @@ final class ShowPasswordEvent extends CoffeeEvent{}
 final class AddCoffeeLoadEvent extends CoffeeEvent {}
 
 final class LoadDataEvent extends CoffeeEvent{}
+final class DeleteDataEvent extends CoffeeEvent{}
 final class ChooseCupEvent extends CoffeeEvent{
   final int? sugarCubes;
   ChooseCupEvent({this.sugarCubes});

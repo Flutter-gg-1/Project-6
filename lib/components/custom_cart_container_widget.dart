@@ -6,14 +6,20 @@ class CustomCartContainerWidget extends StatelessWidget {
       {super.key,
       this.onAddPressed,
       this.onRemovePressed,
-      required this.amount, required this.image});
+      required this.amount,
+      required this.image,
+      required this.coffeeName,
+      required this.price});
   final Function()? onAddPressed;
   final Function()? onRemovePressed;
   final int amount;
   final String image;
+  final String coffeeName;
+  final double price;
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.symmetric(vertical: 5),
       height: 101,
       width: 390,
       decoration: BoxDecoration(
@@ -31,18 +37,19 @@ class CustomCartContainerWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Image.asset(image),
-          const Column(
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Espresso",
-                style: TextStyle(
+                coffeeName,
+                style: const TextStyle(
                   fontSize: 14,
                 ),
               ),
               Text(
-                "19 SAR",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                "$price SAR",
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
               ),
             ],
           ),

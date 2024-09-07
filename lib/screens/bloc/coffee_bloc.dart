@@ -19,6 +19,9 @@ class CoffeeBloc extends Bloc<CoffeeEvent, CoffeeState> {
     on<ShowPasswordEvent>((event, emit) {
       emit(ShowPasswordState());
     });
+    on<DeleteDataEvent>((event, emit) {
+      emit(LoadedDataState());
+    });
     on<ChooseCupEvent>((event, emit) {
       sugar = event.sugarCubes!;
       emit(ChooseSugarState());
@@ -29,12 +32,11 @@ class CoffeeBloc extends Bloc<CoffeeEvent, CoffeeState> {
     });
     on<AddCoffeeLoadEvent>((event, emit) async {
       emit(AddCoffeeLoading());
-      await Future.delayed(const Duration(seconds: 3));
+      await Future.delayed(const Duration(milliseconds: 500));
       emit(AddCoffeeLoaded());
     });
     on<LoadDataEvent>((event, emit) {
       if (datalayer.dataLayer.isNotEmpty) {
-        print(datalayer.dataLayer);
         emit(LoadedDataState());
       }
     });

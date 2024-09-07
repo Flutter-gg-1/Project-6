@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project6/components/custom_button.dart';
 import 'package:project6/components/custom_text_field.dart';
 import 'package:project6/data_layer/data/accounts.dart';
+import 'package:project6/data_layer/models/coffees_model.dart';
 import 'package:project6/screens/bloc/coffee_bloc.dart';
 import 'package:project6/screens/login_screen.dart';
 
@@ -127,6 +128,7 @@ class SignupForm extends StatelessWidget {
                     "name": usernameController.text,
                     "password": passwordController.text,
                     "email": emailController.text,
+                    "cartList":CoffeeModel()
                   };
                   accounts.add(account);
                   usernameController.clear();
