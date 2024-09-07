@@ -29,7 +29,6 @@ class HomeScreen extends StatelessWidget {
                 onItemSelected: (index) {
                   if (state is IndexChangeState) {
                     bloc.currentIndex = index;
-                    debugPrint(bloc.currentIndex.toString());
                     bloc.add(NavigatorBetweenScreenEvent(selectedIndex: index));
                   }
                 },

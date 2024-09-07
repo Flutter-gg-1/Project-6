@@ -101,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 CustomeTextButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      if (getIt.get<AppModel>().userCheck(
+                      if (getIt.get<AppModel>().userChecker(
                           name: controllerName.text,
                           password: controllerPass.text)) {
                         debugPrint("User entered the system");

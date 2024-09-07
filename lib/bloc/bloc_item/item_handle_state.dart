@@ -4,23 +4,13 @@ part of 'item_handle_bloc.dart';
 sealed class ItemHandleState {}
 
 final class ItemHandleInitial extends ItemHandleState {
-
-   List<ItemModel> itemList ;
+  final List<ItemModel> itemList;
 
   ItemHandleInitial({required this.itemList});
-
-
-  
 }
 
-
-
 final class ShowItemState extends ItemHandleState {
-
- final List<ItemModel> itemList;
+  final List<ItemModel> itemList;
 
   ShowItemState({required this.itemList});
-
-
-  
 }

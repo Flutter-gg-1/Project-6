@@ -51,7 +51,7 @@ class ItemCard extends StatelessWidget {
                     onPressed: () {
 
 
-                      getIt.get<AppModel>().delIthem(id: itemModel.id);
+                      getIt.get<AppModel>().removeItem(id: itemModel.id);
 
                      
 

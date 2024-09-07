@@ -100,7 +100,7 @@ class ItemScreen extends StatelessWidget {
                                     crossAxisCount: 2,
                                     crossAxisSpacing: 10,
                                     mainAxisSpacing: 10,
-                                    childAspectRatio: 0.75, // Adjust the aspect ratio as needed
+                                    childAspectRatio: 0.75, 
                                   ),
                                   itemCount: state.itemList.length,
                                   itemBuilder: (context, index) {
