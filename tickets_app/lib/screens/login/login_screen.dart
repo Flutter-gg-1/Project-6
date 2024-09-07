@@ -7,8 +7,10 @@ import '../home_screen.dart';
 import '../sign_up/sign_up_screen.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
 
+  final email = TextEditingController();
+  final password = TextEditingController();
   void _navigateToSignUp(BuildContext context) {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => SignUpScreen()));
@@ -43,12 +45,15 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       const Text('Sign In').styled(
                           size: 24, color: C.text1, weight: FontWeight.bold),
-                      const MyTextField(
-                          hintText: 'Email', prefixIcon: Icon(Icons.email)),
-                      const MyTextField(
+                      MyTextField(
+                          controller: email,
+                          hintText: 'Email',
+                          prefixIcon: const Icon(Icons.email)),
+                      MyTextField(
+                          controller: password,
                           hintText: 'Password',
-                          prefixIcon: Icon(Icons.lock),
-                          suffixIcon: Icon(Icons.remove_red_eye)),
+                          prefixIcon: const Icon(Icons.lock),
+                          suffixIcon: const Icon(Icons.remove_red_eye)),
                       MyButton(text: 'Log in', onPressed: () {}),
                       CustomTextBtn(
                           title: 'Forgot Password?', callback: () => ()),

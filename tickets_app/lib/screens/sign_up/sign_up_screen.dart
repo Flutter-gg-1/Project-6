@@ -15,6 +15,9 @@ class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});
 
   final userMgr = GetIt.I.get<UserMgr>();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   void getUsers() {
     userMgr.allUsers.first;
@@ -76,9 +79,9 @@ class SignUpScreen extends StatelessWidget {
                         BlocBuilder<SignUpBloc, SignUpState>(
                           builder: (context, state) {
                             if (state is SignUpInitial) {
-                              return bloc_sign_up(context);
+                              return blocSignUp(context);
                             } else if (state is StateAfterWritingSignUp) {
-                              return bloc_sign_up(context);
+                              return blocSignUp(context);
                             }
                             return const SizedBox();
                           },
@@ -104,7 +107,7 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 
-  Column bloc_sign_up(BuildContext context) {
+  Column blocSignUp(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -143,19 +146,22 @@ class SignUpScreen extends StatelessWidget {
             ),
           ],
         ),
-        const MyTextField(
-          prefixIcon: Icon(FontAwesomeIcons.user),
+        MyTextField(
+          controller: nameController,
+          prefixIcon: const Icon(FontAwesomeIcons.user),
           hintText: 'Username',
         ),
-        const MyTextField(
-          prefixIcon: Icon(FontAwesomeIcons.envelope),
+        MyTextField(
+          controller: emailController,
+          prefixIcon: const Icon(FontAwesomeIcons.envelope),
           hintText: 'Email',
         ),
-        const MyTextField(
-          prefixIcon: Icon(FontAwesomeIcons.phone),
+        MyTextField(
+          controller: passwordController,
+          prefixIcon: const Icon(FontAwesomeIcons.phone),
           hintText: 'Phone Number',
         ),
-        MyButton(text: 'Sign Up', onPressed: () => _navigateToLogin(context)),
+        MyButton(text: 'Sign Up', onPressed: () => print('object')),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 4.0),
           child: Row(
