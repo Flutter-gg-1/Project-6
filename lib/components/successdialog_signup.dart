@@ -25,7 +25,7 @@ class SuccessDialog extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Color.fromARGB(255, 206, 185, 176),
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: const [
                     BoxShadow(
@@ -40,7 +40,7 @@ class SuccessDialog extends StatelessWidget {
                   children: [
                     const Icon(
                       Icons.check_circle_outline,
-                      color: Colors.green,
+                      color: Color(0xFFB98875),
                       size: 80,
                     ),
                     const SizedBox(height: 20),
@@ -69,11 +69,11 @@ class SuccessDialog extends StatelessWidget {
                         animationController.reverse();
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
+                        backgroundColor:Color(0xFFB98875),
                         padding: const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 10),
                       ),
-                      child: const Text('OK'),
+                      child: const Text('OK',style: TextStyle(color: Colors.white,fontSize: 15),),
                     ),
                   ],
                 ),

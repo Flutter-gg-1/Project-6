@@ -60,16 +60,16 @@ class LoginScreenState extends State<LoginScreen> {
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: const Text('Invalid email or password.'),
-            backgroundColor: Colors.red,
+            content: const Text('Invalid email or password.',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+            backgroundColor:Color(0xFFB98875),
           ),
         );
       }
     }else{
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: const Text('There is no account.'),
-            backgroundColor: Colors.red,
+            content: const Text('There is no account.',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+            backgroundColor:Color(0xFFB98875),
           ),
         );
     }
