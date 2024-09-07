@@ -25,7 +25,7 @@ class MainApp extends StatelessWidget {
             appBarTheme: const AppBarTheme(backgroundColor: Colors.white)),
         debugShowCheckedModeBanner: false,
 
-        home: const RegisterScreen());
+        home: const HomeScreen());
         // 
 
   }
