@@ -3,9 +3,15 @@ import 'dart:math';
 import 'package:clothes_app/data_layer/models/item_model.dart';
 import 'package:clothes_app/data_layer/models/user_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 
 class AppModel {
+
+  final box = GetStorage();
   UserModel? user;
+
+
+  List<String> randomImgList = ["assets/image/card_image1.png"];
 
   List<UserModel> userList = [];
 
@@ -32,6 +38,15 @@ class AppModel {
         color: Colors.blue,
         img: "assets/image/card_image1.png"),
   ];
+
+
+// load
+  AppModel(){
+
+  }
+
+
+  
 
   void addUser(
       {required String name, required String password, required String email}) {
@@ -78,21 +93,23 @@ class AppModel {
     }
   }
 
-
-
-  void delIthem({required int id}){
-
-    for(int i = 0 ; i <itemList.length; i++){
-
-      if(itemList[i].id == id){
-
+  void delIthem({required int id}) {
+    for (int i = 0; i < itemList.length; i++) {
+      if (itemList[i].id == id) {
         itemList.removeAt(i);
       }
-
-
-
     }
-
-
   }
+
+  void addItem(
+      {required String itemName,
+      required String price,
+      required String size,
+      required Color color}) {
+
+
+
+        itemList.add(ItemModel(id: Random().nextInt(99999), itemName: itemName, price: price, size: size, color: color, img: randomImgList[Random().nextInt(1)]));
+
+      }
 }
