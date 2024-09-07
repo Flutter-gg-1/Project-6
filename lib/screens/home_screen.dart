@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:project6/custom_widgets/coffee_menu.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({super.key,});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffFAF4EE),
-      appBar: AppBar(
+      appBar: AppBar(leading: Image.asset("assets/images/menu.png"),
         backgroundColor: const Color(0xffFAF4EE),
-        actions: const [Icon(Icons.search)],
+        actions: const [Padding(
+          padding: EdgeInsets.only(right: 20),
+          child: Icon(Icons.search,size: 35,),
+        )],
       ),
       body: Center(
         child: Padding(

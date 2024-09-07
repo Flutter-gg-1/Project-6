@@ -11,7 +11,7 @@ class CoffeeMenue extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 25),
       child: Row(
         children: [
-          Container(
+          SizedBox(
             width: 50,
             height: 50,
             child: Image(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:animations/animations.dart';
 import 'package:project6/screens/cart_page.dart';
 import 'package:project6/screens/home_screen.dart';
 import 'package:project6/screens/profile_page.dart';
@@ -14,26 +15,37 @@ class NavBar extends StatefulWidget {
 class NavBarState extends State<NavBar> {
   int selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
-     HomeScreen(),
-     CartPage(),
-     ProfilePage(),
+  static  final List<Widget> _widgetOptions = <Widget>[
+    const HomeScreen(),
+    CartPage(),
+    const ProfilePage(),
   ];
 
   void onItemTapped(int index) {
-    setState(() {
-      selectedIndex = index;
-    });
+    if (selectedIndex != index) {
+      setState(() {
+        selectedIndex = index;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: _widgetOptions.elementAt(selectedIndex),
+      body: PageTransitionSwitcher(
+        transitionBuilder: (widget, animation, secondaryAnimation) {
+          return FadeThroughTransition(
+            animation: animation,
+            secondaryAnimation: secondaryAnimation,
+            child: widget,
+          );
+        },
+        child: _widgetOptions[selectedIndex],
       ),
       bottomNavigationBar: BottomNavBar(
-          selectedIndex: selectedIndex, onItemTapped: onItemTapped),
+        selectedIndex: selectedIndex,
+        onItemTapped: onItemTapped,
+      ),
     );
   }
 }
@@ -44,6 +56,7 @@ class BottomNavBar extends StatelessWidget {
 
   const BottomNavBar(
       {super.key, required this.selectedIndex, required this.onItemTapped});
+
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
