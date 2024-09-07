@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:project6/blocs/home_bloc/home_bloc.dart';
-import 'package:project6/src/Home/profile/profile.dart';
+import 'package:project6/models/user.dart';
+import 'package:project6/src/profile/profile.dart';
 import 'package:project6/src/Login/login.dart';
 import 'package:project6/theme/app_colors.dart';
 
 class CustomDrawer extends StatelessWidget {
+  final User user;
   final HomeBloc homeBloc;
 
-  const CustomDrawer({super.key, required this.homeBloc});
+  const CustomDrawer({super.key, required this.user, required this.homeBloc});
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +17,15 @@ class CustomDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          const UserAccountsDrawerHeader(
-            accountName: Text("John Doe"),
-            accountEmail: Text("john.doe@example.com"),
-            currentAccountPicture: CircleAvatar(
+          UserAccountsDrawerHeader(
+            accountName: Text(user.username),
+            accountEmail: Text(user.email),
+            currentAccountPicture: const CircleAvatar(
               backgroundColor: Colors.blueGrey,
-              child: Icon(Icons.person, size: 50, color: Colors.white),
+              backgroundImage: AssetImage(
+                  'asstes/chef-restaurant-vector-kitchen-cook-hat-food-professional-icon-symbol-illustration-sign_1013341-148802.avif'),
             ),
-            decoration: BoxDecoration(color: AppColors.lighthread),
+            decoration: const BoxDecoration(color: AppColors.lighthread),
           ),
           ListTile(
             leading: const Icon(Icons.person, color: Colors.blueGrey),
@@ -31,7 +34,9 @@ class CustomDrawer extends StatelessWidget {
               final deletedRecipe = await Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ProfilePage(),
+                  builder: (context) => ProfilePage(
+                    user: user,
+                  ),
                 ),
               );
               if (deletedRecipe != null) {
@@ -46,9 +51,9 @@ class CustomDrawer extends StatelessWidget {
               Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const Login(), 
+                  builder: (context) => const Login(),
                 ),
-                (route) => false, 
+                (route) => false,
               );
             },
           ),

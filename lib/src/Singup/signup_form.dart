@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:project6/data_layer/recipe_data.dart';
+import 'package:project6/models/user.dart';
+import 'package:project6/services/setup.dart';
+import 'package:project6/src/Login/login.dart';
 import 'package:project6/theme/app_colors.dart';
 
 import '../Login/custom_text_field.dart';
@@ -74,7 +78,18 @@ class SignUpForm extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                if (usernameController.text.isNotEmpty &&
+                    emailController.text.isNotEmpty &&
+                    passwordController.text.isNotEmpty) {
+                  locator.get<RecipeData>().registerNewUser(User.fromJson({
+                        'username': usernameController.text,
+                        'password': passwordController.text,
+                        'email': emailController.text,
+                      }));
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const Login()));
+                }
+              },
               child: const Text(
                 'Sign Up',
                 style: TextStyle(

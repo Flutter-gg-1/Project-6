@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project6/blocs/home_bloc/home_bloc.dart';
 import 'package:project6/data_layer/recipe_data.dart';
 import 'package:project6/services/setup.dart';
-import 'package:project6/src/Home/Details/bloc/recp_bloc.dart';
-import 'package:project6/src/Home/Details/bloc/recp_event.dart';
-import 'package:project6/src/Home/Details/bloc/recp_state.dart';
+import 'package:project6/src/Details/bloc/recp_bloc.dart';
+import 'package:project6/src/Details/bloc/recp_event.dart';
+import 'package:project6/src/Details/bloc/recp_state.dart';
 import 'package:project6/theme/app_colors.dart';
 import 'dart:io';
 

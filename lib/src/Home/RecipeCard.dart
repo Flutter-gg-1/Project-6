@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:project6/blocs/home_bloc/home_bloc.dart';
-import 'package:project6/src/Home/Details/RecipeDetailsPage.dart.dart';
+import 'package:project6/src/Details/RecipeDetailsPage.dart.dart';
 import 'package:project6/theme/app_colors.dart';
 
 class RecipeCard extends StatelessWidget {

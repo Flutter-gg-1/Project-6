@@ -9,28 +9,39 @@ class RecipeData {
   final box = GetStorage();
 
   RecipeData() {
+    if (!box.hasData('users')) {
+      fetchDefaultData();
+    }
     loadData();
   }
 
   loadData() async {
-    // if (box.hasData('recipes')) {
-    //   List<Map<String, dynamic>> listOfRecipes =
-    //       List.from(await box.read('recipes')).cast<Map<String, dynamic>>();
-    //   for (var recipe in listOfRecipes) {
-    //     recipes.add(Recipe.fromJson(recipe));
-    //   }
-    // }
-    // if (box.hasData('users')) {
-    //   List<Map<String, dynamic>> listOfUsers =
-    //       List.from(await box.read('users')).cast<Map<String, dynamic>>();
-    //   for (var user in listOfUsers) {
-    //     users.add(User.fromJson(user));
-    //   }
-    // }
+    if (box.hasData('recipes')) {
+      List<Map<String, dynamic>> listOfRecipes =
+          List.from(await box.read('recipes')).cast<Map<String, dynamic>>();
+      for (var recipe in listOfRecipes) {
+        recipes.add(Recipe.fromJson(recipe));
+      }
+    }
+    if (box.hasData('users')) {
+      List<Map<String, dynamic>> listOfUsers =
+          List.from(await box.read('users')).cast<Map<String, dynamic>>();
+      for (var user in listOfUsers) {
+        users.add(User.fromJson(user));
+      }
+    }
+  }
+
+  fetchDefaultData() async {
+    List listOfUsers = User.getUsers();
+    for (var user in listOfUsers) {
+      users.add(User.fromJson(user));
+    }
   }
 
   // ----------- Recipes
-  addRecipe(Recipe newRecipe) {
+  addRecipe(Recipe newRecipe) async {
+    newRecipe.author = await box.read('active');
     recipes.add(newRecipe);
     saveRecipes();
   }
@@ -45,7 +56,7 @@ class RecipeData {
     for (var recipe in recipes) {
       listOfRecipes.add(recipe.toJson());
     }
-    // await box.write("recipes", listOfRecipes);
+    await box.write("recipes", listOfRecipes);
   }
 
   editRecipe(
@@ -65,7 +76,11 @@ class RecipeData {
 
   saveLoginOrLogout(User user) {
     user.isLogged = !user.isLogged;
-    // box.write('active', user.isLogged);
+    if (user.isLogged) {
+      box.write('active', user.username);
+    } else {
+      box.remove('active');
+    }
   }
 
   isLoggedIn(User user) async {
@@ -77,6 +92,6 @@ class RecipeData {
     for (var user in users) {
       listOfUsers.add(user.toJson());
     }
-    // await box.write("users", listOfUsers);
+    await box.write("users", listOfUsers);
   }
 }

@@ -25,4 +25,20 @@ class User {
       'email': email,
     };
   }
+
+  static getUsers() {
+    List users = [
+      {
+        'username': 'ahmed',
+        'password': '123',
+        'email': 'ahmed@gmail.com',
+      },
+      {
+        'username': 'fahad',
+        'password': '123',
+        'email': 'fahad@gmail.com',
+      }
+    ];
+    return users;
+  }
 }

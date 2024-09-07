@@ -2,11 +2,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project6/models/recipe.dart';
-import 'package:project6/src/Home/profile/bloc/profile_bloc.dart';
+import 'package:project6/src/profile/bloc/profile_bloc.dart';
 import 'package:project6/theme/app_colors.dart';
 
+import '../../models/user.dart';
+
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  final User user;
+  const ProfilePage({super.key, required this.user});
 
   // Method to handle image picking
   void _pickImage(BuildContext context) {
@@ -15,11 +18,11 @@ class ProfilePage extends StatelessWidget {
 
   // Method to handle recipe deletion and return the result to HomePage
   void _deleteRecipe(BuildContext context, int index, List<Recipe> recipes) {
-    final recipe = recipes[index];  // الوصول إلى الوصفة من قائمة الوصفات
+    final recipe = recipes[index]; // الوصول إلى الوصفة من قائمة الوصفات
     context.read<ProfileBloc>().add(DeleteRecipeEvent(index));
 
     // After deletion, pop the page and pass back the deleted recipe
-    Navigator.pop(context, recipe);  // تم تعديلها لإرجاع الوصفة المحذوفة
+    Navigator.pop(context, recipe); // تم تعديلها لإرجاع الوصفة المحذوفة
   }
 
   @override
@@ -32,7 +35,8 @@ class ProfilePage extends StatelessWidget {
             appBar: AppBar(
               title: const Text(
                 "Profile",
-                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
               ),
               backgroundColor: AppColors.lighthread,
               iconTheme: const IconThemeData(
@@ -59,33 +63,34 @@ class ProfilePage extends StatelessWidget {
                               radius: 50,
                               backgroundImage: state.selectedImage != null
                                   ? FileImage(File(state.selectedImage!.path))
-                                  : const AssetImage('assets/default_avatar.png')
+                                  : const AssetImage(
+                                          'asstes/chef-restaurant-vector-kitchen-cook-hat-food-professional-icon-symbol-illustration-sign_1013341-148802.avif')
                                       as ImageProvider,
-                              child: state.selectedImage == null
-                                  ? const Icon(Icons.camera_alt, size: 40, color: Colors.white)
-                                  : null,
                             ),
                           ),
                           const SizedBox(height: 20),
-                          const Text(
-                            'Name: John Doe',
-                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          Text(
+                            'Name:${user.username}',
+                            style: const TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 10),
-                          const Text(
-                            'Email: john.doe@example.com',
-                            style: TextStyle(fontSize: 18),
+                          Text(
+                            'Email: ${user.email}',
+                            style: const TextStyle(fontSize: 18),
                           ),
                           const SizedBox(height: 20),
                           const Text(
                             'Your Recipes:',
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 10),
                           recipes.isEmpty
                               ? const Text(
                                   'No recipes added yet.',
-                                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.grey),
                                 )
                               : ListView.builder(
                                   shrinkWrap: true,
@@ -94,16 +99,21 @@ class ProfilePage extends StatelessWidget {
                                   itemBuilder: (context, index) {
                                     final recipe = recipes[index];
                                     return Card(
-                                      margin: const EdgeInsets.symmetric(vertical: 10),
+                                      margin: const EdgeInsets.symmetric(
+                                          vertical: 10),
                                       child: ListTile(
                                         leading: Image.file(recipe.image,
-                                            width: 50, height: 50, fit: BoxFit.cover),
+                                            width: 50,
+                                            height: 50,
+                                            fit: BoxFit.cover),
                                         title: Text(recipe.recipeName),
                                         subtitle: Text(recipe.description),
                                         trailing: IconButton(
-                                          icon: const Icon(Icons.delete, color: Colors.red),
+                                          icon: const Icon(Icons.delete,
+                                              color: Colors.red),
                                           onPressed: () {
-                                            _deleteRecipe(context, index, recipes);
+                                            _deleteRecipe(
+                                                context, index, recipes);
                                           },
                                         ),
                                       ),

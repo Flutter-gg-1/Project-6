@@ -1,4 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:project6/data_layer/recipe_data.dart';
+import 'package:project6/services/setup.dart';
 import 'package:project6/src/Home/home_screen.dart';
 import 'package:project6/src/Login/custom_text_field.dart';
 import 'package:project6/src/Singup/singup.dart';
@@ -74,22 +78,19 @@ class LoginForm extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                 Navigator.push(
+                for (var user in locator.get<RecipeData>().users) {
+                  if (user.username == usernameController.text &&
+                      user.password == passwordController.text) {
+                    locator.get<RecipeData>().saveLoginOrLogout(user);
+                    Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const HomePage()),
+                      MaterialPageRoute(builder: (context) =>  HomePage(user: user,)),
                     );
-                // for (var user in locator.get<RecipeData>().users) {
-                //   if (user.username == usernameController.text &&
-                //       user.password == passwordController.text) {
-                //     locator.get<RecipeData>().saveLoginOrLogout(user);
-                //     Navigator.push(
-                //       context,
-                //       MaterialPageRoute(builder: (context) => const HomePage()),
-                //     );
-                //   } else {
-                //     // show failed Login dialog
-                //   }
-                // }
+                    return;
+                  }
+                }
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Failed Login!!!!')));
               },
               child: const Text(
                 'Login',

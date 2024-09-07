@@ -7,12 +7,14 @@ import 'package:project6/data_layer/recipe_data.dart';
 import 'package:project6/services/setup.dart';
 import 'package:project6/theme/app_colors.dart';
 
-import '../../Add_Recipe/add_recipe.dart';
+import '../Add_Recipe/add_recipe.dart';
 import '../../blocs/home_bloc/home_bloc.dart';
 import '../../models/recipe.dart';
+import '../../models/user.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final User user;
+  const HomePage({super.key, required this.user});
 
   // إضافة وصفة جديدة
   void _addNewRecipe(XFile image, String recipeTitle, String recipeDescription,
@@ -77,7 +79,7 @@ class HomePage extends StatelessWidget {
               ),
               centerTitle: true,
             ),
-            drawer: CustomDrawer(homeBloc: bloc), // تمرير HomeBloc هنا
+            drawer: CustomDrawer(user: user,homeBloc: bloc), // تمرير HomeBloc هنا
             body: BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
               if (state is SuccessfulLoadState) {
                 final recipes = state.recipes;
