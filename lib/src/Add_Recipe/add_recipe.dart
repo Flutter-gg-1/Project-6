@@ -168,38 +168,4 @@ class AddRecipePage extends StatelessWidget {
     );
   }
 
-  // Method to pick image from gallery
-  // Future<void> _pickImage(
-  //   XFile _selectedImage,
-  // ) async {
-  //   final pickedImage =
-  //       await ImagePicker().pickImage(source: ImageSource.gallery);
-  //   if (pickedImage != null) {
-  //     // setState to view image
-  //     _selectedImage = pickedImage;
-  //   }
-  // }
-
-  // Method to handle form submission
-  // void _submitRecipe(
-  //     BuildContext context,
-  //     TextEditingController recipeNameController,
-  //     TextEditingController recipeDescriptionController,
-  //     XFile? selectedImage) {
-  //   if (selectedImage != null &&
-  //       recipeNameController.text.isNotEmpty &&
-  //       recipeDescriptionController.text.isNotEmpty) {
-  //     Navigator.pop(context, {
-  //       'image': selectedImage,
-  //       'recipeTitle': recipeNameController.text,
-  //       'recipeDescription': recipeDescriptionController.text,
-  //     });
-  //   } else {
-  //     // Show a message if the user tries to submit an incomplete form
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       const SnackBar(
-  //           content: Text('Please fill in all fields and select an image')),
-  //     );
-  //   }
-  // }
 }

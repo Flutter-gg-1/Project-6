@@ -86,11 +86,11 @@ class RecipeDetailsPage extends StatelessWidget {
                   const SizedBox(height: 20),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.lighthread, // لون الزر
+                      backgroundColor: AppColors.lighthread, 
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      minimumSize: const Size.fromHeight(50), // حجم الزر
+                      minimumSize: const Size.fromHeight(50), 
                     ),
                     onPressed: () {
                       bloc.add(UpdateRecipeEvent(

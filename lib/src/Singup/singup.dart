@@ -55,7 +55,7 @@ class SignUp extends StatelessWidget {
                     style: GoogleFonts.lora(
                       fontSize: 30,
                       color: Colors
-                          .white, // The color is ignored due to the ShaderMask
+                          .white, 
                       fontWeight: FontWeight.bold,
                     ),
                   ),

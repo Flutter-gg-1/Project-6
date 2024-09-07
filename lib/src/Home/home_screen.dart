@@ -16,7 +16,6 @@ class HomePage extends StatelessWidget {
   final User user;
   const HomePage({super.key, required this.user});
 
-  // إضافة وصفة جديدة
   void _addNewRecipe(XFile image, String recipeTitle, String recipeDescription,
       HomeBloc bloc) {
     locator.get<RecipeData>().addRecipe(Recipe.fromJson({
@@ -78,7 +77,7 @@ class HomePage extends StatelessWidget {
               centerTitle: true,
             ),
             drawer:
-                CustomDrawer(user: user, homeBloc: bloc), // تمرير HomeBloc هنا
+                CustomDrawer(user: user, homeBloc: bloc), 
             body: BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
               if (state is SuccessfulLoadState) {
                 final recipes = state.recipes;
