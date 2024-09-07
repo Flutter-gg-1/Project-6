@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:project6/custom_widgets/coffee_menu.dart';
 
+import '../components/custom_app_bar_widget.dart';
+
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key,});
- // home screen
+  const HomeScreen({
+    super.key,
+  });
+  // home screen
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffFAF4EE),
-      appBar: AppBar(leading: Image.asset("assets/images/menu.png"),
-        backgroundColor: const Color(0xffFAF4EE),
-        actions: const [Padding(
-          padding: EdgeInsets.only(right: 20),
-          child: Icon(Icons.search,size: 35,),
-        )],
-      ),
+      appBar: const CustomAppBarWidget(),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -26,7 +24,7 @@ class HomeScreen extends StatelessWidget {
                   style: TextStyle(fontSize: 30, color: Color(0xff000000)),
                   children: <TextSpan>[
                     TextSpan(
-                        text: 'Day For Coffee',
+                        text: 'Day For\nCoffee',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 30,
