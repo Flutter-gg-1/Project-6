@@ -6,11 +6,14 @@
 The purpose of this app is to allow admin to discover and CRUD items with more features.
 
 ### Features
-- **Add Item**: Admin can create and add new items.
 
-- **Remove Item**: Admin can remove items.
-
-- **Edit Item**: Admin can edit items.
+- **Create Item**: Admin can create and add new items.
+ 
+- **Read Item**: Admin can display and read items.
+  
+- **Update Item**: Admin can update item details.
+  
+- **Delete Item**: Admin can remove items.
 
 - **Auth Function**: The app provides login & sign-up functions.
 
@@ -24,8 +27,6 @@ The purpose of this app is to allow admin to discover and CRUD items with more f
 - **SnackBar**: The `SnackBar` is used to show error messages to the users.
 
 - **BottomNavigationBar**: The `BottomNavigationBar` is used to navigate between different sections of the app, such as the Feed, Saved Items, and Profile.
-
-- **BottomSheet**: The `BottomSheet` widget is used to present a sliding panel from the bottom of the screen.
 
 - **Builder**: The `Builder` widget is used to create a new context for the child widget.
 
