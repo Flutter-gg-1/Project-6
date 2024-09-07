@@ -1,11 +1,12 @@
+import 'dart:io';
 import 'package:get_storage/get_storage.dart';
+import 'package:project6/data_layer/getImageFileFromAssets.dart';
 import '../models/recipe.dart';
 import '../models/user.dart';
 
 class RecipeData {
   List<Recipe> recipes = [];
   List<User> users = [];
-
   final box = GetStorage();
 
   RecipeData() {
@@ -33,10 +34,26 @@ class RecipeData {
   }
 
   fetchDefaultData() async {
-    List listOfUsers = User.getUsers();
-    for (var user in listOfUsers) {
-      users.add(User.fromJson(user));
-    }
+    File spaghettiImage =
+        await getImageFileFromAssets('Pink-Sauce-Pasta-f2.webp');
+    File saladImage = await getImageFileFromAssets('a.jpg');
+
+    List<Recipe> defaultRecipes = [
+      Recipe(
+        recipeName: 'Burger',
+        image: spaghettiImage,
+        description: 'A classic Italian dish with a rich, meaty sauce.',
+      ),
+      Recipe(
+        recipeName: 'Chicken Caesar Salad',
+        image: saladImage,
+        description:
+            'Fresh romaine lettuce topped with grilled chicken and Caesar dressing.',
+      ),
+    ];
+
+    recipes.addAll(defaultRecipes);
+    saveRecipes();
   }
 
   // ----------- Recipes

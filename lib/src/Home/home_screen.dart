@@ -35,9 +35,7 @@ class HomePage extends StatelessWidget {
       create: (context) => HomeBloc()..add(LoadDataEvent()),
       child: BlocListener<HomeBloc, HomeState>(
         listener: (context, state) {
-          if (state is SuccessfulLoadState) {
-            // يتم الاستماع عند تحديث الوصفات بنجاح
-          }
+          if (state is SuccessfulLoadState) {}
         },
         child: Builder(builder: (context) {
           final bloc = context.read<HomeBloc>();
@@ -79,7 +77,8 @@ class HomePage extends StatelessWidget {
               ),
               centerTitle: true,
             ),
-            drawer: CustomDrawer(user: user,homeBloc: bloc), // تمرير HomeBloc هنا
+            drawer:
+                CustomDrawer(user: user, homeBloc: bloc), // تمرير HomeBloc هنا
             body: BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
               if (state is SuccessfulLoadState) {
                 final recipes = state.recipes;

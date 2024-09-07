@@ -11,18 +11,14 @@ class ProfilePage extends StatelessWidget {
   final User user;
   const ProfilePage({super.key, required this.user});
 
-  // Method to handle image picking
   void _pickImage(BuildContext context) {
     context.read<ProfileBloc>().add(PickImageEvent());
   }
 
-  // Method to handle recipe deletion and return the result to HomePage
   void _deleteRecipe(BuildContext context, int index, List<Recipe> recipes) {
-    final recipe = recipes[index]; // الوصول إلى الوصفة من قائمة الوصفات
+    final recipe = recipes[index];
     context.read<ProfileBloc>().add(DeleteRecipeEvent(index));
-
-    // After deletion, pop the page and pass back the deleted recipe
-    Navigator.pop(context, recipe); // تم تعديلها لإرجاع الوصفة المحذوفة
+    Navigator.pop(context, recipe);
   }
 
   @override
@@ -48,29 +44,50 @@ class ProfilePage extends StatelessWidget {
               child: BlocBuilder<ProfileBloc, ProfileState>(
                 builder: (context, state) {
                   if (state is ProfileLoaded) {
-                    // هنا يمكنك الوصول إلى الوصفات
                     final recipes = state.recipes;
 
                     return SingleChildScrollView(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          GestureDetector(
-                            onTap: () {
-                              _pickImage(context);
-                            },
-                            child: CircleAvatar(
-                              radius: 50,
-                              backgroundImage: state.selectedImage != null
-                                  ? FileImage(File(state.selectedImage!.path))
-                                  : const AssetImage(
-                                          'asstes/chef-restaurant-vector-kitchen-cook-hat-food-professional-icon-symbol-illustration-sign_1013341-148802.avif')
-                                      as ImageProvider,
-                            ),
+                          Stack(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  _pickImage(context);
+                                },
+                                child: CircleAvatar(
+                                  radius: 50,
+                                  backgroundImage: state.selectedImage != null
+                                      ? FileImage(
+                                          File(state.selectedImage!.path))
+                                      : const AssetImage(
+                                              'asstes/chef-restaurant-vector-kitchen-cook-hat-food-professional-icon-symbol-illustration-sign_1013341-148802.avif')
+                                          as ImageProvider,
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 0,
+                                right: 0,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: AppColors.lighthread,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  padding: const EdgeInsets.all(
+                                      5), 
+                                  child: const Icon(
+                                    Icons.camera_alt,
+                                    color: Colors.white,
+                                    size: 20,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                           const SizedBox(height: 20),
                           Text(
-                            'Name:${user.username}',
+                            'Name: ${user.username}',
                             style: const TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
                           ),

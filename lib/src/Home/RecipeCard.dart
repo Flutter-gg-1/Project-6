@@ -9,14 +9,14 @@ class RecipeCard extends StatelessWidget {
   final String recipeTitle;
   final File imageFile;
   final String description;
-  final HomeBloc homeBloc;  // Add HomeBloc as a required field
+  final HomeBloc homeBloc;  
 
   const RecipeCard({
     super.key,
     required this.recipeTitle,
     required this.imageFile,
     required this.description,
-    required this.homeBloc,  // Include homeBloc in the constructor
+    required this.homeBloc, 
   });
 
   @override
@@ -27,10 +27,10 @@ class RecipeCard extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => RecipeDetailsPage(
-              recipeTitle: recipeTitle,  // Use recipeTitle here
-              imageFile: imageFile,      // Use imageFile here
-              description: description,  // Use description here
-              homeBloc: homeBloc,        // Pass the HomeBloc here
+              recipeTitle: recipeTitle, 
+              imageFile: imageFile,      
+              description: description,
+              homeBloc: homeBloc,     
             ),
           ),
         );
@@ -71,11 +71,12 @@ class RecipeCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    recipeTitle,  // Use the passed recipeTitle here
+                    recipeTitle,  
                     style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.normal,
                         color: AppColors.grey),
+                        
                   ),
                   const SizedBox(height: 16),
                   const Text(
