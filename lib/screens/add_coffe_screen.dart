@@ -2,27 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project6/components/buy_more.dart';
-import 'package:project6/components/custom_button.dart';
 import 'package:project6/components/shimmer_loading.dart';
 import 'package:project6/components/text_custom.dart';
 import 'package:project6/data_layer/coffee_data.dart';
 import 'package:project6/data_layer/models/coffees_model.dart';
 import 'package:project6/screens/bloc/coffee_bloc.dart';
-import 'package:project6/screens/cart_page.dart';
 import 'package:project6/screens/nav_bar.dart';
 import 'package:project6/setup/init.dart';
 
+// ignore: must_be_immutable
 class AddCoffeScreen extends StatelessWidget {
   AddCoffeScreen({
     super.key,
     required this.image,
     required this.price,
-    required this.nameOfCoffee,
+    required this.coffeName,
+    required this.amount,
   });
   final String image;
   final double price;
-  int amount = 1;
-  final String nameOfCoffee;
+  int amount;
+  final String coffeName;
 
   @override
   Widget build(BuildContext context) {
@@ -36,17 +36,32 @@ class AddCoffeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Stack(children: [
-                SizedBox(
-                  height: 370,
-                  width: 370,
-                  child: Image.asset(
-                    "assets/images/Asset 3 1.png",
-                    fit: BoxFit.cover,
-                  ),
+              SizedBox(
+                height: 370,
+                child: Stack(
+                  children: [
+                    SizedBox(
+                      height: 370,
+                      width: double.infinity,
+                      child: Image.asset(
+                        "assets/images/Asset 3 1.png",
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Center(
+                      child: SizedBox(
+                        height: 100,
+                        child: ClipRect(
+                          child: Image.asset(
+                            image,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                Positioned(top: 145, left: 145, child: Image.asset(image)),
-              ]),
+              ),
               BlocBuilder<CoffeeBloc, CoffeeState>(
                 builder: (context, state) {
                   if (state is AddCoffeeLoading) {
@@ -61,7 +76,7 @@ class AddCoffeScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             TextCustom(
-                                title: nameOfCoffee,
+                                title: coffeName,
                                 color: Colors.black,
                                 weight: FontWeight.w500,
                                 size: 22),
@@ -234,6 +249,7 @@ class AddCoffeScreen extends StatelessWidget {
                                 onTap: () {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
+                                          duration: Duration(seconds: 1),
                                           backgroundColor: Color(0xffB98875),
                                           content: Text(
                                               'Successfully added to cart!')));
@@ -248,7 +264,7 @@ class AddCoffeScreen extends StatelessWidget {
                                       coffee: CoffeeModel(
                                           coffeeImage: image,
                                           amount: amount,
-                                          nameOfCoffee: nameOfCoffee,
+                                          coffeeName: coffeName,
                                           price: price,
                                           size: sizeCup,
                                           sugar: bloc.sugar));

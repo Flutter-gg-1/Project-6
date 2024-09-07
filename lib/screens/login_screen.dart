@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-
-
 import 'package:project6/data_layer/coffee_data.dart';
-import 'package:project6/data_layer/data/accounts.dart';
 import 'package:project6/custom_widgets/loginform.dart';
-import 'package:project6/screens/nav_bar.dart';
+import 'package:project6/screens/loading_screen.dart';
 import 'package:project6/setup/init.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -37,16 +34,16 @@ class LoginScreenState extends State<LoginScreen> {
                 showPassword = !showPassword;
               });
             },
-            onLogin: _handleLogin,
+            onLogin: handleLogin,
           ),
         ),
       ),
     );
   }
 
-  void _handleLogin() {
-    if (formKey.currentState!.validate() && accounts.isNotEmpty) {
-      final account = accounts.firstWhere(
+  void handleLogin() {
+    if (formKey.currentState!.validate() && getIt.get<CoffeeData>().accounts.isNotEmpty) {
+      final account = getIt.get<CoffeeData>().accounts.firstWhere(
         (e) => e["email"] == emailController.text,
         orElse: () => {},
       );
@@ -54,16 +51,23 @@ class LoginScreenState extends State<LoginScreen> {
         getIt.get<CoffeeData>().currentUser = account;
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const NavBar()),
+          MaterialPageRoute(builder: (context) => const LoadingScreen()),
         );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: const Text('Invalid email or password.'),
-            backgroundColor: Colors.red,
+          const SnackBar(
+            content: Text('Invalid email or password.',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+            backgroundColor: Color(0xFFB98875),
           ),
         );
       }
+    }else{
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('There is no account.',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+            backgroundColor:Color(0xFFB98875),
+          ),
+        );
     }
   }
 }

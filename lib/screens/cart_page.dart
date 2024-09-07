@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project6/components/custom_alert_dialog_widget.dart';
 import 'package:project6/components/custom_app_bar_widget.dart';
 import 'package:project6/components/custom_cart_container_widget.dart';
 import 'package:project6/components/custom_rich_text_widget.dart';
@@ -58,10 +57,9 @@ class CartPage extends StatelessWidget {
                                               if (state is LoadedDataState) {
                                                 return CustomCartContainerWidget(
                                                   coffeeName:
-                                                      e.nameOfCoffee ?? "Latte",
+                                                      e.coffeeName ?? "Latte",
                                                   price: e.price!,
-                                                  image: e.coffeeImage ??
-                                                      "assets/images/Latte.png",
+                                                  image: e.coffeeImage!,
                                                   amount: e.amount!,
                                                   onAddPressed: () {
                                                     e.amount = e.amount! + 1;
@@ -80,7 +78,7 @@ class CartPage extends StatelessWidget {
                                                       getIt
                                                           .get<CoffeeData>()
                                                           .removeCoffee(
-                                                              e.nameOfCoffee!);
+                                                              e.coffeeName!);
                                                       context
                                                           .read<CoffeeBloc>()
                                                           .add(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:animations/animations.dart';
-import 'package:project6/data_layer/coffee_data.dart';
 import 'package:project6/screens/bloc/coffee_bloc.dart';
 import 'package:project6/screens/bottom_nav_bar.dart';
 import 'package:project6/screens/cart_page.dart';

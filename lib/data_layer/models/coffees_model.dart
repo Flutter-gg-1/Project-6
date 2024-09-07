@@ -1,5 +1,5 @@
 class CoffeeModel {
-  String? nameOfCoffee;
+  String? coffeeName;
   String? coffeeImage;
   int? amount;
   double? price;
@@ -7,7 +7,7 @@ class CoffeeModel {
   int? sugar;
 
   CoffeeModel(
-      {this.nameOfCoffee,
+      {this.coffeeName,
       this.amount,
       this.price,
       this.size,
@@ -20,7 +20,7 @@ class CoffeeModel {
       price: json['price'],
       size: json['size'],
       sugar: json['sugar'],
-      nameOfCoffee: json['nameOfCoffee'],
+      coffeeName: json['coffeeName'],
       amount: json['amount'],
     );
   }
@@ -30,7 +30,7 @@ class CoffeeModel {
         "price": price,
         "size": size,
         "sugar": sugar,
-        "namesOfCoffee": nameOfCoffee,
+        "coffeeName": coffeeName,
         "amount": amount
       };
 }

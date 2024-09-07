@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project6/components/custom_button.dart';
 import 'package:project6/components/custom_text_field.dart';
-import 'package:project6/data_layer/data/accounts.dart';
-import 'package:project6/data_layer/models/coffees_model.dart';
+import 'package:project6/data_layer/coffee_data.dart';
 import 'package:project6/screens/bloc/coffee_bloc.dart';
 import 'package:project6/screens/login_screen.dart';
+import 'package:project6/setup/init.dart';
 
 class SignupForm extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -15,11 +15,9 @@ class SignupForm extends StatelessWidget {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
-  final bool showPassword = false;
   final Function showSuccessDialog;
 
-  SignupForm({required Function showSuccessDialog})
-      : showSuccessDialog = showSuccessDialog;
+  SignupForm({super.key, required this.showSuccessDialog});
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +64,10 @@ class SignupForm extends StatelessWidget {
               controller: emailController,
               hintText: 'Enter your email',
               validator: (value) {
-                bool isUsed =
-                    accounts.any((account) => account["email"] == value);
+                bool isUsed = getIt
+                    .get<CoffeeData>()
+                    .accounts
+                    .any((account) => account["email"] == value);
                 if (value == null || value.isEmpty || !value.contains('@')) {
                   return 'Please enter a valid email';
                 }
@@ -80,13 +80,18 @@ class SignupForm extends StatelessWidget {
             const SizedBox(height: 16),
             BlocBuilder<CoffeeBloc, CoffeeState>(
               builder: (context, state) {
+                final showPassword =
+                    state is ShowPasswordState ? state.showPassword : false;
                 return CustomTextField(
                   title: 'Password',
                   controller: passwordController,
                   isPassword: true,
                   showPassword: showPassword,
                   hintText: 'Enter your password',
-                  togglePasswordView: () {},
+                  togglePasswordView: () {
+                    BlocProvider.of<CoffeeBloc>(context)
+                        .add(TogglePasswordVisibilityEvent());
+                  },
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Password is required';
@@ -102,11 +107,19 @@ class SignupForm extends StatelessWidget {
             const SizedBox(height: 16),
             BlocBuilder<CoffeeBloc, CoffeeState>(
               builder: (context, state) {
+                final showConfirmPassword = state is ShowConfirmPasswordState
+                    ? state.showConfirmPassword
+                    : false;
                 return CustomTextField(
                   title: 'Re-enter password',
                   controller: confirmPasswordController,
                   isPassword: true,
+                  showPassword: showConfirmPassword,
                   hintText: 'Re-enter your password',
+                  togglePasswordView: () {
+                    BlocProvider.of<CoffeeBloc>(context)
+                        .add(ToggleConfirmPasswordVisibilityEvent());
+                  },
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please confirm your password';
@@ -128,9 +141,8 @@ class SignupForm extends StatelessWidget {
                     "name": usernameController.text,
                     "password": passwordController.text,
                     "email": emailController.text,
-                    "cartList":CoffeeModel()
                   };
-                  accounts.add(account);
+                  getIt.get<CoffeeData>().addAccount(account);
                   usernameController.clear();
                   passwordController.clear();
                   emailController.clear();
