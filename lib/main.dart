@@ -10,7 +10,10 @@ import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setup();
+
+  
+   setup();
+
   runApp(const MainApp());
 }
 
@@ -24,7 +27,11 @@ class MainApp extends StatelessWidget {
             scaffoldBackgroundColor: Colors.white,
             appBarTheme: const AppBarTheme(backgroundColor: Colors.white)),
         debugShowCheckedModeBanner: false,
-        home: const LandingScreen());
-    //
+
+
+        home: const HomeScreen());
+        // 
+
+
   }
 }
