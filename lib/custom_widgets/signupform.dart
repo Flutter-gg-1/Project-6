@@ -12,13 +12,10 @@ class SignupForm extends StatelessWidget {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
-  final bool showPassword = false;
+  final TextEditingController confirmPasswordController = TextEditingController();
   final Function showSuccessDialog;
 
-  SignupForm({required Function showSuccessDialog})
-      : showSuccessDialog = showSuccessDialog;
+  SignupForm({required this.showSuccessDialog});
 
   @override
   Widget build(BuildContext context) {
@@ -79,13 +76,16 @@ class SignupForm extends StatelessWidget {
             const SizedBox(height: 16),
             BlocBuilder<CoffeeBloc, CoffeeState>(
               builder: (context, state) {
+                final showPassword = state is ShowPasswordState ? state.showPassword : false;
                 return CustomTextField(
                   title: 'Password',
                   controller: passwordController,
                   isPassword: true,
                   showPassword: showPassword,
                   hintText: 'Enter your password',
-                  togglePasswordView: () {},
+                  togglePasswordView: () {
+                    BlocProvider.of<CoffeeBloc>(context).add(TogglePasswordVisibilityEvent());
+                  },
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Password is required';
@@ -101,11 +101,16 @@ class SignupForm extends StatelessWidget {
             const SizedBox(height: 16),
             BlocBuilder<CoffeeBloc, CoffeeState>(
               builder: (context, state) {
+                final showConfirmPassword = state is ShowConfirmPasswordState ? state.showConfirmPassword : false;
                 return CustomTextField(
                   title: 'Re-enter password',
                   controller: confirmPasswordController,
                   isPassword: true,
+                  showPassword: showConfirmPassword,
                   hintText: 'Re-enter your password',
+                   togglePasswordView: () {
+                    BlocProvider.of<CoffeeBloc>(context).add(ToggleConfirmPasswordVisibilityEvent());
+                  },
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please confirm your password';

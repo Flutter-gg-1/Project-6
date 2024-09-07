@@ -37,14 +37,15 @@ class LoginScreenState extends State<LoginScreen> {
                 showPassword = !showPassword;
               });
             },
-            onLogin: _handleLogin,
+            onLogin: handleLogin,
           ),
         ),
       ),
     );
   }
 
-  void _handleLogin() {
+  void handleLogin() {
+     print("Login button pressed");
     if (formKey.currentState!.validate() && accounts.isNotEmpty) {
       final account = accounts.firstWhere(
         (e) => e["email"] == emailController.text,
@@ -64,6 +65,13 @@ class LoginScreenState extends State<LoginScreen> {
           ),
         );
       }
+    }else{
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: const Text('There is no account.'),
+            backgroundColor: Colors.red,
+          ),
+        );
     }
   }
 }

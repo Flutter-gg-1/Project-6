@@ -52,7 +52,7 @@ class CustomTextField extends StatelessWidget {
             validator: validator,
             decoration: InputDecoration(
               hintText: hintText,
-              
+              hintStyle: TextStyle(color: Colors.grey),
               fillColor: Colors.white,
               filled: true,
               suffixIcon: isPassword
