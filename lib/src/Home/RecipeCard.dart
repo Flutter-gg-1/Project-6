@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:project6/blocs/home_bloc/home_bloc.dart';
 import 'package:project6/src/Home/Details/RecipeDetailsPage.dart.dart';
 import 'package:project6/theme/app_colors.dart';
 
@@ -8,12 +9,14 @@ class RecipeCard extends StatelessWidget {
   final String recipeTitle;
   final File imageFile;
   final String description;
+  final HomeBloc homeBloc;  // Add HomeBloc as a required field
 
   const RecipeCard({
     super.key,
     required this.recipeTitle,
     required this.imageFile,
     required this.description,
+    required this.homeBloc,  // Include homeBloc in the constructor
   });
 
   @override
@@ -24,17 +27,16 @@ class RecipeCard extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => RecipeDetailsPage(
-              recipeTitle: recipeTitle,
-              imageFile: imageFile,
-              description: description,
+              recipeTitle: recipeTitle,  // Use recipeTitle here
+              imageFile: imageFile,      // Use imageFile here
+              description: description,  // Use description here
+              homeBloc: homeBloc,        // Pass the HomeBloc here
             ),
           ),
         );
       },
       child: Card(
-        // shadowColor:AppColors.black,
         color: AppColors.primary.withOpacity(0.8),
-
         margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
@@ -69,20 +71,11 @@ class RecipeCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    recipeTitle,
+                    recipeTitle,  // Use the passed recipeTitle here
                     style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.normal,
-                        color: AppColors.grey
-                        // shadows: [
-                        //   Shadow(
-                        //     color: Colors.black54, // Shadow color
-                        //     offset:
-                        //         Offset(0.1, 0.1), // Position of the shadow (x, y)
-                        //     blurRadius: 2, // Blur effect of the shadow
-                        //   ),
-                        // ],
-                        ),
+                        color: AppColors.grey),
                   ),
                   const SizedBox(height: 16),
                   const Text(
@@ -95,7 +88,7 @@ class RecipeCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    description,
+                    description,  // Use the passed description here
                     style: const TextStyle(fontSize: 16, color: AppColors.grey),
                   ),
                 ],

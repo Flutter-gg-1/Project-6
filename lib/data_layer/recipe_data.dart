@@ -48,8 +48,12 @@ class RecipeData {
     // await box.write("recipes", listOfRecipes);
   }
 
-  editRecipe({required Recipe oldRecipe, required Recipe editedRecipe}) {
-    oldRecipe = editedRecipe;
+  editRecipe(
+      {required Recipe recipe,
+      required String title,
+      required String descrtipton}) {
+    recipe.recipeName = title;
+    recipe.description = descrtipton;
     saveRecipes();
   }
 

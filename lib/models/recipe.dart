@@ -3,8 +3,8 @@ import 'review.dart';
 
 class Recipe {
   final File image;
-  final String recipeName;
-  final String description;
+   String recipeName;
+   String description;
   List<Review>? reviews;
 
   Recipe(

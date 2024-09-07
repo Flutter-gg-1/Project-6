@@ -129,6 +129,7 @@ class HomePage extends StatelessWidget {
                                       recipeTitle: recipe.recipeName,
                                       imageFile: recipe.image,
                                       description: recipe.description,
+                                      homeBloc: bloc,
                                     );
                                   },
                                 ),
