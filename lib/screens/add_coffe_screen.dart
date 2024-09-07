@@ -63,60 +63,32 @@ class AddCoffeScreen extends StatelessWidget {
                             const SizedBox(
                               height: 6,
                             ),
-                            BlocBuilder<CoffeeBloc, CoffeeState>(
-                              builder: (context, state) {
-                                return Row(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    InkWell(
-                                      onTap: () {
-                                        bloc.add(
-                                            ChooseCupSizeEvent(cupSize: 0));
-                                      },
-                                      child: SvgPicture.asset(
-                                        "assets/svg/Vector.svg",
-                                        color: Color(bloc.size == 0
-                                            ? 0xff58352E
-                                            : 0xffADA3A1),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 26,
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        bloc.add(
-                                            ChooseCupSizeEvent(cupSize: 1));
-                                      },
-                                      child: SvgPicture.asset(
-                                        "assets/svg/Vector.svg",
-                                        color: Color(bloc.size == 1
-                                            ? 0xff58352E
-                                            : 0xffADA3A1),
-                                        width: 36,
-                                        height: 36,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 26,
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        bloc.add(
-                                            ChooseCupSizeEvent(cupSize: 2));
-                                      },
-                                      child: SvgPicture.asset(
-                                        "assets/svg/Vector.svg",
-                                        color: Color(bloc.size == 2
-                                            ? 0xff58352E
-                                            : 0xffADA3A1),
-                                        width: 42,
-                                        height: 42,
-                                      ),
-                                    ),
-                                  ],
-                                );
-                              },
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                SvgPicture.asset(
+                                  "assets/svg/Vector.svg",
+                                  colorFilter: const ColorFilter.mode(Color(0xffADA3A1), BlendMode.srcIn),
+                                ),
+                                const SizedBox(
+                                  width: 26,
+                                ),
+                                SvgPicture.asset(
+                                  "assets/svg/Vector.svg",
+                                  colorFilter: const ColorFilter.mode(Color(0xff58352E), BlendMode.srcIn),
+                                  width: 36,
+                                  height: 36,
+                                ),
+                                const SizedBox(
+                                  width: 26,
+                                ),
+                                SvgPicture.asset(
+                                  "assets/svg/Vector.svg",
+                                  colorFilter: const ColorFilter.mode(Color(0xffADA3A1), BlendMode.srcIn),
+                                  width: 42,
+                                  height: 42,
+                                ),
+                              ],
                             ),
                             const SizedBox(
                               height: 20,

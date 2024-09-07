@@ -17,3 +17,8 @@ class ChooseSugarState extends CoffeeState{}
 class ChooseCupSizeState extends CoffeeState{}
 
 
+class NavBarState extends CoffeeState{
+  final int index;
+  NavBarState({required this.index});
+}
+

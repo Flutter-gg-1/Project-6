@@ -20,3 +20,8 @@ final class ChooseCupSizeEvent extends CoffeeEvent{
 }
 
 
+final class NavBarEvent extends CoffeeEvent{
+  final int index;
+  NavBarEvent({required this.index});
+}
+

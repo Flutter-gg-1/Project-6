@@ -113,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const NavBar()));
+                                  builder: (context) => NavBar()));
                         } else {
                           showDialog(
                             context: context,

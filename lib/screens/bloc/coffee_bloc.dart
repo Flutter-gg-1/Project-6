@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:project6/data_layer/coffee_data.dart';
 import 'package:project6/setup/init.dart';
@@ -34,6 +35,10 @@ class CoffeeBloc extends Bloc<CoffeeEvent, CoffeeState> {
       if (datalayer.dataLayer.isNotEmpty) {
         emit(LoadedDataState());
       }
+    });
+
+    on<NavBarEvent>((event, emit) {
+      emit(NavBarState(index: event.index));
     });
   }
 }
