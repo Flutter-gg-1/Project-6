@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:tickets_app/core/extensions/img_ext.dart';
-import 'package:tickets_app/managers/reservation_mgr.dart';
-import 'package:tickets_app/managers/user_mgr.dart';
 import 'package:tickets_app/screens/edit_reservation/edit_reservation_screen.dart';
 import 'package:tickets_app/widget/Cards/reservation_card.dart';
 import 'package:tickets_app/widget/Cards/user_card.dart';
@@ -38,8 +35,10 @@ class ProfileScreen extends StatelessWidget {
               //?
               ListView(
             children: [
-              
-              const UserCard(name: "yara", email: " yara@", img: Img.person1),
+              const UserCard(
+                  name: "yara",
+                  email: " yara@",
+                  img: Image(image: Img.person1)),
               const SizedBox(
                 height: 20,
               ),

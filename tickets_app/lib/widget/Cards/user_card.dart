@@ -5,7 +5,7 @@ import 'package:tickets_app/core/extensions/string_ext.dart';
 class UserCard extends StatelessWidget {
   final String name;
   final String email;
-  final ImageProvider img;
+  final Image img;
   const UserCard({
     super.key,
     required this.name,
@@ -22,7 +22,7 @@ class UserCard extends StatelessWidget {
       ),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundImage: img,
+          backgroundImage: img.image,
           radius: 30,
         ),
         title: Text(name).styled(weight: FontWeight.bold, size: 20),
