@@ -36,10 +36,13 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   if (bloc.currentUser != null)
                     UserCard(
-                        name: bloc.currentUser!.name,
-                        email: bloc.currentUser!.email,
-                        img: ImgConverter.imageFromBase64String(
-                            bloc.currentUser!.avatarData))
+                      name: bloc.currentUser!.name,
+                      email: bloc.currentUser!.email,
+                      img: ImgConverter.imageFromBase64String(
+                        bloc.currentUser!.avatarData,
+                      ),
+                      onLogout: () {},
+                    )
                   else
                     const UserCard(
                         name: 'You are not Signed In',
