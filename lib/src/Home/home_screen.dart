@@ -14,7 +14,7 @@ import '../../models/recipe.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  // قائمة الوصفات المضافة
+  // إضافة وصفة جديدة
   void _addNewRecipe(XFile image, String recipeTitle, String recipeDescription,
       HomeBloc bloc) {
     locator.get<RecipeData>().addRecipe(Recipe.fromJson({
@@ -31,112 +31,123 @@ class HomePage extends StatelessWidget {
 
     return BlocProvider(
       create: (context) => HomeBloc()..add(LoadDataEvent()),
-      child: Builder(builder: (context) {
-        final bloc = context.read<HomeBloc>();
-        return Scaffold(
-          appBar: AppBar(
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.add),
-                onPressed: () async {
-                  final Map<String, dynamic>? newRecipe = await Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const AddRecipePage(),
-                    ),
-                  );
-
-                  if (newRecipe != null) {
-                    _addNewRecipe(newRecipe['image'], newRecipe['recipeTitle'],
-                        newRecipe['recipeDescription'], bloc);
-                  }
-                },
-              ),
-            ],
-            iconTheme: const IconThemeData(
-              color: Colors.white,
-            ),
-            backgroundColor: AppColors.lighthread,
-            title: Text(
-              'Cooking Recipes',
-              style: TextStyle(
-                fontSize: screenSize.width * 0.08,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            centerTitle: true,
-          ),
-          drawer: const Drawer(child: CustomDrawer()), // قائمة جانبية
-          body: BlocBuilder<HomeBloc, HomeState>(
-              builder: (context, state) {
-            if (state is SuccessfulLoadState) {
-              final recipes = state.recipes;
-
-              return Stack(
-                children: [
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(50),
-                        topRight: Radius.circular(50),
+      child: BlocListener<HomeBloc, HomeState>(
+        listener: (context, state) {
+          if (state is SuccessfulLoadState) {
+            // يتم الاستماع عند تحديث الوصفات بنجاح
+          }
+        },
+        child: Builder(builder: (context) {
+          final bloc = context.read<HomeBloc>();
+          return Scaffold(
+            appBar: AppBar(
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.add),
+                  onPressed: () async {
+                    final Map<String, dynamic>? newRecipe =
+                        await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const AddRecipePage(),
                       ),
-                      child: Container(
-                        height: screenSize.height * 0.4,
-                        width: screenSize.width,
-                        decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [
-                              AppColors.lighthread,
-                              AppColors.darkread,
-                            ],
+                    );
+
+                    if (newRecipe != null) {
+                      _addNewRecipe(
+                          newRecipe['image'],
+                          newRecipe['recipeTitle'],
+                          newRecipe['recipeDescription'],
+                          bloc);
+                    }
+                  },
+                ),
+              ],
+              iconTheme: const IconThemeData(
+                color: Colors.white,
+              ),
+              backgroundColor: AppColors.lighthread,
+              title: Text(
+                'Cooking Recipes',
+                style: TextStyle(
+                  fontSize: screenSize.width * 0.08,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              centerTitle: true,
+            ),
+            drawer: CustomDrawer(homeBloc: bloc), // تمرير HomeBloc هنا
+            body: BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
+              if (state is SuccessfulLoadState) {
+                final recipes = state.recipes;
+
+                return Stack(
+                  children: [
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(50),
+                          topRight: Radius.circular(50),
+                        ),
+                        child: Container(
+                          height: screenSize.height * 0.4,
+                          width: screenSize.width,
+                          decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                AppColors.lighthread,
+                                AppColors.darkread,
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  Column(
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: recipes.isEmpty
-                              ? const Center(
-                                  child: Text(
-                                    'No recipes yet. Add some!',
-                                    style: TextStyle(
-                                        fontSize: 18, color: Colors.grey),
+                    Column(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: recipes.isEmpty
+                                ? const Center(
+                                    child: Text(
+                                      'No recipes yet. Add some!',
+                                      style: TextStyle(
+                                          fontSize: 18, color: Colors.grey),
+                                    ),
+                                  )
+                                : ListView.builder(
+                                    itemCount: recipes.length,
+                                    itemBuilder: (context, index) {
+                                      final recipe = recipes[index];
+                                      return RecipeCard(
+                                        recipeTitle: recipe.recipeName,
+                                        imageFile: recipe.image,
+                                        description: recipe.description,
+                                        homeBloc: bloc,
+                                      );
+                                    },
                                   ),
-                                )
-                              : ListView.builder(
-                                  itemCount: recipes.length,
-                                  itemBuilder: (context, index) {
-                                    final recipe = recipes[index];
-                                    return RecipeCard(
-                                      recipeTitle: recipe.recipeName,
-                                      imageFile: recipe.image,
-                                      description: recipe.description,
-                                      homeBloc: bloc,
-                                    );
-                                  },
-                                ),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
-              );
-            } else if (state is ErrorState) {
-              return Center(child: Text('Error: ${state.message}'));
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          }),
-        );
-      }),
+                      ],
+                    ),
+                  ],
+                );
+              } else if (state is ErrorState) {
+                return Center(child: Text('Error: ${state.message}'));
+              } else {
+                return const Center(child: CircularProgressIndicator());
+              }
+            }),
+          );
+        }),
+      ),
     );
   }
 }

@@ -24,7 +24,6 @@ class Login extends StatelessWidget {
               child: Container(
                 height: screenSize.height * 0.45,
                 width: screenSize.width,
-                // color: AppColors.primaryColor,
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
@@ -38,11 +37,16 @@ class Login extends StatelessWidget {
               ),
             ),
           ),
-          // المحتوى فوق الخلفية المنحنية
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Image.asset(
+                  'asstes/chef-restaurant-vector-kitchen-cook-hat-food-professional-icon-symbol-illustration-sign_1013341-148802.avif',
+                  height: screenSize.height * 0.2,
+                  fit: BoxFit.cover,
+                ),
+                SizedBox(height: screenSize.height * 0.04),
                 ShaderMask(
                   shaderCallback: (bounds) => const LinearGradient(
                     colors: [
@@ -56,8 +60,7 @@ class Login extends StatelessWidget {
                     'Welcome back',
                     style: GoogleFonts.lora(
                       fontSize: 30,
-                      color: Colors
-                          .white, // The color is ignored due to the ShaderMask
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

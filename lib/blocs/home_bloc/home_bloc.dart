@@ -12,10 +12,12 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final dataLayer = locator.get<RecipeData>();
+
   HomeBloc() : super(HomeInitial()) {
     on<LoadDataEvent>(loadDataMethod);
     on<LoadNewRecipeEvent>(loadNewRecipeMethod);
-    on<UpdateRecipeInHomeEvent>(updateRecipeMethod);  // Add this
+    on<UpdateRecipeInHomeEvent>(updateRecipeMethod);
+    on<RemoveRecipeEvent>(_removeRecipeMethod);  
   }
 
   FutureOr<void> loadDataMethod(LoadDataEvent event, Emitter<HomeState> emit) {
@@ -37,11 +39,26 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
   }
 
-  FutureOr<void> updateRecipeMethod(UpdateRecipeInHomeEvent event, Emitter<HomeState> emit) {
+  FutureOr<void> updateRecipeMethod(
+      UpdateRecipeInHomeEvent event, Emitter<HomeState> emit) {
     try {
-      // Update the recipe in the data layer
-      dataLayer.editRecipe(descrtipton: event.recipeDescription, recipe: event.recipe, title: event.recipeTitle);
-      
+      dataLayer.editRecipe(
+        descrtipton: event.recipeDescription,
+        recipe: event.recipe,
+        title: event.recipeTitle,
+      );
+
+      final updatedRecipes = dataLayer.recipes;
+      emit(SuccessfulLoadState(recipes: updatedRecipes));
+    } catch (e) {
+      emit(ErrorState(message: e.toString()));
+    }
+  }
+
+  // Method to handle recipe deletion
+  FutureOr<void> _removeRecipeMethod(RemoveRecipeEvent event, Emitter<HomeState> emit) {
+    try {
+      dataLayer.recipes.remove(event.recipe);
       final updatedRecipes = dataLayer.recipes;
       emit(SuccessfulLoadState(recipes: updatedRecipes));
     } catch (e) {

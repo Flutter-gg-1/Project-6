@@ -28,6 +28,8 @@ dev_dependencies:
 
 
 flutter:
+  assets:
+    - asstes/
 
   uses-material-design: true
 

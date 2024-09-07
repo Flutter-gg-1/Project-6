@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project6/blocs/add_recipe_bloc/add_recipe_bloc.dart';
-import 'package:project6/blocs/home_bloc/home_bloc.dart';
 
 class EditRecipePage extends StatefulWidget {
   final String initialRecipeTitle;

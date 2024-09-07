@@ -14,7 +14,12 @@ final class EditRecipeEvent extends HomeEvent {
   EditRecipeEvent({required this.oldRecipe, required this.newRecipe});
 }
 
-final class RemoveRecipeEvent extends HomeEvent {}
+
+final class RemoveRecipeEvent extends HomeEvent {
+  final Recipe recipe;
+
+  RemoveRecipeEvent(this.recipe);
+}
 
 final class UpdateRecipeInHomeEvent extends HomeEvent {
   final String recipeTitle;
