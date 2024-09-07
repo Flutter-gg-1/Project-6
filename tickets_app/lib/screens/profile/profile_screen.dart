@@ -4,8 +4,8 @@ import 'package:tickets_app/screens/add_reservation/add_reservation_screen.dart'
 import 'package:tickets_app/screens/login/login_screen.dart';
 import 'package:tickets_app/screens/profile/profile_bloc.dart';
 import 'package:tickets_app/utils/img_converter.dart';
-import 'package:tickets_app/widget/Cards/reservation_card.dart';
-import 'package:tickets_app/widget/Cards/user_card.dart';
+import 'package:tickets_app/reusable_components/cards/reservation_card.dart';
+import 'package:tickets_app/reusable_components/cards/user_card.dart';
 import '../../core/all_file.dart';
 import '../../core/extensions/img_ext.dart';
 import '../../model/reservation.dart';
@@ -43,7 +43,7 @@ class ProfileScreen extends StatelessWidget {
           );
         } else if (state is SignOutState) {
           Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => LoginScreen()),
+            MaterialPageRoute(builder: (context) => const LoginScreen()),
             (route) => false,
           );
         }
@@ -92,24 +92,26 @@ class ProfileScreen extends StatelessWidget {
                             ),
                             const Text("Reservations")
                                 .styled(size: 18, weight: FontWeight.w600),
-                            ...bloc.userReservations.map(
-                              (res) => ReservationCard(
-                                roomId: res.roomId,
-                                nights: '${res.numNights}',
-                                date: res.date,
-                                img: ImgConverter.imageFromBase64String(
-                                    bloc.getSelectedRoom(res.roomId).imgData),
-                                onPressed: () => _navigateToEdit(
-                                  context: context,
-                                  room: bloc.getSelectedRoom(res.roomId),
-                                  reservation: res,
+                            ...bloc.userReservations().map(
+                                  (res) => ReservationCard(
+                                    roomId: res.roomId,
+                                    nights: '${res.numNights}',
+                                    date: res.date,
+                                    img: ImgConverter.imageFromBase64String(bloc
+                                        .getSelectedRoom(res.roomId)
+                                        .imgData),
+                                    onPressed: () => _navigateToEdit(
+                                      context: context,
+                                      room: bloc.getSelectedRoom(res.roomId),
+                                      reservation: res,
+                                    ),
+                                    onDelete: () {
+                                      context.read<ProfileBloc>().add(
+                                          RemoveResEvent(
+                                              reservationId: res.id));
+                                    },
+                                  ),
                                 ),
-                                onDelete: () {
-                                  context.read<ProfileBloc>().add(
-                                      RemoveResEvent(reservationId: res.id));
-                                },
-                              ),
-                            ),
                           ],
                         ),
                       );

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tickets_app/core/extensions/color_ext.dart';
 
-class MyTextField extends StatelessWidget {
-  const MyTextField(
+class CustomTextField extends StatelessWidget {
+  const CustomTextField(
       {super.key,
       this.hintText,
       this.prefixIcon,

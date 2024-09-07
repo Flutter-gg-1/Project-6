@@ -12,7 +12,7 @@ import '../../reusable_components/custom_alert_dialog.dart';
 import '../../reusable_components/custom_text_btn.dart';
 
 class SignUpScreen extends StatelessWidget {
-  SignUpScreen({super.key});
+  const SignUpScreen({super.key});
 
   void _navigateToLogin(BuildContext context) {
     Navigator.of(context).pop();
@@ -117,26 +117,26 @@ class SignUpScreen extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              MyTextField(
+                              CustomTextField(
                                 controller: bloc.nameController,
                                 prefixIcon: const Icon(FontAwesomeIcons.user),
                                 hintText: 'Username',
                                 validation: Validations.emptyFieldValidation,
                               ),
-                              MyTextField(
+                              CustomTextField(
                                 controller: bloc.emailController,
                                 prefixIcon:
                                     const Icon(FontAwesomeIcons.envelope),
                                 hintText: 'Email',
                                 validation: Validations.email,
                               ),
-                              MyTextField(
+                              CustomTextField(
                                 controller: bloc.passwordController,
                                 prefixIcon: const Icon(FontAwesomeIcons.lock),
                                 hintText: 'Password',
                                 validation: Validations.pwd,
                               ),
-                              MyButton(
+                              CustomMaterialBtn(
                                 text: 'Sign Up',
                                 onPressed: () => bloc.add(
                                   SignUpAttemptEvent(),

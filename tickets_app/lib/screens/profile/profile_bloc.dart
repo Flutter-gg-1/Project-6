@@ -18,19 +18,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   var roomMgr = GetIt.I.get<RoomMgr>();
   var resMgr = GetIt.I.get<ReservationMgr>();
   get currentUser => userMgr.currentUser;
-  get userReservations {
-    return currentUser == null
-        ? []
-        : resMgr.allReservations
-            .where((res) => res.userId == currentUser!.id)
-            .toList()
-      ..sort((a, b) {
-        DateTime dateA = a.date
-            .toDateTime(); // Use your extension to convert string to DateTime
-        DateTime dateB = b.date.toDateTime();
-        return dateA.compareTo(dateB); // Sort in ascending order
-      });
-  }
 
   ProfileBloc() : super(ProfileInitial()) {
     on<ProfileEvent>((event, emit) {});
@@ -44,7 +31,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   FutureOr<void> updateReservationList(
       UpdateResListEvent event, Emitter<ProfileState> emit) {
-    emit(UpdateResListState(reservations: userReservations));
+    emit(UpdateResListState(reservations: userReservations()));
   }
 
   FutureOr<void> removeEvent(
@@ -52,13 +39,21 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     await resMgr.removeReservation(reservationId: event.reservationId);
     print('Removing Event');
     emit(RemoveResState(reservationId: event.reservationId));
-    emit(UpdateResListState(reservations: userReservations));
+    emit(UpdateResListState(reservations: userReservations()));
   }
 
   FutureOr<void> signOut(SignOutEvent event, Emitter<ProfileState> emit) async {
     await userMgr.signOut();
     emit(SignOutState());
-    emit(UpdateResListState(reservations: userReservations));
+    emit(UpdateResListState(reservations: userReservations()));
+  }
+
+  List<Reservation> userReservations() {
+    return currentUser == null
+        ? []
+        : resMgr.allReservations
+            .where((res) => res.userId == currentUser!.id)
+            .toList();
   }
 
   Room getSelectedRoom(int roomId) {

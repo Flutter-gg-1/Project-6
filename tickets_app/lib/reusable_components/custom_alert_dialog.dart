@@ -18,7 +18,7 @@ class CustomAlertDialog extends StatelessWidget {
         child: Text(content).styled(size: 16, color: C.text2),
       ),
       actions: <Widget>[
-        MyButton(text: 'OK', onPressed: () => dismiss(context))
+        CustomMaterialBtn(text: 'OK', onPressed: () => dismiss(context))
       ],
     );
   }

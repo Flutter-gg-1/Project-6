@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:tickets_app/core/extensions/color_ext.dart';
 import 'package:tickets_app/core/extensions/string_ext.dart';
 
-class MyButton extends StatelessWidget {
-  const MyButton(
-      {super.key, this.bKColor, required this.text,  this.onPressed});
+class CustomMaterialBtn extends StatelessWidget {
+  const CustomMaterialBtn(
+      {super.key, this.bKColor, required this.text, this.onPressed});
   final Color? bKColor;
   final String text;
   final Function()? onPressed;

@@ -8,7 +8,7 @@ import 'package:tickets_app/managers/user_mgr.dart';
 import 'package:tickets_app/screens/profile/profile_screen.dart';
 import 'package:tickets_app/utils/img_converter.dart';
 import '../model/room.dart';
-import '../widget/Cards/room_card.dart';
+import '../reusable_components/cards/room_card.dart';
 import 'add_reservation/add_reservation_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
 
   void _navigateToProfile(BuildContext context) {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => ProfileScreen()));
+        .push(MaterialPageRoute(builder: (context) => const ProfileScreen()));
   }
 
   void _navigateToAddRoom(BuildContext context, Room room) {
@@ -59,7 +59,7 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: Row(
                   children: [
-                    Text('Room Selection')
+                    const Text('Room Selection')
                         .styled(size: 18, weight: FontWeight.w600)
                   ],
                 ),

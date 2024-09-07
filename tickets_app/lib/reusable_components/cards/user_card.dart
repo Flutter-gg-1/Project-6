@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:tickets_app/core/extensions/color_ext.dart';
 import 'package:tickets_app/core/extensions/string_ext.dart';
 import 'package:tickets_app/reusable_components/custom_text_btn.dart';
-import 'package:tickets_app/widget/my_button.dart';
 
 class UserCard extends StatelessWidget {
   final String name;

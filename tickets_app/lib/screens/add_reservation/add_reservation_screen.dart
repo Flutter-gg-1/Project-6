@@ -192,7 +192,7 @@ class AddReservationScreen extends StatelessWidget {
                       const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24),
                   child: BlocBuilder<AddReservationBloc, AddReservationState>(
                     builder: (context, state) {
-                      return MyButton(
+                      return CustomMaterialBtn(
                           text: (bloc.oldRes == null)
                               ? 'Confirm Booking'
                               : 'Update Booking',

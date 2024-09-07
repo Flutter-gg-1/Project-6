@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tickets_app/core/extensions/color_ext.dart';
 import 'package:tickets_app/core/extensions/get_size.dart';
 import 'package:tickets_app/core/extensions/string_ext.dart';
-import 'package:tickets_app/widget/rate_widget.dart';
+import 'package:tickets_app/reusable_components/rate_widget.dart';
 
 class RoomCard extends StatelessWidget {
   final String title;
@@ -107,4 +107,3 @@ class RoomCard extends StatelessWidget {
     );
   }
 }
-

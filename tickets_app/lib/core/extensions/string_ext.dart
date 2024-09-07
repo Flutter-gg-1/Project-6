@@ -16,7 +16,6 @@ extension CustomTextStyle on Text {
       softWrap: true,
       maxLines: lineLimit,
       style: TextStyle(
-        fontFamily: 'Inter',
         fontSize: size,
         color: color,
         fontWeight: weight,

@@ -11,11 +11,11 @@ import '../home_screen.dart';
 import '../sign_up/sign_up_screen.dart';
 
 class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
 
   void _navigateToSignUp(BuildContext context) {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => SignUpScreen()));
+        .push(MaterialPageRoute(builder: (context) => const SignUpScreen()));
   }
 
   void _navigateToHome(BuildContext context) {
@@ -73,19 +73,19 @@ class LoginScreen extends StatelessWidget {
                                 size: 24,
                                 color: C.text1,
                                 weight: FontWeight.bold),
-                            MyTextField(
+                            CustomTextField(
                                 controller: bloc.emailController,
                                 hintText: 'Email',
                                 prefixIcon: const Icon(Icons.email),
-                                validation: Validations.email),
-                            MyTextField(
+                                validation: Validations.emptyFieldValidation),
+                            CustomTextField(
                               controller: bloc.passwordController,
                               hintText: 'Password',
                               prefixIcon: const Icon(Icons.lock),
                               suffixIcon: const Icon(Icons.remove_red_eye),
-                              validation: Validations.pwd,
+                              validation: Validations.emptyFieldValidation,
                             ),
-                            MyButton(
+                            CustomMaterialBtn(
                                 text: 'Log in',
                                 onPressed: () {
                                   bloc.add(
