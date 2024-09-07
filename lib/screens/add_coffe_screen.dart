@@ -69,14 +69,14 @@ class AddCoffeScreen extends StatelessWidget {
                               children: [
                                 SvgPicture.asset(
                                   "assets/svg/Vector.svg",
-                                  color: const Color(0xffADA3A1),
+                                  colorFilter: const ColorFilter.mode(Color(0xffADA3A1), BlendMode.srcIn),
                                 ),
                                 const SizedBox(
                                   width: 26,
                                 ),
                                 SvgPicture.asset(
                                   "assets/svg/Vector.svg",
-                                  color: const Color(0xff58352E),
+                                  colorFilter: const ColorFilter.mode(Color(0xff58352E), BlendMode.srcIn),
                                   width: 36,
                                   height: 36,
                                 ),
@@ -85,7 +85,7 @@ class AddCoffeScreen extends StatelessWidget {
                                 ),
                                 SvgPicture.asset(
                                   "assets/svg/Vector.svg",
-                                  color: const Color(0xffADA3A1),
+                                  colorFilter: const ColorFilter.mode(Color(0xffADA3A1), BlendMode.srcIn),
                                   width: 42,
                                   height: 42,
                                 ),
