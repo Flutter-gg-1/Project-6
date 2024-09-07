@@ -19,10 +19,6 @@ class SignUpScreen extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  void getUsers() {
-    userMgr.allUsers.first;
-  }
-
   void _navigateToLogin(BuildContext context) {
     Navigator.of(context).pop();
   }
@@ -60,6 +56,7 @@ class SignUpScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => SignUpBloc(),
       child: Builder(builder: (context) {
+        final bloc = context.read<SignUpBloc>();
         return Scaffold(
           backgroundColor: C.bg,
           body: SafeArea(
@@ -81,7 +78,88 @@ class SignUpScreen extends StatelessWidget {
                             if (state is SignUpInitial) {
                               return blocSignUp(context);
                             } else if (state is StateAfterWritingSignUp) {
-                              return blocSignUp(context);
+                              return Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                      ConstrainedBox(
+                                        constraints: const BoxConstraints(
+                                          maxWidth: 75, // Minimum width
+                                          maxHeight: 75,
+                                        ),
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: (selectedImg != null)
+                                              ? ClipOval(
+                                                  child: Image.file(
+                                                      selectedImg!,
+                                                      fit: BoxFit.cover),
+                                                )
+                                              : const ClipOval(
+                                                  child: Opacity(
+                                                    opacity: 0.4,
+                                                    child: Image(
+                                                        image: Img.person1,
+                                                        fit: BoxFit.contain),
+                                                  ),
+                                                ),
+                                        ),
+                                      ),
+                                      IconButton(
+                                        onPressed: getImage,
+                                        icon: const Icon(
+                                          Icons.add,
+                                          color: C.accent,
+                                          size: 40,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  MyTextField(
+                                    controller: nameController,
+                                    prefixIcon:
+                                        const Icon(FontAwesomeIcons.user),
+                                    hintText: 'Username',
+                                  ),
+                                  MyTextField(
+                                    controller: emailController,
+                                    prefixIcon:
+                                        const Icon(FontAwesomeIcons.envelope),
+                                    hintText: 'Email',
+                                  ),
+                                  MyTextField(
+                                    controller: passwordController,
+                                    prefixIcon:
+                                        const Icon(FontAwesomeIcons.phone),
+                                    hintText: 'Phone Number',
+                                  ),
+                                  MyButton(
+                                    text: 'Sign Up',
+                                    onPressed: () => bloc.add(
+                                        EventAfterWritingSignUp(
+                                            name: nameController.text,)),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 4.0),
+                                    child: Row(
+                                      children: [
+                                        const Text("Already have an account?"),
+                                        const SizedBox(width: 4),
+                                        CustomTextBtn(
+                                            title: 'Login',
+                                            callback: () =>
+                                                _navigateToLogin(context)),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              );
                             }
                             return const SizedBox();
                           },
@@ -161,7 +239,7 @@ class SignUpScreen extends StatelessWidget {
           prefixIcon: const Icon(FontAwesomeIcons.phone),
           hintText: 'Phone Number',
         ),
-        MyButton(text: 'Sign Up', onPressed: () => print('object')),
+        MyButton(text: 'Sign Up', onPressed: () => print(nameController.text)),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 4.0),
           child: Row(
