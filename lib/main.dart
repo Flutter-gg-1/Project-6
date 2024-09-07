@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project6/screens/add_coffe_screen.dart';
-import 'package:project6/screens/home_screen.dart';
 import 'package:project6/screens/welcome_screen.dart';
 import 'package:project6/setup/init.dart';
 
