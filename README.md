@@ -11,7 +11,11 @@
   <a href="#output">Output</a> •
 </p>
 
+### Overview
+In this project, our team collaborated to create the Movie App, an intuitive application designed for movie lovers who want to manage their movie collections effortlessly. We began by designing the user interface and crafting the user flow to ensure a seamless and enjoyable experience. Every step of the process was carefully planned, from wireframing to final design, with a focus on usability and functionality.
 
+Check out the Figma file to explore the journey we undertook to bring this app to life.
+https://www.figma.com/design/Yx6q7Om6LKnjFlsuiOrPO7/Project-6?node-id=1-9&t=G4NFjd3Z5zvc541q-1 
 
 ### 1. Goal 📖
 Movie App is a responsive flutter application that helps admins to organize their movies library and profrme main operations through a simple and user-friendly interface.
@@ -62,3 +66,8 @@ $ git push
 
 
 ### 5. Output
+![output](https://github.com/user-attachments/assets/ab04fa45-438c-47a8-8496-9182e37efb5d)
+
+
+Thank you for your reading.
+
