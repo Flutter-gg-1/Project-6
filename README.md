@@ -66,4 +66,9 @@ The following packages are included in the project:
 - flutter pub get
 - Run the app
 
+## Team Members:
+- Nouf Alqahtani
+- Abdulaziz Alruwaily
+- Amjad Elahi
+- Linda Almakramy
 
