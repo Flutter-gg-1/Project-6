@@ -1,17 +1,35 @@
+import 'dart:developer';
 
+import 'package:clothes_app/data_layer/models/app_model.dart';
 import 'package:clothes_app/helper/extinsion/size_config.dart';
+import 'package:clothes_app/services/setup.dart';
+import 'package:clothes_app/src/sign_up_screen.dart';
 import 'package:clothes_app/widget/button/button_text.dart';
 import 'package:clothes_app/widget/text_field/custome_text_field.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController controllerName = TextEditingController();
+  TextEditingController controllerpass = TextEditingController();
+
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
+    return Form(
+      key: formKey,
+      child: Scaffold(
+        body: SafeArea(
+            child: SingleChildScrollView(
           child: Column(
+
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
@@ -76,24 +94,131 @@ class LoginScreen extends StatelessWidget {
             buttonText: 'Login',
           ),
           Row(
+
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                'Don\'t have an account ?',
-                style:
-                    TextStyle(color: const Color(0xff5F3636).withOpacity(0.48)),
+              SizedBox(
+                height: context.getHeight() / 40,
               ),
-              TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'SignUp',
+              Row(
+                children: [
+                  SizedBox(width: context.getWidth() / 8),
+                  const Text(
+                    'Welcome back',
                     style: TextStyle(
-                        color: Color(0xff5F3636), fontWeight: FontWeight.bold),
-                  ))
+                        fontFamily: 'Romanesco',
+                        fontSize: 35,
+                        color: Color(0xff5F3636)),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: context.getHeight() / 15,
+              ),
+              Center(
+                child: Image.asset("assets/undraw_jewelry_iima 1.png"),
+              ),
+              SizedBox(
+                height: context.getHeight() / 35,
+              ),
+              CustomTextField(
+                controller: controllerName,
+                hasSuffixIcon: false,
+                hintText: 'User Name',
+                validate: (val) {
+                  if (val == null || val.isEmpty) {
+                    return 'Please enter your username';
+                  }
+                  if (val.contains(' ')) {
+                    return 'Username cannot contain spaces';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(
+                height: context.getHeight() / 19,
+              ),
+              CustomTextField(
+                hasSuffixIcon: true,
+                hintText: 'Password',
+                controller: controllerpass,
+                validate: (val) {
+                  if (val == null || val.isEmpty) {
+                    return 'Please enter your password';
+                  }
+                  if (val.contains(' ')) {
+                    return 'Password cannot contain spaces';
+                  }
+                  return null;
+                },
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Forgot password ?',
+                          style: TextStyle(
+                              fontFamily: 'Romanesco',
+                              fontSize: 16,
+                              color: const Color(0xff5F3636).withOpacity(0.48)),
+                        )),
+                    SizedBox(
+                      width: context.getWidth() / 13,
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: context.getWidth() / 12,
+              ),
+              CustomeTextButton(
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    if (getIt.get<AppModel>().userCheck(
+                        name: controllerName.text,
+                        password: controllerpass.text)) {
+                      log("user enter the system");
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('No User in the system')));
+                    }
+                  }
+                },
+                buttonText: 'Login',
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Don\'t have an account ?',
+                    style: TextStyle(
+                        color: const Color(0xff5F3636).withOpacity(0.48)),
+                  ),
+                  TextButton(
+                      onPressed: () {
+
+                         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
+
+                            return const  RegisterScreen();
+                            
+                          },));
+                      },
+                      child: const Text(
+                        'SignUp',
+                        style: TextStyle(
+                            color: Color(0xff5F3636),
+                            fontWeight: FontWeight.bold),
+                      ))
+                ],
+              )
             ],
-          )
-        ],
-      )),
+          ),
+        )),
+      ),
     );
   }
 }
