@@ -5,6 +5,10 @@ sealed class ProfileState {}
 
 final class ProfileInitial extends ProfileState {}
 
-final class RemoveResState extends ProfileState {}
+final class RemoveResState extends ProfileState {
+  final int reservationId;
+
+  RemoveResState({required this.reservationId});
+}
 
 final class SignOutState extends ProfileState {}

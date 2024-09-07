@@ -28,17 +28,16 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   FutureOr<void> removeEvent(
       RemoveResEvent event, Emitter<ProfileState> emit) async {
     await resMgr.removeReservation(reservationId: event.reservationId);
-
-    print('Event Removed');
-
+    emit(RemoveResState(reservationId: event.reservationId));
     // Emit Changes
+    emit(RemoveResState(reservationId: event.reservationId));
+    print('Event Removed');
   }
 
   FutureOr<void> signOut(SignOutEvent event, Emitter<ProfileState> emit) async {
     await userMgr.signOut();
-
-    print('Signing out');
-
     // Emit Changes
+    emit(SignOutState());
+    print('Signing out');
   }
 }
