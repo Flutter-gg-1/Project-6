@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project6/components/custom_button.dart';
+import 'package:project6/data_layer/coffee_data.dart';
+import 'package:project6/screens/login_screen.dart';
+import 'package:project6/setup/init.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -51,12 +54,18 @@ class ProfilePage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 180,
               ),
               CustomButton(
                 text: 'Sign out',
-                onPressed: () {},
+                onPressed: () {
+                  getIt.get<CoffeeData>().currentUser.remove('Username');
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginScreen()));
+                },
               )
             ],
           ),
