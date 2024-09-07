@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tickets_app/core/extensions/color_ext.dart';
-import 'package:tickets_app/core/extensions/get_size.dart';
 import 'package:tickets_app/core/extensions/string_ext.dart';
 
 class RateWidget extends StatelessWidget {

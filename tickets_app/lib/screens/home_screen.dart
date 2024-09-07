@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
 
   void _navigateToProfile(BuildContext context) {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const ProfileScreen()));
+        .push(MaterialPageRoute(builder: (context) =>  ProfileScreen()));
   }
 
   void _navigateToAddRoom(BuildContext context, Room room) {

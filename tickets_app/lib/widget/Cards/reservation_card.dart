@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tickets_app/core/extensions/color_ext.dart';
 import 'package:tickets_app/core/extensions/img_ext.dart';
+import 'package:tickets_app/core/extensions/string_ext.dart';
 
 class ReservationCard extends StatelessWidget {
   final String roomId;
@@ -12,7 +13,8 @@ class ReservationCard extends StatelessWidget {
     super.key,
     required this.roomId,
     required this.nights,
-    required this.date, required this.onPressed,
+    required this.date,
+    required this.onPressed,
   });
   @override
   Widget build(BuildContext context) {
@@ -45,28 +47,18 @@ class ReservationCard extends StatelessWidget {
                   children: [
                     Text(
                       "Room number: $roomId",
-                      style: const TextStyle(
-                        color: C.black,
-                        fontWeight: FontWeight.w800,
-                        fontSize: 16,
-                      ),
-                    ),
+                    ).styled(weight: FontWeight.w800, size: 16),
                     const SizedBox(height: 8),
                     Text(
                       "Number of Nights: $nights\nDate: $date",
-                      style: const TextStyle(
-                        color: C.text3,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14,
-                      ),
-                    ),
+                    ).styled(color: C.text3, weight: FontWeight.w600, size: 14),
                   ],
                 ),
               ),
               const SizedBox(width: 8),
               IconButton(
-                  onPressed:onPressed,
-                  icon: Icon(
+                  onPressed: onPressed,
+                  icon: const Icon(
                     Icons.edit,
                     color: C.accent,
                     size: 24,
@@ -76,3 +68,4 @@ class ReservationCard extends StatelessWidget {
     );
   }
 }
+

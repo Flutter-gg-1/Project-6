@@ -68,12 +68,7 @@ class RoomCard extends StatelessWidget {
                       ),
                       Text(
                         title,
-                        style: const TextStyle(
-                          color: C.black,
-                          fontWeight: FontWeight.w800,
-                          fontSize: 16,
-                        ),
-                      ),
+                      ).styled(weight: FontWeight.w800, size: 16),
                       Text(subTitle).styled(lineLimit: 2, size: 11),
                       const SizedBox(height: 8),
                       RichText(
@@ -112,3 +107,4 @@ class RoomCard extends StatelessWidget {
     );
   }
 }
+
