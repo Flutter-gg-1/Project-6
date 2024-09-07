@@ -5,7 +5,8 @@ class AddFieldWidget extends StatelessWidget {
   final String label;
   final String hint;
   final TextEditingController controller;
-  const AddFieldWidget({super.key,required this.label,required this.hint,required this.controller});
+  final String? Function(String?)? validator;
+  const AddFieldWidget({super.key,required this.label,required this.hint,required this.controller, required this.validator});
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,7 +20,7 @@ class AddFieldWidget extends StatelessWidget {
         const SizedBox(height: 15),
         SizedBox(
           width: context.getWidth() / 0.5,
-          child: TextField(
+          child: TextFormField(
             style: const TextStyle(color: Colors.white),
             controller: controller,
             decoration: InputDecoration(
@@ -30,6 +31,7 @@ class AddFieldWidget extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(10))),
                 filled: true,
                 fillColor: const Color(0xff383740)),
+                validator: validator,
           ),
         )
       ],
