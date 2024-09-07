@@ -14,7 +14,7 @@ class MovieCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -48,6 +48,7 @@ class MovieCard extends StatelessWidget {
               Row(
                 children: [
                   const Icon(Icons.calendar_month,size: 16, color: Color(0xffF2F2F2)),
+                  SizedBox(width: 10,),
                   Text(movie.year,style: const TextStyle(color: Color(0xffDEDEDE), fontSize: 12)),
                 ],
               ),

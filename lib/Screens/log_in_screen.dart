@@ -71,16 +71,16 @@ class _LogInScreenState extends State<LogInScreen> {
                   if (_formKey.currentState!.validate()) {
                     for (var user in usersLayer.users) {
                       if (emailController.text == user.email && passwordController.text == user.password) {
-                        usersLayer.currentUser = user;
-                        context.pushReplacement(screen: const MoviesScreen());
+                        usersLayer.login(user: user);
+                        context.pushRemoveUntil(screen: const MoviesScreen());
                         return;
                       }
                     }
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Incorrect email or password')),
                     );
-                  }
                   log((usersLayer.currentUser?.name).toString());
+                  }
                 }
               ),
               Row(
@@ -90,7 +90,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   const SizedBox(width: 110),
                   const Text("Don't have an account ?",style: TextStyle(color: Colors.white)),
                   InkWell(
-                    onTap: () => context.push(screen: const SignUpScreen()),
+                    onTap: () => context.pushReplacement(screen: const SignUpScreen()),
                     child: const Text(" Sign Up",style: TextStyle(color: ColorSelect.brandColor))
                   )
                 ],

@@ -1,4 +1,6 @@
+import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:project6/data/users_layer.dart';
 import 'package:project6/models/movie.dart';
 
 class MoviesLayer {
@@ -59,11 +61,11 @@ class MoviesLayer {
   final box = GetStorage();
 
   addMovie({required Movie movie}) {
-    movies.add(movie);
+    GetIt.I.get<UsersLayer>().currentUser!.userMovies.add(movie);
   }
 
   editMovie({required int id, required Movie newMovie}) {
-    for (var movie in movies) {
+    for (var movie in GetIt.I.get<UsersLayer>().currentUser!.userMovies) {
       if (movie.id == id) {
         movie.name = newMovie.name;
         movie.category = newMovie.category;
@@ -73,6 +75,6 @@ class MoviesLayer {
   }
 
   deleteMovie({required int id}) {
-    movies.removeWhere((element) => element.id == id);
+    GetIt.I.get<UsersLayer>().currentUser!.userMovies.removeWhere((element) => element.id == id);
   }
 }

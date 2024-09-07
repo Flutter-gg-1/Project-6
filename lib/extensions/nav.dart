@@ -17,6 +17,14 @@ extension Nav on BuildContext {
     );
   }
 
+  pushRemoveUntil({required Widget screen}) {
+    Navigator.pushAndRemoveUntil(
+      this,
+      MaterialPageRoute(builder: (context) => screen),
+      (predicate) => false
+    );
+  }
+
   pop() {
     Navigator.pop(this);
   }

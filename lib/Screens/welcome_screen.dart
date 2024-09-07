@@ -16,9 +16,8 @@ class WelcomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: 70),
             Image.asset("assets/logo.png", width: 350),
-            ButtonWidget(title: "Log in",onPressed: () => context.pushReplacement(screen: const LogInScreen())),
+            ButtonWidget(title: "Log in",onPressed: () => context.push(screen: const LogInScreen())),
             const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,

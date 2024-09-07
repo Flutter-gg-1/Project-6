@@ -51,8 +51,8 @@ class EditMovieScreen extends StatelessWidget {
               CatgoriesWidget(radioButtonValue: (value) => category = value),
               const SizedBox(height: 40),
               AddFieldWidget(
-                label: "Date",
-                hint: "Add movie date",
+                label: "Year",
+                hint: "Add movie year",
                 controller: yearController
               ),
               const SizedBox(height: 40),
@@ -64,7 +64,7 @@ class EditMovieScreen extends StatelessWidget {
               ),
               const SizedBox(height: 40),
               ButtonWidget(
-                title: 'Edit',
+                title: 'Submit Changes',
                 onPressed: () {
                   bloc.add(EditMovieEvent(
                     id: movie.id,

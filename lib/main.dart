@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:project6/bloc_movie/movie_bloc.dart';
+import 'package:project6/data/users_layer.dart';
+import 'package:project6/models/user.dart';
+import 'package:project6/screens/movies_screen.dart';
 import 'package:project6/services/setup.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,7 +17,7 @@ void main() async {
   setup();
   runApp(
     DevicePreview(
-      enabled: false,
+      enabled: true,
       builder: (context) => const MainApp(),
     ),
   );
@@ -24,9 +28,10 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    User? user = GetIt.I.get<UsersLayer>().currentUser;
     return BlocProvider(
       create: (context) => MovieBloc(),
-      child: const MaterialApp(home: WelcomeScreen()),
+      child: MaterialApp(home: user!=null ? const MoviesScreen() : const WelcomeScreen()),
     );
   }
 }
