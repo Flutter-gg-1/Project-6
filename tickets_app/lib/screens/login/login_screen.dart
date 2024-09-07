@@ -70,11 +70,20 @@ class LoginScreen extends StatelessWidget {
                                       email: bloc.emailController.text,
                                       password: bloc.passwordController.text),
                                 );
-                                if (bloc.userMgr.currentUser != null) {
-                                  _navigateToHome(context);
-                                } else {
-                                  _showAlert(context);
-                                }
+
+                                // MARK: - TO DO: FIX BOTTOM PART OF LISTENER
+
+                                BlocListener<LoginBloc, LoginState>(
+                                    listener: (context, state) {
+                                  if (state is SuccessfulState) {
+                                    print('Successful');
+                                    _navigateToHome(context);
+                                  }
+                                  if (state is ErrorState) {
+                                    print(state.msg);
+                                    _showAlert(context);
+                                  }
+                                });
                               }),
                           CustomTextBtn(
                               title: 'Forgot Password?', callback: () => ()),

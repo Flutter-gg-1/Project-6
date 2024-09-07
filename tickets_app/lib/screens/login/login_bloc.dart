@@ -28,6 +28,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         .where((user) => (user.email == email && user.password == password))
         .firstOrNull;
 
+    print('Hello');
+
     if (user != null) {
       userMgr.setCurrentUser(user);
       emit(SuccessfulState());

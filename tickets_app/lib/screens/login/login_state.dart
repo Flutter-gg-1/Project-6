@@ -11,4 +11,6 @@ final class SuccessfulState extends LoginState {
   // SuccessfulState({required this.shouldNavigate});
 }
 
-final class ErrorState extends LoginState {}
+final class ErrorState extends LoginState {
+  final String msg = '123';
+}
