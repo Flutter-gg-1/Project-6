@@ -35,13 +35,18 @@ class UserMgr {
     }
   }
 
-  Future<void> setCurrentUser(User user) async {
+  Future<void> signIn(User user) async {
     currentUser = user;
     await BoxStorage.writeItem(
       item: user,
       key: currentUserKey,
       toJson: (user) => user.toJson(),
     );
+  }
+
+  Future<void> signOut() async {
+    currentUser = null;
+    box.remove(currentUserKey);
   }
 
   // MARK: - Default Users

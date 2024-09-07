@@ -29,7 +29,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         .firstOrNull;
 
     if (user != null) {
-      userMgr.setCurrentUser(user);
+      userMgr.signIn(user);
       emit(SuccessfulState());
     } else {
       emit(ErrorState());

@@ -22,6 +22,8 @@ class RoomMgr {
         toJson: (room) => room.toJson(),
       );
     } else {
+      allRooms = await BoxStorage.readItems<Room>(
+          key: key, fromJson: (json) => Room.fromJson(json));
     }
   }
 

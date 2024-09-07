@@ -4,3 +4,7 @@ part of 'profile_bloc.dart';
 sealed class ProfileState {}
 
 final class ProfileInitial extends ProfileState {}
+
+final class RemoveResState extends ProfileState {}
+
+final class SignOutState extends ProfileState {}

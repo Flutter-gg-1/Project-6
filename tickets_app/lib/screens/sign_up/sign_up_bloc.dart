@@ -43,7 +43,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       );
 
       await userMgr.addUser(newUser);
-      await userMgr.setCurrentUser(newUser);
+      await userMgr.signIn(newUser);
 
       emit(SignUpSuccessState());
     } else {
