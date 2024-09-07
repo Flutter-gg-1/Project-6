@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project6/components/custom_elevated_button_widget.dart';
+import 'package:project6/components/button_widgets/custom_elevated_button_widget.dart';
 
 class CustomCartContainerWidget extends StatelessWidget {
   const CustomCartContainerWidget(
@@ -36,7 +36,7 @@ class CustomCartContainerWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Image.asset(image),
+          SizedBox(height: 70, width: 70, child: Image.asset(image)),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

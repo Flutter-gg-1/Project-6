@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project6/components/buy_more.dart';
-import 'package:project6/components/shimmer_loading.dart';
-import 'package:project6/components/text_custom.dart';
-import 'package:project6/data_layer/coffee_data.dart';
+import 'package:project6/components/buy_widget/buy_more.dart';
+import 'package:project6/components/shimmer_widgets/shimmer_loading.dart';
+import 'package:project6/components/text_widgets/text_custom.dart';
+import 'package:project6/data_layer/data/coffee_data.dart';
 import 'package:project6/data_layer/models/coffees_model.dart';
 import 'package:project6/screens/bloc/coffee_bloc.dart';
 import 'package:project6/screens/nav_bar.dart';

@@ -17,8 +17,8 @@ class CoffeeMenue extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(
-            width: 50,
-            height: 50,
+            width: 60,
+            height: 60,
             child: Image(
               image: AssetImage(coffeeImg),
             ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project6/screens/login_screen.dart';
+import 'package:project6/screens/auth_screens/login_screen.dart';
 
 class SuccessDialog extends StatelessWidget {
   final AnimationController animationController;
@@ -27,7 +27,7 @@ class SuccessDialog extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 206, 185, 176),
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: const [
                     BoxShadow(

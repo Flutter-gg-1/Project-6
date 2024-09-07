@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:project6/custom_widgets/coffee_menu.dart';
+import 'package:project6/components/menu_widget/coffee_menu.dart';
 import 'package:project6/screens/add_coffe_screen.dart';
 
-import '../components/custom_app_bar_widget.dart';
+import '../../components/app_bar_widget/custom_app_bar_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({

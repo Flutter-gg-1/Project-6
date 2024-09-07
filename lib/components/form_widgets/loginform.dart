@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'package:project6/components/custom_button.dart';
-import 'package:project6/components/custom_text_field.dart';
-import 'package:project6/screens/signup_screen.dart';
+import 'package:project6/components/button_widgets/custom_button.dart';
+import 'package:project6/components/text_field_widgets/custom_text_field.dart';
+import 'package:project6/screens/auth_screens/signup_screen.dart';
 
 class LoginForm extends StatelessWidget {
   final GlobalKey<FormState> formKey;

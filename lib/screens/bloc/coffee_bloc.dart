@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'package:project6/data_layer/coffee_data.dart';
+import 'package:project6/data_layer/data/coffee_data.dart';
 import 'package:project6/setup/init.dart';
 
 part 'coffee_event.dart';

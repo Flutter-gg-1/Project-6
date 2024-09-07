@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:animations/animations.dart';
 import 'package:project6/screens/bloc/coffee_bloc.dart';
 import 'package:project6/screens/bottom_nav_bar.dart';
-import 'package:project6/screens/cart_page.dart';
-import 'package:project6/screens/home_screen.dart';
-import 'package:project6/screens/profile_page.dart';
+import 'package:project6/screens/bottom_navigaton_bar_screens/cart_page.dart';
+import 'package:project6/screens/bottom_navigaton_bar_screens/home_screen.dart';
+import 'package:project6/screens/bottom_navigaton_bar_screens/profile_page.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({super.key});

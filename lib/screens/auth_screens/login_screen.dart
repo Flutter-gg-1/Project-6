@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project6/data_layer/coffee_data.dart';
-import 'package:project6/custom_widgets/loginform.dart';
-import 'package:project6/screens/loading_screen.dart';
+import 'package:project6/data_layer/data/coffee_data.dart';
+import 'package:project6/components/form_widgets/loginform.dart';
+import 'package:project6/screens/auth_screens/loading_screen.dart';
 import 'package:project6/setup/init.dart';
 
 class LoginScreen extends StatefulWidget {

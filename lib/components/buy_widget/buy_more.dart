@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project6/components/text_custom.dart';
+import 'package:project6/components/text_widgets/text_custom.dart';
 
 class BuyMore extends StatelessWidget {
   const BuyMore(

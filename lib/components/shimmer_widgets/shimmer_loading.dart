@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project6/components/shimmer_custom.dart';
+import 'package:project6/components/shimmer_widgets/shimmer_custom.dart';
 
 class ShimmerLoading extends StatelessWidget {
   const ShimmerLoading({super.key});

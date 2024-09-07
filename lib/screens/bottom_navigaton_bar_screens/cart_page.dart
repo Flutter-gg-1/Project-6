@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project6/components/custom_app_bar_widget.dart';
-import 'package:project6/components/custom_cart_container_widget.dart';
-import 'package:project6/components/custom_rich_text_widget.dart';
-import 'package:project6/data_layer/coffee_data.dart';
+import 'package:project6/components/app_bar_widget/custom_app_bar_widget.dart';
+import 'package:project6/components/container_widget/custom_cart_container_widget.dart';
+import 'package:project6/components/text_widgets/custom_rich_text_widget.dart';
+import 'package:project6/data_layer/data/coffee_data.dart';
 import 'package:project6/screens/bloc/coffee_bloc.dart';
 import 'package:project6/setup/init.dart';
 

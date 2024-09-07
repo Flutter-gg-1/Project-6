@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:project6/components/custom_button.dart';
-import 'package:project6/data_layer/coffee_data.dart';
-import 'package:project6/screens/login_screen.dart';
+import 'package:project6/components/button_widgets/custom_button.dart';
+import 'package:project6/data_layer/data/coffee_data.dart';
+import 'package:project6/screens/auth_screens/login_screen.dart';
 import 'package:project6/setup/init.dart';
 
 class ProfilePage extends StatelessWidget {
