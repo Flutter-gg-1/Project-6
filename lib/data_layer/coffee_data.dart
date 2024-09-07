@@ -6,4 +6,8 @@ class CoffeeData {
 
   Map<String, dynamic> currentUser = {};
   final box = GetStorage();
+
+  addNewCoffee({required CoffeeModel coffee}) {
+    dataLayer.add(coffee);
+  }
 }

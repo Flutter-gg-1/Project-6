@@ -14,6 +14,7 @@ class CoffeeBloc extends Bloc<CoffeeEvent, CoffeeState> {
   CoffeeBloc() : super(CoffeeInitial()) {
     on<ChangeAmountEvent>((event, emit) {
       emit(CoffeeAmountState());
+      emit(LoadedDataState());
     });
     on<ShowPasswordEvent>((event, emit) {
       emit(ShowPasswordState());

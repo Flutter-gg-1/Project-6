@@ -4,11 +4,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project6/components/buy_more.dart';
 import 'package:project6/components/shimmer_loading.dart';
 import 'package:project6/components/text_custom.dart';
+import 'package:project6/data_layer/coffee_data.dart';
+import 'package:project6/data_layer/models/coffees_model.dart';
 import 'package:project6/screens/bloc/coffee_bloc.dart';
+import 'package:project6/screens/cart_page.dart';
+import 'package:project6/screens/nav_bar.dart';
+import 'package:project6/setup/init.dart';
 
 class AddCoffeScreen extends StatelessWidget {
-  const AddCoffeScreen({super.key, required this.image});
+  AddCoffeScreen({
+    super.key,
+    required this.image,
+    required this.price,
+  });
   final String image;
+  final double price;
+  int amount = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +62,22 @@ class AddCoffeScreen extends StatelessWidget {
                                 color: Colors.black,
                                 weight: FontWeight.w500,
                                 size: 22),
-                             BuyMore(amount:1 , onTapDecrease: (){},onTapIncrease: (){},),
+                            BlocBuilder<CoffeeBloc, CoffeeState>(
+                              builder: (context, state) {
+                                return BuyMore(
+                                  price: (price * amount).toInt(),
+                                  amount: amount,
+                                  onTapDecrease: () {
+                                    amount--;
+                                    bloc.add(ChangeAmountEvent());
+                                  },
+                                  onTapIncrease: () {
+                                    amount++;
+                                    bloc.add(ChangeAmountEvent());
+                                  },
+                                );
+                              },
+                            ),
                             const SizedBox(
                               height: 20,
                             ),
@@ -63,32 +89,66 @@ class AddCoffeScreen extends StatelessWidget {
                             const SizedBox(
                               height: 6,
                             ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                SvgPicture.asset(
-                                  "assets/svg/Vector.svg",
-                                  colorFilter: const ColorFilter.mode(Color(0xffADA3A1), BlendMode.srcIn),
-                                ),
-                                const SizedBox(
-                                  width: 26,
-                                ),
-                                SvgPicture.asset(
-                                  "assets/svg/Vector.svg",
-                                  colorFilter: const ColorFilter.mode(Color(0xff58352E), BlendMode.srcIn),
-                                  width: 36,
-                                  height: 36,
-                                ),
-                                const SizedBox(
-                                  width: 26,
-                                ),
-                                SvgPicture.asset(
-                                  "assets/svg/Vector.svg",
-                                  colorFilter: const ColorFilter.mode(Color(0xffADA3A1), BlendMode.srcIn),
-                                  width: 42,
-                                  height: 42,
-                                ),
-                              ],
+                            BlocBuilder<CoffeeBloc, CoffeeState>(
+                              builder: (context, state) {
+                                return Row(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        bloc.add(
+                                            ChooseCupSizeEvent(cupSize: 0));
+                                      },
+                                      child: SvgPicture.asset(
+                                        "assets/svg/Vector.svg",
+                                        colorFilter: ColorFilter.mode(
+                                            Color(bloc.size == 0
+                                                ? 0xff58352E
+                                                : 0xffADA3A1),
+                                            BlendMode.srcIn),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 26,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        bloc.add(
+                                            ChooseCupSizeEvent(cupSize: 1));
+                                      },
+                                      child: SvgPicture.asset(
+                                        "assets/svg/Vector.svg",
+                                        colorFilter: ColorFilter.mode(
+                                            Color(bloc.size == 1
+                                                ? 0xff58352E
+                                                : 0xffADA3A1),
+                                            BlendMode.srcIn),
+                                        width: 36,
+                                        height: 36,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 26,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        bloc.add(
+                                            ChooseCupSizeEvent(cupSize: 2));
+                                      },
+                                      child: SvgPicture.asset(
+                                        "assets/svg/Vector.svg",
+                                        colorFilter: ColorFilter.mode(
+                                            Color(bloc.size == 2
+                                                ? 0xff58352E
+                                                : 0xffADA3A1),
+                                            BlendMode.srcIn),
+                                        width: 42,
+                                        height: 42,
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
                             ),
                             const SizedBox(
                               height: 20,
@@ -167,24 +227,46 @@ class AddCoffeScreen extends StatelessWidget {
                               height: 42,
                             ),
                             Center(
-                              child: Container(
-                                height: 46,
-                                width: 206,
-                                decoration: BoxDecoration(
-                                    color: const Color(0xffB98875),
-                                    borderRadius: BorderRadius.circular(41),
-                                    boxShadow: const [
-                                      BoxShadow(
-                                          color: Colors.black26,
-                                          offset: Offset(0, 4),
-                                          blurRadius: 1)
-                                    ]),
-                                child: const Center(
-                                  child: TextCustom(
-                                      title: "Add to cart",
-                                      color: Colors.white,
-                                      weight: FontWeight.w500,
-                                      size: 15),
+                              child: GestureDetector(
+                                onTap: () {
+                                  final sizeCup = switch (bloc.size) {
+                                    0 => "small",
+                                    1 => "medium",
+                                    2 => "large",
+                                    _ => "unknown"
+                                  };
+                                  getIt.get<CoffeeData>().addNewCoffee(
+                                      coffee: CoffeeModel(
+                                          amount: amount,
+                                          nameOfCoffee: image,
+                                          price: price,
+                                          size: sizeCup,
+                                          sugar: bloc.sugar));
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const NavBar()));
+                                },
+                                child: Container(
+                                  height: 46,
+                                  width: 206,
+                                  decoration: BoxDecoration(
+                                      color: const Color(0xffB98875),
+                                      borderRadius: BorderRadius.circular(41),
+                                      boxShadow: const [
+                                        BoxShadow(
+                                            color: Colors.black26,
+                                            offset: Offset(0, 4),
+                                            blurRadius: 1)
+                                      ]),
+                                  child: const Center(
+                                    child: TextCustom(
+                                        title: "Add to cart",
+                                        color: Colors.white,
+                                        weight: FontWeight.w500,
+                                        size: 15),
+                                  ),
                                 ),
                               ),
                             )

@@ -6,19 +6,21 @@ class BuyMore extends StatelessWidget {
       {super.key,
       this.onTapIncrease,
       this.onTapDecrease,
-      required this.amount});
+      required this.amount,
+      required this.price});
   final Function()? onTapIncrease;
   final Function()? onTapDecrease;
   final int amount;
+  final int price;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const TextCustom(
-            title: "19 SAR",
-            color: Color(0xffB98875),
+        TextCustom(
+            title: '$price SAR',
+            color: const Color(0xffB98875),
             weight: FontWeight.bold,
             size: 22),
         Row(
