@@ -29,7 +29,63 @@
 
 The Coffee Ordering App consists of several screens, each serving a specific purpose:
 
-//will add folders tree later
+```
+┣📂lib
+┣ 📂components
+┃ ┣ 📂alert_dialog_widgets
+┃ ┃ ┣ 📜custom_alert_dialog_widget.dart
+┃ ┃ ┗ 📜success_dialog_signup.dart
+┃ ┣ 📂app_bar_widget
+┃ ┃ ┗ 📜custom_app_bar_widget.dart
+┃ ┣ 📂button_widgets
+┃ ┃ ┣ 📜custom_button.dart
+┃ ┃ ┗ 📜custom_elevated_button_widget.dart
+┃ ┣ 📂buy_widget
+┃ ┃ ┗ 📜buy_more.dart
+┃ ┣ 📂container_widget
+┃ ┃ ┗ 📜custom_cart_container_widget.dart
+┃ ┣ 📂form_widgets
+┃ ┃ ┣ 📜login_form.dart
+┃ ┃ ┗ 📜signup_form.dart
+┃ ┣ 📂menu_widget
+┃ ┃ ┗ 📜coffee_menu.dart
+┃ ┣ 📂shimmer_widgets
+┃ ┃ ┣ 📜shimmer_custom.dart
+┃ ┃ ┗ 📜shimmer_loading.dart
+┃ ┣ 📂text_field_widgets
+┃ ┃ ┣ 📜custom_text_field_login.dart
+┃ ┃ ┣ 📜custom_text_field_signup.dart
+┃ ┃ ┗ 📜custom_text_field.dart
+┃ ┗ 📂text_widgets
+┃   ┣ 📜custom_rich_text_widget.dart
+┃   ┗ 📜text_custom.dart
+┣ 📂data_layer
+┃ ┣ 📂data
+┃ ┃ ┗ 📜coffee_data.dart
+┃ ┗ 📂models
+┃   ┗ 📜coffees_model.dart
+┣ 📂screens
+┃ ┣ 📂auth_screens
+┃ ┃ ┣ 📜loading_screen.dart
+┃ ┃ ┣ 📜login_screen.dart
+┃ ┃ ┣ 📜signup_screen.dart
+┃ ┃ ┗ 📜welcome_screen.dart
+┃ ┣ 📂bloc
+┃ ┃ ┣ 📜coffee_bloc.dart
+┃ ┃ ┣ 📜coffee_event.dart
+┃ ┃ ┗ 📜coffee_state.dart
+┃ ┣ 📂bottom_navigaton_bar_screens
+┃ ┃ ┣ 📜cart_screen.dart
+┃ ┃ ┣ 📜home_screen.dart
+┃ ┃ ┗ 📜profile_scrreen.dart
+┃ ┣ 📜add_coffee_screen.dart
+┃ ┣ 📜bottom_nav_bar.dart
+┃ ┗ 📜nav_bar.dart
+┣ 📂services
+┃ ┗ 📜setup.dart
+┗ 📜main.dart
+
+```
 
 ## Technologies Used
 
