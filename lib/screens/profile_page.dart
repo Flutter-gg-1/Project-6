@@ -60,7 +60,7 @@ class ProfilePage extends StatelessWidget {
               CustomButton(
                 text: 'Sign out',
                 onPressed: () {
-                  getIt.get<CoffeeData>().currentUser.remove('Username');
+                  getIt.get<CoffeeData>().currentUser = {};
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
