@@ -29,6 +29,72 @@ class _LoginScreenState extends State<LoginScreen> {
         body: SafeArea(
             child: SingleChildScrollView(
           child: Column(
+
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: context.getHeight() / 40,
+          ),
+          Row(
+            children: [
+              SizedBox(width: context.getWidth() / 8),
+              const Text(
+                'Welcome back',
+                style: TextStyle(
+                    fontFamily: 'Romanesco',
+                    fontSize: 35,
+                    color: Color(0xff5F3636)),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: context.getHeight() / 15,
+          ),
+          Center(
+            child: Image.asset("assets/image/undraw_jewelry_iima 1.png"),
+          ),
+          SizedBox(
+            height: context.getHeight() / 35,
+          ),
+          const CustomTextField(
+            hasSuffixIcon: false,
+            hintText: 'User Name',
+          ),
+          SizedBox(
+            height: context.getHeight() / 19,
+          ),
+          const CustomTextField(
+            hasSuffixIcon: true,
+            hintText: 'Password',
+          ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Forgot password ?',
+                      style: TextStyle(
+                          fontFamily: 'Romanesco',
+                          fontSize: 16,
+                          color: const Color(0xff5F3636).withOpacity(0.48)),
+                    )),
+                SizedBox(
+                  width: context.getWidth() / 13,
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            height: context.getWidth() / 12,
+          ),
+          const CustomeTextButton(
+            buttonText: 'Login',
+          ),
+          Row(
+
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
