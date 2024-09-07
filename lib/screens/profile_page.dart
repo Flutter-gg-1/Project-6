@@ -16,7 +16,23 @@ class ProfilePage extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
-              const Image(image: const AssetImage('assets/images/profile.png')),
+              Container(
+                width: 150,
+                height: 150,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Color(0xffffffff),
+                  border: Border.all(
+                    color: Color(0xffB98875),
+                    width: 2.0,
+                  ),
+                ),
+                child: Icon(
+                  Icons.person,
+                  size: 100,
+                  color: Color(0xffB98875),
+                ),
+              ),
               SizedBox(
                 height: 30,
               ),
