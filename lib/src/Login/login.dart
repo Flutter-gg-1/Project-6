@@ -38,41 +38,43 @@ class Login extends StatelessWidget {
             ),
           ),
           Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'asstes/chef-restaurant-vector-kitchen-cook-hat-food-professional-icon-symbol-illustration-sign_1013341-148802.avif',
-                  height: screenSize.height * 0.2,
-                  fit: BoxFit.cover,
-                ),
-                SizedBox(height: screenSize.height * 0.04),
-                ShaderMask(
-                  shaderCallback: (bounds) => const LinearGradient(
-                    colors: [
-                      AppColors.lighthread,
-                      AppColors.darkread,
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ).createShader(bounds),
-                  child: Text(
-                    'Welcome back',
-                    style: GoogleFonts.lora(
-                      fontSize: 30,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'asstes/chef-restaurant-vector-kitchen-cook-hat-food-professional-icon-symbol-illustration-sign_1013341-148802.avif',
+                    height: screenSize.height * 0.2,
+                    fit: BoxFit.cover,
+                  ),
+                  SizedBox(height: screenSize.height * 0.04),
+                  ShaderMask(
+                    shaderCallback: (bounds) => const LinearGradient(
+                      colors: [
+                        AppColors.lighthread,
+                        AppColors.darkread,
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ).createShader(bounds),
+                    child: Text(
+                      'Welcome back',
+                      style: GoogleFonts.lora(
+                        fontSize: 30,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: screenSize.height * 0.08,
-                ),
-                SizedBox(
-                  width: screenSize.width * 0.8,
-                  child: const LoginForm(),
-                ),
-              ],
+                  SizedBox(
+                    height: screenSize.height * 0.08,
+                  ),
+                  SizedBox(
+                    width: screenSize.width * 0.8,
+                    child: const LoginForm(),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
