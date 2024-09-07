@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
 
-class CustomAlertDialogWidget extends StatefulWidget {
-  const CustomAlertDialogWidget({super.key});
+class CustomAlertDialogWidget extends StatelessWidget {
+  const CustomAlertDialogWidget(
+      {super.key, this.onPressedYes, this.onPressedNo});
+  final Function()? onPressedYes;
+  final Function()? onPressedNo;
 
   @override
-  State<CustomAlertDialogWidget> createState() =>
-      _CustomAlertDialogWidgetState();
-}
-
-class _CustomAlertDialogWidgetState extends State<CustomAlertDialogWidget> {
-  bool isYesChange = false;
-  bool isNoChange = false;
-
-  @override
-  //
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: const Color(0xffFFFFFF),
@@ -39,45 +32,27 @@ class _CustomAlertDialogWidgetState extends State<CustomAlertDialogWidget> {
       actionsAlignment: MainAxisAlignment.spaceEvenly,
       actions: [
         ElevatedButton(
-            style: ButtonStyle(
-                foregroundColor: WidgetStatePropertyAll(isYesChange
-                    ? const Color(0xffFFFFFF)
-                    : const Color(0xffB98875)),
-                minimumSize: const WidgetStatePropertyAll(Size(110, 50)),
-                shape: const WidgetStatePropertyAll(RoundedRectangleBorder(
+            style: const ButtonStyle(
+                foregroundColor: WidgetStatePropertyAll(Color(0xffFFFFFF)),
+                minimumSize: WidgetStatePropertyAll(Size(110, 50)),
+                shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                     side: BorderSide(width: 2, color: Color(0xffB98875)),
                     borderRadius: BorderRadius.all(Radius.circular(24)))),
-                backgroundColor: WidgetStatePropertyAll(isYesChange
-                    ? const Color(0xffB98875)
-                    : const Color(0xffFFFFFF))),
-            onPressed: () {
-              setState(() {
-                isYesChange = !isYesChange;
-              });
-              Navigator.pop(context);
-            },
+                backgroundColor: WidgetStatePropertyAll(Color(0xffB98875))),
+            onPressed: onPressedYes,
             child: const Text(
               "Yes",
               style: TextStyle(fontSize: 20),
             )),
         ElevatedButton(
-            style: ButtonStyle(
-                foregroundColor: WidgetStatePropertyAll(isNoChange
-                    ? const Color(0xffFFFFFF)
-                    : const Color(0xffB98875)),
-                minimumSize: const WidgetStatePropertyAll(Size(110, 50)),
-                shape: const WidgetStatePropertyAll(RoundedRectangleBorder(
+            style: const ButtonStyle(
+                foregroundColor: WidgetStatePropertyAll(Color(0xffB98875)),
+                minimumSize: WidgetStatePropertyAll(Size(110, 50)),
+                shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                     side: BorderSide(width: 2, color: Color(0xffB98875)),
                     borderRadius: BorderRadius.all(Radius.circular(24)))),
-                backgroundColor: WidgetStatePropertyAll(isNoChange
-                    ? const Color(0xffB98875)
-                    : const Color(0xffFFFFFF))),
-            onPressed: () {
-              setState(() {
-                isNoChange = !isNoChange;
-              });
-              Navigator.pop(context);
-            },
+                backgroundColor: WidgetStatePropertyAll(Color(0xffFFFFFF))),
+            onPressed: onPressedNo,
             child: const Text(
               "No",
               style: TextStyle(fontSize: 20),

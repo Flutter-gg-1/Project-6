@@ -9,10 +9,9 @@ import 'package:project6/screens/bloc/coffee_bloc.dart';
 import 'package:project6/setup/init.dart';
 
 class CartPage extends StatelessWidget {
-  CartPage({
+  const CartPage({
     super.key,
   });
-  int amount = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -44,47 +43,64 @@ class CartPage extends StatelessWidget {
                           return Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              SingleChildScrollView(
-                                child: Column(
-                                  children: getIt
-                                      .get<CoffeeData>()
-                                      .dataLayer
-                                      .map(
-                                        (e) => BlocBuilder<CoffeeBloc,
-                                            CoffeeState>(
-                                          builder: (context, state) {
-                                            if (state is LoadedDataState) {
-                                              return CustomCartContainerWidget(
-                                                image: e.nameOfCoffee!,
-                                                amount: e.amount!,
-                                                onAddPressed: () {
-                                                  amount++;
-                                                  context
-                                                      .read<CoffeeBloc>()
-                                                      .add(ChangeAmountEvent());
-                                                },
-                                                onRemovePressed: () {
-                                                  context
-                                                      .read<CoffeeBloc>()
-                                                      .add(ChangeAmountEvent());
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height - 345,
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: getIt
+                                        .get<CoffeeData>()
+                                        .dataLayer
+                                        .map(
+                                          (e) => BlocBuilder<CoffeeBloc,
+                                              CoffeeState>(
+                                            builder: (context, state) {
+                                              if (state is LoadedDataState) {
+                                                return CustomCartContainerWidget(
+                                                  image: e.nameOfCoffee ??
+                                                      "assets/images/Latte.png",
+                                                  amount: e.amount!,
+                                                  onAddPressed: () {
+                                                    e.amount = e.amount! + 1;
+                                                    context
+                                                        .read<CoffeeBloc>()
+                                                        .add(
+                                                            ChangeAmountEvent());
+                                                  },
+                                                  onRemovePressed: () {
+                                                    context
+                                                        .read<CoffeeBloc>()
+                                                        .add(
+                                                            ChangeAmountEvent());
 
-                                                  if (e.amount! <= 1) {
-                                                    showDialog(
-                                                        context: context,
-                                                        builder: (context) {
-                                                          return const CustomAlertDialogWidget();
-                                                        });
-                                                  } else {
-                                                    e.amount = e.amount! - 1;
-                                                  }
-                                                },
-                                              );
-                                            }
-                                            return const Text("It's empty!");
-                                          },
-                                        ),
-                                      )
-                                      .toList(),
+                                                    if (e.amount! <= 1) {
+                                                      showDialog(
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return CustomAlertDialogWidget(
+                                                                onPressedYes:
+                                                                    () {
+                                                              getIt
+                                                                  .get<
+                                                                      CoffeeData>()
+                                                                  .removeCoffee(
+                                                                      e.nameOfCoffee!);
+                                                              Navigator.pop(
+                                                                  context);
+                                                            });
+                                                          });
+                                                    } else {
+                                                      e.amount = e.amount! - 1;
+                                                    }
+                                                  },
+                                                );
+                                              }
+                                              return const Text("It's empty!");
+                                            },
+                                          ),
+                                        )
+                                        .toList(),
+                                  ),
                                 ),
                               ),
                               Column(
@@ -103,7 +119,7 @@ class CartPage extends StatelessWidget {
                                       BlocBuilder<CoffeeBloc, CoffeeState>(
                                         builder: (context, state) {
                                           return Text(
-                                            "${amount * 19} SAR",
+                                            "${getIt.get<CoffeeData>().getTotalPrice()} SAR",
                                             style: const TextStyle(
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.w700),

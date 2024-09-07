@@ -17,10 +17,12 @@ class AddCoffeScreen extends StatelessWidget {
     super.key,
     required this.image,
     required this.price,
+    required this.nameOfCoffee,
   });
   final String image;
   final double price;
   int amount = 1;
+  final String nameOfCoffee;
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +60,8 @@ class AddCoffeScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const TextCustom(
-                                title: "Macchiato",
+                            TextCustom(
+                                title: nameOfCoffee,
                                 color: Colors.black,
                                 weight: FontWeight.w500,
                                 size: 22),
@@ -244,6 +246,7 @@ class AddCoffeScreen extends StatelessWidget {
                                   };
                                   getIt.get<CoffeeData>().addNewCoffee(
                                       coffee: CoffeeModel(
+                                          coffeeImage: image,
                                           amount: amount,
                                           nameOfCoffee: image,
                                           price: price,

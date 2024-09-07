@@ -38,7 +38,9 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>  AddCoffeScreen(price: 19,
+                          builder: (context) => AddCoffeScreen(
+                              price: 19,
+                              nameOfCoffee: "Espresso",
                               image: "assets/images/Espresso.png")));
                 },
                 coffee: 'Espresso',
@@ -49,7 +51,9 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>  AddCoffeScreen(price: 23,
+                          builder: (context) => AddCoffeScreen(
+                              nameOfCoffee: "Cappuccino",
+                              price: 23,
                               image: "assets/images/Cappuccino.png")));
                 },
                 coffee: 'Cappuccino',
@@ -60,7 +64,9 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>  AddCoffeScreen(price: 12,
+                          builder: (context) => AddCoffeScreen(
+                              nameOfCoffee: "Macciato",
+                              price: 12,
                               image: "assets/images/Macciato.png")));
                 },
                 coffee: 'Macchiato',
@@ -71,7 +77,9 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>  AddCoffeScreen(price: 16,
+                          builder: (context) => AddCoffeScreen(
+                              nameOfCoffee: "Mocha",
+                              price: 16,
                               image: "assets/images/Mocha.png")));
                 },
                 coffee: 'Mocha',
@@ -82,7 +90,9 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>  AddCoffeScreen(price: 17,
+                          builder: (context) => AddCoffeScreen(
+                              nameOfCoffee: "Latte",
+                              price: 17,
                               image: "assets/images/Latte.png")));
                 },
                 coffee: 'Latte',
