@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: C.bg,
       appBar: AppBar(
         backgroundColor: C.bg,
-        title: Text("Home")
+        title: const Text("Home")
             .styled(color: C.black, size: 24, weight: FontWeight.bold),
         centerTitle: true,
         actions: [

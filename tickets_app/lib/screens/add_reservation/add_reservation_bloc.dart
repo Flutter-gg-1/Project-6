@@ -8,9 +8,6 @@ import 'package:tickets_app/core/extensions/date_ext.dart';
 import 'package:tickets_app/managers/reservation_mgr.dart';
 import 'package:tickets_app/managers/user_mgr.dart';
 import 'package:tickets_app/model/reservation.dart';
-
-import '../../model/room.dart';
-
 part 'add_reservation_event.dart';
 part 'add_reservation_state.dart';
 

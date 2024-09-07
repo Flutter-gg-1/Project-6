@@ -159,7 +159,10 @@ class AddReservationScreen extends StatelessWidget {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24),
-                child: MyButton(text: 'Confirm Booking', onPressed: () => ()),
+                child: MyButton(
+                    text: 'Confirm Booking',
+                    onPressed: () =>
+                        bloc.add(ConfirmBookingEvent(roomId: room.id))),
               )
             ],
           ),

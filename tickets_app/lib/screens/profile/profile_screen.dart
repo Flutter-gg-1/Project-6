@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
-import 'package:tickets_app/managers/reservation_mgr.dart';
 import 'package:tickets_app/screens/profile/profile_bloc.dart';
 import 'package:tickets_app/utils/img_converter.dart';
 import 'package:tickets_app/widget/Cards/reservation_card.dart';
@@ -11,7 +9,7 @@ import '../../core/extensions/img_ext.dart';
 import '../edit_reservation/edit_reservation_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
-  ProfileScreen({super.key});
+  const ProfileScreen({super.key});
 
   void _navigateToEdit(BuildContext context) {
     Navigator.of(context).push(
