@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tickets_app/screens/add_reservation/add_reservation_screen.dart';
+import 'package:tickets_app/screens/login/login_screen.dart';
 import 'package:tickets_app/screens/profile/profile_bloc.dart';
 import 'package:tickets_app/utils/img_converter.dart';
 import 'package:tickets_app/widget/Cards/reservation_card.dart';
@@ -34,7 +35,19 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ProfileBloc(),
-      child: Builder(builder: (context) {
+      child:
+          BlocConsumer<ProfileBloc, ProfileState>(listener: (context, state) {
+        if (state is RemoveResState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Reservation removed')),
+          );
+        } else if (state is SignOutState) {
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => LoginScreen()),
+            (route) => false,
+          );
+        }
+      }, builder: (context, state) {
         final bloc = context.read<ProfileBloc>();
         return Scaffold(
           backgroundColor: C.bg,
@@ -50,10 +63,15 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   if (bloc.currentUser != null)
                     UserCard(
-                        name: bloc.currentUser!.name,
-                        email: bloc.currentUser!.email,
-                        img: ImgConverter.imageFromBase64String(
-                            bloc.currentUser!.avatarData))
+                      name: bloc.currentUser!.name,
+                      email: bloc.currentUser!.email,
+                      img: ImgConverter.imageFromBase64String(
+                        bloc.currentUser!.avatarData,
+                      ),
+                      onLogout: () {
+                        context.read<ProfileBloc>().add(SignOutEvent());
+                      },
+                    )
                   else
                     const UserCard(
                         name: 'You are not Signed In',
@@ -71,16 +89,18 @@ class ProfileScreen extends StatelessWidget {
                                 .styled(size: 18, weight: FontWeight.w600),
                             ...bloc.userReservations.map(
                               (res) => ReservationCard(
-                                roomId: '${res.roomId}',
-                                nights: '${res.numNights}',
-                                date: res.date,
-                                onPressed: () => _navigateToEdit(
-                                  context: context,
-                                  room: bloc.getSelectedRoom(res.roomId),
-                                  reservation: res,
-                                ),
-                                onDelete: () {},
-                              ),
+                                  roomId: '${res.roomId}',
+                                  nights: '${res.numNights}',
+                                  date: res.date,
+                                  onPressed: () => _navigateToEdit(
+                                        context: context,
+                                        room: bloc.getSelectedRoom(res.roomId),
+                                        reservation: res,
+                                      ),
+                                  onDelete: () {
+                                    context.read<ProfileBloc>().add(
+                                        RemoveResEvent(reservationId: res.id));
+                                  }),
                             ),
                           ],
                         ),
