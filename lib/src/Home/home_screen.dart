@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:project6/src/Add_Recipe/add_recipe.dart';
 import 'package:project6/src/Home/RecipeCard.dart';
 import 'package:project6/src/Home/custom_drawer.dart';
 import 'package:project6/data_layer/recipe_data.dart';
 import 'package:project6/services/setup.dart';
 import 'package:project6/theme/app_colors.dart';
 
+import '../../Add_Recipe/add_recipe.dart';
 import '../../blocs/home_bloc/home_bloc.dart';
 import '../../models/recipe.dart';
 
@@ -49,7 +49,6 @@ class HomePage extends StatelessWidget {
                   if (newRecipe != null) {
                     _addNewRecipe(newRecipe['image'], newRecipe['recipeTitle'],
                         newRecipe['recipeDescription'], bloc);
-                    // bloc.add(LoadNewRecipeEvent());
                   }
                 },
               ),
@@ -70,15 +69,6 @@ class HomePage extends StatelessWidget {
           ),
           drawer: const Drawer(child: CustomDrawer()), // قائمة جانبية
           body: BlocBuilder<HomeBloc, HomeState>(
-              //       buildWhen: (previous, current) {
-              //   if (current is LoadDataState) {
-              //     return true;
-              //   }
-              //   if (current is SuccessfulLoadState && previous is HomeInitial) {
-              //     return true;
-              //   }
-              //   return false;
-              // },
               builder: (context, state) {
             if (state is SuccessfulLoadState) {
               final recipes = state.recipes;
