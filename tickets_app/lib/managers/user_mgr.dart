@@ -58,19 +58,19 @@ class UserMgr {
           name: 'John Doe',
           avatarData: await ImgConverter.assetImgToData(Img.person1),
           email: 'john@example.com',
-          password: '123'),
+          password: 'John123@'),
       User(
           id: 1,
           name: 'Jack Sparrow',
           avatarData: await ImgConverter.assetImgToData(Img.person2),
           email: 'jack@example.com',
-          password: '123'),
+          password: 'Jack123@'),
       User(
           id: 2,
           name: 'Jane Smith',
           avatarData: await ImgConverter.assetImgToData(Img.person3),
           email: 'jane@example.com',
-          password: '123'),
+          password: 'Jane123@'),
     ];
   }
 
