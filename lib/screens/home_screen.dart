@@ -3,7 +3,7 @@ import 'package:project6/custom_widgets/coffee_menu.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key,});
- // home screen
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

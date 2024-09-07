@@ -17,7 +17,7 @@ class ProfilePage extends StatelessWidget {
           child: Column(
             children: [
               const Image(image: const AssetImage('assets/images/profile.png')),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               RichText(
