@@ -11,7 +11,6 @@ class UsersLayer {
   final usersBox = GetStorage();
   
   UsersLayer(){
-    // usersBox.erase();
     // load all users
     loadAllUsers();
     // load current user "if exist"

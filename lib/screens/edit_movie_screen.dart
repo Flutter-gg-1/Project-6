@@ -24,7 +24,7 @@ class EditMovieScreen extends StatelessWidget {
         TextEditingController(text: movie.year);
     String category = movie.category;
     File? image;
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
 
     return Scaffold(
       backgroundColor: const Color(0xff15141F),
@@ -41,7 +41,7 @@ class EditMovieScreen extends StatelessWidget {
         padding: const EdgeInsets.all(26.0),
         child: SingleChildScrollView(
           child: Form(
-            key: _formKey,
+            key: formKey,
             child: Column(
               children: [
                 AddFieldWidget(
@@ -106,7 +106,7 @@ class EditMovieScreen extends StatelessWidget {
                 ButtonWidget(
                   title: 'Submit Changes',
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {
+                    if (formKey.currentState!.validate()) {
                       bloc.add(EditMovieEvent(
                           id: movie.id,
                           name: nameController.text,

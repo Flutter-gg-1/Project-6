@@ -1,11 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project6/bloc_movie/movie_bloc.dart';
-import 'package:project6/data/movies_layer.dart';
 import 'package:project6/extensions/nav.dart';
 import 'package:project6/widgets/button_widget.dart';
 import 'package:project6/widgets/fields/add_field_widget.dart';
@@ -19,7 +17,7 @@ class AddMovieScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = context.read<MovieBloc>();
     File? image;
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
     String selectedCategory = "";
     return Scaffold(
       backgroundColor: const Color(0xff15141F),
@@ -36,7 +34,7 @@ class AddMovieScreen extends StatelessWidget {
         padding: const EdgeInsets.all(26.0),
         child: SingleChildScrollView(
           child: Form(
-            key: _formKey,
+            key: formKey,
             child: Column(
               children: [
                 AddFieldWidget(
@@ -102,7 +100,7 @@ class AddMovieScreen extends StatelessWidget {
                 ButtonWidget(
                     title: 'Add',
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {
+                      if (formKey.currentState!.validate()) {
                         if (selectedCategory.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
