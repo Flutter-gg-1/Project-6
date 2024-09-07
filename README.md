@@ -56,3 +56,14 @@ The following packages are included in the project:
 - `lottie: ^3.1.2`: For integrating Lottie animations.
 - `shimmer_animation: ^2.2.1`: For adding shimmer effects during loading states.
 
+## Setup Instructions
+### Prerequisites
+- Flutter SDK
+- Dart
+- GetStorage package
+### Installation
+- Clone the repository:
+- flutter pub get
+- Run the app
+
+
