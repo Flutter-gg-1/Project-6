@@ -19,6 +19,7 @@ class AddMovieScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<MovieBloc>();
+    File? image;
     String selectedCategory = GetIt.I.get<MoviesLayer>().categories.first;
     return Scaffold(
       backgroundColor: const Color(0xff15141F),
@@ -54,17 +55,40 @@ class AddMovieScreen extends StatelessWidget {
                 controller: bloc.dateController
               ),
               const SizedBox(height: 40),
-              ImageFieldWidget(
-                onSelect: () async {
-                  final selectedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
-                  bloc.image = File(selectedImage!.path);
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text("Poster",
+            style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w400,
+                color: Colors.white)),
+                  IconButton(
+                      onPressed: () async {
+                        final selectedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
+                        image = File(selectedImage!.path);
+                      },
+                      icon: const Icon(Icons.add_photo_alternate_outlined, color: Colors.white,)),
+                ],
+              ),
+              BlocBuilder<MovieBloc, MovieState>(
+                builder: (context, state) {
+                  bloc.add(ChangeImageEvent(imagePath: image?.path));
+                  if(state is ImageChangedState) {
+                    return ImageFieldWidget(
+                      imagePath: image?.path ?? 'assets/poster_holder.jpg'
+                    );
+                  }
+                  return ImageFieldWidget(
+                    imagePath: 'assets/poster_holder.jpg',
+                  );
                 },
               ),
               const SizedBox(height: 40),
               ButtonWidget(
                 title: 'Add',
                 onPressed: () {
-                  bloc.add(AddMovieEvent(category : selectedCategory));
+                  bloc.add(AddMovieEvent(category : selectedCategory, imagePath: image?.path ?? 'assets/poster_holder.jpg'));
                   context.pop();
                 }
               ),

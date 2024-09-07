@@ -53,7 +53,7 @@ class UsersLayer {
           )
         );
       }
-      log(users.map((user)=>[user.email, user.password]).toList().toString());
+      log(users.map((user)=>[user.email, user.password, user.userMovies.length]).toList().toString());
     }
   }
 
@@ -83,9 +83,12 @@ class UsersLayer {
   void login({required User user}) {
     currentUser = user;
     usersBox.write('currentUser', user);
+    usersBox.write('users', users);
   }
 
   void signOut() {
+    usersBox.write('currentUser', currentUser);
+    usersBox.write('users', users);
     usersBox.write('currentUser', null);
   }
 }

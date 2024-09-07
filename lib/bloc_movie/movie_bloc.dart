@@ -25,6 +25,13 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
     on<LoadMoivesEvent>(loadMovieMethod);
     on<DeleteMovieEvent>(deleteMovieMethod);
     on<EditMovieEvent>(editMovieMethod);
+    on<ChangeImageEvent>(setNewImageMethod);
+  }
+
+  FutureOr<void> setNewImageMethod(ChangeImageEvent event, Emitter<MovieState> emit) {
+    if(event.imagePath != image?.path) {
+      emit(ImageChangedState());
+    }
   }
 
   FutureOr<void> loadMovieMethod(LoadMoivesEvent event, Emitter<MovieState> emit) {
@@ -32,12 +39,13 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
   }
 
   FutureOr<void> addMovieMethod(AddMovieEvent event, Emitter<MovieState> emit) {
+    // setNewImageMethod(event, emit)
     Movie movie = Movie(
       id: id,
       name: nameController.text,
       category: event.category,
       year: dateController.text,
-      posterImg: image?.path ?? "assets/poster_holder.jpg"
+      posterImg: event.imagePath
     );
     log(movie.category);
     nameController.clear();
@@ -45,12 +53,15 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
     movieLayer.addMovie(movie: movie);
 
     log(usersLayer.currentUser!.userMovies.length.toString());
+    image = null;
+    usersLayer.usersBox.write('currentUser',usersLayer.currentUser);
     usersLayer.usersBox.write('users',usersLayer.users);
     emit(ShowMovieState(movies: usersLayer.currentUser!.userMovies));
   }
 
   FutureOr<void> deleteMovieMethod(DeleteMovieEvent event, Emitter<MovieState> emit) {
     movieLayer.deleteMovie(id: event.id);
+    usersLayer.usersBox.write('currentUser',usersLayer.currentUser);
     usersLayer.usersBox.write('users',usersLayer.users);
     emit(ShowMovieState(movies: usersLayer.currentUser!.userMovies));
   }
@@ -66,6 +77,7 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
         posterImg: event.posterImg
       )
     );
+    usersLayer.usersBox.write('currentUser',usersLayer.currentUser);
     usersLayer.usersBox.write('users',usersLayer.users);
     emit(ShowMovieState(movies: usersLayer.currentUser!.userMovies));
   }

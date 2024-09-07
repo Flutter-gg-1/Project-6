@@ -52,11 +52,33 @@ class EditMovieScreen extends StatelessWidget {
                   hint: "Add movie year",
                   controller: yearController),
               const SizedBox(height: 40),
-              ImageFieldWidget(
-                onSelect: () async {
-                  final selectedImage = await ImagePicker()
-                      .pickImage(source: ImageSource.gallery);
-                  image = File(selectedImage!.path);
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text("Poster",
+            style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w400,
+                color: Colors.white)),
+                  IconButton(
+                      onPressed: () async {
+                        final selectedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
+                        image = File(selectedImage!.path);
+                      },
+                      icon: const Icon(Icons.add_photo_alternate_outlined, color: Colors.white,)),
+                ],
+              ),
+              BlocBuilder<MovieBloc, MovieState>(
+                builder: (context, state) {
+                  bloc.add(ChangeImageEvent(imagePath: image?.path));
+                  if(state is ImageChangedState) {
+                    return ImageFieldWidget(
+                      imagePath: image?.path ?? 'assets/poster_holder.jpg'
+                    );
+                  }
+                  return ImageFieldWidget(
+                    imagePath: movie.posterImg,
+                  );
                 },
               ),
               const SizedBox(height: 40),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:project6/data/users_layer.dart';
@@ -62,6 +64,7 @@ class MoviesLayer {
 
   addMovie({required Movie movie}) {
     GetIt.I.get<UsersLayer>().currentUser!.userMovies.add(movie);
+    log(GetIt.I.get<UsersLayer>().currentUser!.userMovies.length.toString());
   }
 
   editMovie({required int id, required Movie newMovie}) {
@@ -70,6 +73,7 @@ class MoviesLayer {
         movie.name = newMovie.name;
         movie.category = newMovie.category;
         movie.year = newMovie.year;
+        movie.posterImg = newMovie.posterImg;
       }
     }
   }

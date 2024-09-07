@@ -10,3 +10,5 @@ final class ShowMovieState extends MovieState {
 
   ShowMovieState({required this.movies});
 }
+
+final class ImageChangedState extends MovieState {}

@@ -5,9 +5,15 @@ sealed class MovieEvent {}
 
 final class LoadMoivesEvent extends MovieEvent {}
 
+final class ChangeImageEvent extends MovieEvent {
+  final String? imagePath;
+  ChangeImageEvent({required this.imagePath});
+}
+
 final class AddMovieEvent extends MovieEvent {
   final String category;
-  AddMovieEvent({required this.category});
+  final String imagePath;
+  AddMovieEvent({required this.category, required this.imagePath});
 }
 
 final class DeleteMovieEvent extends MovieEvent {
