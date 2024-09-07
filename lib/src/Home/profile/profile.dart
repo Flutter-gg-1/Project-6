@@ -98,7 +98,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         return Card(
                           margin: const EdgeInsets.symmetric(vertical: 10),
                           child: ListTile(
-                            leading: Image.file(recipe.image!,
+                            leading: Image.file(recipe.image,
                                 width: 50, height: 50, fit: BoxFit.cover),
                             title: Text(recipe.recipeName),
                             subtitle: Text(recipe.description),

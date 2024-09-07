@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project6/Home/profile/profile.dart';
+import 'package:project6/src/Home/profile/profile.dart';
 import 'package:project6/theme/app_colors.dart';
 
 class CustomDrawer extends StatelessWidget {

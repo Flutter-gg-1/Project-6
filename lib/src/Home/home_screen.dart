@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:project6/Add_Recipe/add_recipe.dart';
-import 'package:project6/Home/RecipeCard.dart';
-import 'package:project6/Home/custom_drawer.dart';
+import 'package:project6/src/Add_Recipe/add_recipe.dart';
+import 'package:project6/src/Home/RecipeCard.dart';
+import 'package:project6/src/Home/custom_drawer.dart';
 import 'package:project6/data_layer/recipe_data.dart';
 import 'package:project6/services/setup.dart';
 import 'package:project6/theme/app_colors.dart';
 
-import '../blocs/home_bloc/home_bloc.dart';
-import '../models/recipe.dart';
+import '../../blocs/home_bloc/home_bloc.dart';
+import '../../models/recipe.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

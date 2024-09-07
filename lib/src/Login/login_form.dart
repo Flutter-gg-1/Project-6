@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project6/Home/home_screen.dart';
-import 'package:project6/Login/custom_text_field.dart';
-import 'package:project6/Singup/singup.dart';
+import 'package:project6/src/Home/home_screen.dart';
+import 'package:project6/src/Login/custom_text_field.dart';
+import 'package:project6/src/Singup/singup.dart';
 import 'package:project6/theme/app_colors.dart';
 
 class LoginForm extends StatelessWidget {
