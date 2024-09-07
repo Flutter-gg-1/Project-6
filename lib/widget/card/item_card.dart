@@ -1,18 +1,23 @@
+import 'package:clothes_app/bloc/bloc_item/item_handle_bloc.dart';
+import 'package:clothes_app/data_layer/models/app_model.dart';
+import 'package:clothes_app/data_layer/models/item_model.dart';
 import 'package:clothes_app/helper/extinsion/size_config.dart';
+import 'package:clothes_app/services/setup.dart';
+import 'package:clothes_app/src/home_screen.dart';
 import 'package:clothes_app/src/item_info_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemCard extends StatelessWidget {
-  final String itemName, price, size, imagePath;
-  final Color? color;
+  // final String itemName, price, size, imagePath;
+  // final Color? color;
   const ItemCard({
     super.key,
-    required this.itemName,
-    required this.price,
-    this.color,
-    required this.size,
-    required this.imagePath,
+   required this.itemModel
   });
+
+
+ final ItemModel itemModel;
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +26,7 @@ class ItemCard extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => ItemInfoScreen(
-              imagePath: imagePath,
-              name: itemName,
-              price: price,
-              size: size,
-              color: color,
+             itemModel: itemModel ,
             ),
           )),
       child: Container(
@@ -40,14 +41,22 @@ class ItemCard extends StatelessWidget {
               clipBehavior: Clip.none,
               children: [
                 Image.asset(
-                  imagePath,
+                  itemModel.img,
                   height: context.getHeight() * 0.18,
                   width: context.getWidth() * 0.35,
                 ),
                 Positioned(
                   left: (context.getWidth() * 0.35) / 1.7,
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+
+
+                      getIt.get<AppModel>().delIthem(id: itemModel.id);
+
+                     
+
+                       context.read<ItemHandleBloc>().add(ShowItemEvent());
+                    },
                     icon: const Icon(Icons.delete),
                     color: const Color.fromARGB(255, 207, 55, 55),
                   ),
@@ -58,13 +67,13 @@ class ItemCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  itemName,
+                  itemModel.itemName,
                   style: const TextStyle(
                       color: Color(0x34000000),
                       fontWeight: FontWeight.bold,
                       fontSize: 18),
                 ),
-                Text('$price Rs',
+                Text('${itemModel.price} Rs',
                     style: const TextStyle(
                         color: Color(0x34000000),
                         fontWeight: FontWeight.bold,

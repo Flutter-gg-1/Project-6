@@ -1,4 +1,4 @@
-import 'package:clothes_app/bloc/bottom_nav_bloc.dart';
+import 'package:clothes_app/bloc/bloc_tab/bottom_nav_bloc.dart';
 import 'package:clothes_app/src/add_item_screen.dart';
 import 'package:clothes_app/src/item_screen.dart';
 import 'package:clothes_app/src/profile_screen.dart';

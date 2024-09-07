@@ -1,3 +1,4 @@
+import 'package:clothes_app/data_layer/models/item_model.dart';
 import 'package:clothes_app/helper/extinsion/size_config.dart';
 import 'package:clothes_app/src/update_item_screen.dart';
 import 'package:clothes_app/widget/button/button_text.dart';
@@ -5,15 +6,13 @@ import 'package:clothes_app/widget/container/select_color_container.dart';
 import 'package:flutter/material.dart';
 
 class ItemInfoScreen extends StatelessWidget {
-  final String imagePath, name, price, size;
-  final Color? color;
+  
+
+
+  final ItemModel itemModel;
   const ItemInfoScreen(
       {super.key,
-      required this.imagePath,
-      required this.name,
-      required this.price,
-      required this.size,
-      this.color});
+    required this.itemModel});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +31,7 @@ class ItemInfoScreen extends StatelessWidget {
           child: Column(
             children: [
               Image.asset(
-                imagePath,
+                itemModel.img,
               ),
               SizedBox(
                 height: context.getHeight() * 0.06,
@@ -41,12 +40,12 @@ class ItemInfoScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    name,
+                    itemModel.itemName,
                     style: const TextStyle(
                         fontSize: 25, fontWeight: FontWeight.w500),
                   ),
                   Text(
-                    '$price Rs',
+                    '${itemModel.price} Rs',
                     style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w800,
@@ -69,7 +68,7 @@ class ItemInfoScreen extends StatelessWidget {
                     SizedBox(
                       height: context.getHeight() * 0.01,
                     ),
-                    Text(size,
+                    Text(itemModel.size,
                         style: const TextStyle(
                             fontSize: 25, fontWeight: FontWeight.bold)),
                     SizedBox(
@@ -83,7 +82,7 @@ class ItemInfoScreen extends StatelessWidget {
                     SizedBox(
                       height: context.getHeight() * 0.01,
                     ),
-                    SelectColorContainer(color: color ?? Colors.grey)
+                    SelectColorContainer(color: itemModel.color )
                   ],
                 ),
               ),
@@ -93,7 +92,7 @@ class ItemInfoScreen extends StatelessWidget {
                 onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const UpdateItemScreen(),
+                      builder: (context) =>  UpdateItemScreen(itemModel: itemModel,),
                     )),
               )
             ],
