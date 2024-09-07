@@ -21,10 +21,18 @@ final class UpdateNightsState extends AddReservationState {
 }
 
 final class ConfirmBookingState extends AddReservationState {
-  ConfirmBookingState();
+  final String title;
+  final String msg;
+  ConfirmBookingState({required this.title, required this.msg});
 }
 
 final class BookingErrorState extends AddReservationState {
+  final String title;
   final String msg;
-  BookingErrorState({required this.msg});
+  BookingErrorState({required this.title, required this.msg});
+}
+
+final class UpdateBtnTitleState extends AddReservationState {
+  final String title;
+  UpdateBtnTitleState({required this.title});
 }

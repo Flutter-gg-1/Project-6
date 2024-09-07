@@ -1,19 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tickets_app/screens/add_reservation/add_reservation_screen.dart';
 import 'package:tickets_app/screens/profile/profile_bloc.dart';
 import 'package:tickets_app/utils/img_converter.dart';
 import 'package:tickets_app/widget/Cards/reservation_card.dart';
 import 'package:tickets_app/widget/Cards/user_card.dart';
 import '../../core/all_file.dart';
 import '../../core/extensions/img_ext.dart';
-import '../edit_reservation/edit_reservation_screen.dart';
+import '../../model/reservation.dart';
+import '../../model/room.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
-  void _navigateToEdit(BuildContext context) {
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => const EditReservationScreen()));
+  void _navigateToEdit({
+    required BuildContext context,
+    required Room room,
+    required Reservation reservation,
+  }) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(
+      builder: (context) =>
+          AddReservationScreen(room: room, reservation: reservation),
+    ))
+        .then((result) {
+      if (context.mounted) {
+        context.read<ProfileBloc>().add(UpdateResListEvent());
+      }
+    });
   }
 
   @override
@@ -45,25 +59,33 @@ class ProfileScreen extends StatelessWidget {
                         name: 'You are not Signed In',
                         email: '',
                         img: Image(image: Img.logo)),
-                  Expanded(
-                    child: ListView(
-                      children: [
-                        const SizedBox(
-                          height: 20,
+                  BlocBuilder<ProfileBloc, ProfileState>(
+                    builder: (context, state) {
+                      return Expanded(
+                        child: ListView(
+                          children: [
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            const Text("Reservations")
+                                .styled(size: 18, weight: FontWeight.w600),
+                            ...bloc.userReservations.map(
+                              (res) => ReservationCard(
+                                roomId: '${res.roomId}',
+                                nights: '${res.numNights}',
+                                date: res.date,
+                                onPressed: () => _navigateToEdit(
+                                  context: context,
+                                  room: bloc.getSelectedRoom(res.roomId),
+                                  reservation: res,
+                                ),
+                                onDelete: () {},
+                              ),
+                            ),
+                          ],
                         ),
-                        const Text("Reservations")
-                            .styled(size: 18, weight: FontWeight.w600),
-                        ...bloc.userReservations.map(
-                          (res) => ReservationCard(
-                            roomId: '${res.roomId}',
-                            nights: '${res.numNights}',
-                            date: res.date,
-                            onPressed: () => _navigateToEdit(context),
-                            onDelete: () {},
-                          ),
-                        ),
-                      ],
-                    ),
+                      );
+                    },
                   ),
                 ],
               ),

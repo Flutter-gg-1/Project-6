@@ -16,6 +16,11 @@ class SelectDateEvent extends AddReservationEvent {
   SelectDateEvent({required this.date});
 }
 
+class UpdateReservationEvent extends AddReservationEvent {
+  final Reservation? reservation;
+  UpdateReservationEvent({this.reservation});
+}
+
 class ConfirmBookingEvent extends AddReservationEvent {
   final int roomId;
 
