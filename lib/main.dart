@@ -16,7 +16,7 @@ void main() async {
   setup();
   runApp(
     DevicePreview(
-      enabled: true,
+      enabled: false,
       builder: (context) => const MainApp(),
     ),
   );
