@@ -11,8 +11,6 @@ import '../sign_up/sign_up_screen.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
   void _navigateToSignUp(BuildContext context) {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => SignUpScreen()));
@@ -23,6 +21,8 @@ class LoginScreen extends StatelessWidget {
         MaterialPageRoute(builder: (context) => HomeScreen()),
         (Route<dynamic> route) => false);
   }
+
+  void _showAlert(BuildContext context) {}
 
   @override
   Widget build(BuildContext context) {
@@ -45,68 +45,67 @@ class LoginScreen extends StatelessWidget {
                         child: AspectRatio(
                             aspectRatio: 2, child: Image(image: Img.logo)),
                       ),
-                      BlocBuilder<LoginBloc, LoginState>(
-                        builder: (context, state) {
-                          return Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text('Sign In').styled(
+                              size: 24,
+                              color: C.text1,
+                              weight: FontWeight.bold),
+                          MyTextField(
+                              controller: bloc.emailController,
+                              hintText: 'Email',
+                              prefixIcon: const Icon(Icons.email)),
+                          MyTextField(
+                              controller: bloc.passwordController,
+                              hintText: 'Password',
+                              prefixIcon: const Icon(Icons.lock),
+                              suffixIcon: const Icon(Icons.remove_red_eye)),
+                          MyButton(
+                              text: 'Log in',
+                              onPressed: () {
+                                bloc.add(
+                                  LoginAttemptEvent(
+                                      email: bloc.emailController.text,
+                                      password: bloc.passwordController.text),
+                                );
+                                if (bloc.userMgr.currentUser != null) {
+                                  _navigateToHome(context);
+                                } else {
+                                  _showAlert(context);
+                                }
+                              }),
+                          CustomTextBtn(
+                              title: 'Forgot Password?', callback: () => ()),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4.0),
+                            child: Row(
+                              children: [
+                                const Text("Don't have an account?"),
+                                const SizedBox(width: 4),
+                                CustomTextBtn(
+                                    title: 'Sign Up',
+                                    callback: () => _navigateToSignUp(context)),
+                              ],
+                            ),
+                          ),
+                          const Divider(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              const Text('Sign In').styled(
-                                  size: 24,
-                                  color: C.text1,
-                                  weight: FontWeight.bold),
-                              MyTextField(
-                                  controller: emailController,
-                                  hintText: 'Email',
-                                  prefixIcon: const Icon(Icons.email)),
-                              MyTextField(
-                                  controller: passwordController,
-                                  hintText: 'Password',
-                                  prefixIcon: const Icon(Icons.lock),
-                                  suffixIcon: const Icon(Icons.remove_red_eye)),
-                              MyButton(
-                                  text: 'Log in',
-                                  onPressed: () {
-                                    print(emailController.text);
-                                  }),
-                              CustomTextBtn(
-                                  title: 'Forgot Password?',
-                                  callback: () => ()),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 4.0),
-                                child: Row(
-                                  children: [
-                                    const Text("Don't have an account?"),
-                                    const SizedBox(width: 4),
-                                    CustomTextBtn(
-                                        title: 'Sign Up',
-                                        callback: () =>
-                                            _navigateToSignUp(context)),
-                                  ],
-                                ),
-                              ),
-                              const Divider(),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  IconButton(
-                                      onPressed: () {},
-                                      icon:
-                                          const Icon(FontAwesomeIcons.google)),
-                                  IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                          FontAwesomeIcons.facebook)),
-                                  IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(FontAwesomeIcons.apple)),
-                                ],
-                              ),
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(FontAwesomeIcons.google)),
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(FontAwesomeIcons.facebook)),
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(FontAwesomeIcons.apple)),
                             ],
-                          );
-                        },
+                          ),
+                        ],
                       ),
                     ]),
                   ),

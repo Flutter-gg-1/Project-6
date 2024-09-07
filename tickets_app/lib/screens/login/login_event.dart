@@ -3,7 +3,8 @@ part of 'login_bloc.dart';
 @immutable
 sealed class LoginEvent {}
 
-final class EventAfterWritingLogin extends LoginEvent {
-  final String name;
-  EventAfterWritingLogin({required this.name});
+final class LoginAttemptEvent extends LoginEvent {
+  final String email;
+  final String password;
+  LoginAttemptEvent({required this.email, required this.password});
 }
