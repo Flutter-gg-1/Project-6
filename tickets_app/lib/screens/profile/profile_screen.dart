@@ -73,10 +73,15 @@ class ProfileScreen extends StatelessWidget {
                       },
                     )
                   else
-                    const UserCard(
-                        name: 'You are not Signed In',
-                        email: '',
-                        img: Image(image: Img.logo)),
+                    UserCard(
+                      name: 'You are not Signed In',
+                      email: '',
+                      img: const Image(image: Img.logo),
+                      btnTitle: 'Sign In',
+                      onLogout: () {
+                        context.read<ProfileBloc>().add(SignOutEvent());
+                      },
+                    ),
                   BlocBuilder<ProfileBloc, ProfileState>(
                     builder: (context, state) {
                       return Expanded(
@@ -89,18 +94,21 @@ class ProfileScreen extends StatelessWidget {
                                 .styled(size: 18, weight: FontWeight.w600),
                             ...bloc.userReservations.map(
                               (res) => ReservationCard(
-                                  roomId: '${res.roomId}',
-                                  nights: '${res.numNights}',
-                                  date: res.date,
-                                  onPressed: () => _navigateToEdit(
-                                        context: context,
-                                        room: bloc.getSelectedRoom(res.roomId),
-                                        reservation: res,
-                                      ),
-                                  onDelete: () {
-                                    context.read<ProfileBloc>().add(
-                                        RemoveResEvent(reservationId: res.id));
-                                  }),
+                                roomId: res.roomId,
+                                nights: '${res.numNights}',
+                                date: res.date,
+                                img: ImgConverter.imageFromBase64String(
+                                    bloc.getSelectedRoom(res.roomId).imgData),
+                                onPressed: () => _navigateToEdit(
+                                  context: context,
+                                  room: bloc.getSelectedRoom(res.roomId),
+                                  reservation: res,
+                                ),
+                                onDelete: () {
+                                  context.read<ProfileBloc>().add(
+                                      RemoveResEvent(reservationId: res.id));
+                                },
+                              ),
                             ),
                           ],
                         ),

@@ -4,6 +4,7 @@ import 'package:tickets_app/core/extensions/color_ext.dart';
 import 'package:tickets_app/core/extensions/img_ext.dart';
 import 'package:tickets_app/core/extensions/string_ext.dart';
 import 'package:tickets_app/managers/room_mgr.dart';
+import 'package:tickets_app/managers/user_mgr.dart';
 import 'package:tickets_app/screens/profile/profile_screen.dart';
 import 'package:tickets_app/utils/img_converter.dart';
 import '../model/room.dart';
@@ -13,6 +14,7 @@ import 'add_reservation/add_reservation_screen.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
+  final userMgr = GetIt.I.get<UserMgr>();
   final roomMgr = GetIt.I.get<RoomMgr>();
 
   void _navigateToProfile(BuildContext context) {
@@ -72,8 +74,9 @@ class HomeScreen extends StatelessWidget {
                               rating: room.rating,
                               image: ImgConverter.imageFromBase64String(
                                   room.imgData),
-                              onPressed: () =>
-                                  _navigateToAddRoom(context, room),
+                              onPressed: () => userMgr.currentUser == null
+                                  ? _navigateToProfile(context)
+                                  : _navigateToAddRoom(context, room),
                             ))
                         .toList()),
               ),

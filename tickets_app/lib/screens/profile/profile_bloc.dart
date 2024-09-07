@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:meta/meta.dart';
-import 'package:tickets_app/core/all_file.dart';
 import 'package:tickets_app/managers/reservation_mgr.dart';
 import 'package:tickets_app/managers/room_mgr.dart';
 import 'package:tickets_app/model/reservation.dart';
@@ -20,9 +19,11 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   var resMgr = GetIt.I.get<ReservationMgr>();
   get currentUser => userMgr.currentUser;
   get userReservations {
-    return resMgr.allReservations
-        .where((res) => res.userId == currentUser!.id)
-        .toList()
+    return currentUser == null
+        ? []
+        : resMgr.allReservations
+            .where((res) => res.userId == currentUser!.id)
+            .toList()
       ..sort((a, b) {
         DateTime dateA = a.date
             .toDateTime(); // Use your extension to convert string to DateTime

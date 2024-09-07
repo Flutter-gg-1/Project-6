@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:tickets_app/core/extensions/color_ext.dart';
-import 'package:tickets_app/core/extensions/img_ext.dart';
 import 'package:tickets_app/core/extensions/string_ext.dart';
 
 class ReservationCard extends StatelessWidget {
-  final String roomId;
+  final int roomId;
   final String nights;
   final String date;
+  final Image img;
   final Function()? onPressed;
   final Function()? onDelete;
 
@@ -15,6 +15,7 @@ class ReservationCard extends StatelessWidget {
     required this.roomId,
     required this.nights,
     required this.date,
+    required this.img,
     required this.onPressed,
     required this.onDelete,
   });
@@ -29,26 +30,29 @@ class ReservationCard extends StatelessWidget {
       child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: const SizedBox(
-                  height: 120,
-                  width: 120,
-                  child: Image(
-                    image: Img.lobby,
-                    fit: BoxFit.cover,
+              Expanded(
+                flex: 1,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: Image(
+                      image: img.image,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
               const SizedBox(width: 12),
               Expanded(
+                flex: 2,
                 child: Column(
                   children: [
                     ListTile(
                       title: Text(
-                        "Room number: $roomId",
+                        "Room number: ${100 + roomId}",
                       ).styled(weight: FontWeight.w800, size: 16),
                       subtitle: Text(
                         "Number of Nights: $nights\nDate: $date",
