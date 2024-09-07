@@ -27,7 +27,7 @@ class CustomTextField extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Text(
-            title, // Display the title above the text field
+            title, 
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
@@ -41,7 +41,7 @@ class CustomTextField extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.1),
-                offset: const Offset(0, 4), // Position the shadow at the bottom
+                offset: const Offset(0, 4), 
                 blurRadius: 10,
               ),
             ],
@@ -52,14 +52,14 @@ class CustomTextField extends StatelessWidget {
             validator: validator,
             decoration: InputDecoration(
               hintText: hintText,
-              hintStyle: TextStyle(color: Colors.grey),
+              hintStyle: const TextStyle(color: Colors.grey),
               fillColor: Colors.white,
               filled: true,
               suffixIcon: isPassword
                   ? IconButton(
                       icon: Icon(
                         showPassword ? Icons.visibility : Icons.visibility_off,
-                        color: const Color(0xFFB98875), // Icon color matching the border
+                        color: const Color(0xFFB98875), 
                       ),
                       onPressed: togglePasswordView,
                     )
@@ -67,19 +67,19 @@ class CustomTextField extends StatelessWidget {
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(7),
                 borderSide: const BorderSide(
-                  color: Color(0xFFB98875), // Border color set to B98875
+                  color: Color(0xFFB98875), 
                 ),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(7),
                 borderSide: const BorderSide(
-                  color: Color(0xFFB98875), // Border color for enabled state
+                  color: Color(0xFFB98875), 
                 ),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(7),
                 borderSide: const BorderSide(
-                  color: Color(0xFFB98875), // Border color for focused state
+                  color: Color(0xFFB98875), 
                   width: 2,
                 ),
               ),

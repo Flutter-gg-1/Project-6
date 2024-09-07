@@ -16,9 +16,9 @@ class NavBar extends StatelessWidget {
       create: (context) => CoffeeBloc(),
       child: Builder(builder: (context) {
         int selectedIndex = 0;
-        final List<Widget> _widgetOptions = <Widget>[
+        final List<Widget> widgetOptions = <Widget>[
           const HomeScreen(),
-          CartPage(),
+          const CartPage(),
           const ProfilePage(),
         ];
         return BlocBuilder<CoffeeBloc, CoffeeState>(
@@ -35,7 +35,7 @@ class NavBar extends StatelessWidget {
                     child: widget,
                   );
                 },
-                child: _widgetOptions[selectedIndex],
+                child: widgetOptions[selectedIndex],
               ),
               bottomNavigationBar: const BottomNavBar(),
             );

@@ -9,7 +9,7 @@ class CustomTextField extends StatelessWidget {
   final Function? togglePasswordView;
   final String? Function(String?)? validator;
 
-  const CustomTextField({
+  const CustomTextField({super.key, 
     required this.title,
     required this.controller,
     this.hintText = '',

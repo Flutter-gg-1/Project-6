@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:project6/components/custom_button.dart';
 import 'package:project6/data_layer/coffee_data.dart';
 import 'package:project6/screens/login_screen.dart';
@@ -43,7 +44,8 @@ class ProfilePage extends StatelessWidget {
               RichText(
                 text: TextSpan(
                   text: 'Welcome ',
-                  style: const TextStyle(fontSize: 30, color: Color(0xff000000)),
+                  style:
+                      const TextStyle(fontSize: 30, color: Color(0xff000000)),
                   children: <TextSpan>[
                     TextSpan(
                         text: getIt.get<CoffeeData>().currentUser['name'],
@@ -54,8 +56,10 @@ class ProfilePage extends StatelessWidget {
                   ],
                 ),
               ),
+              Lottie.asset("assets/images/Animation - 1725738198532.json",
+                  width: 150, height: 150),
               const SizedBox(
-                height: 180,
+                height: 140,
               ),
               CustomButton(
                 text: 'Sign out',
