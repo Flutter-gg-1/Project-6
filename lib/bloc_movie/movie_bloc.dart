@@ -39,7 +39,6 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
   }
 
   FutureOr<void> addMovieMethod(AddMovieEvent event, Emitter<MovieState> emit) {
-    // setNewImageMethod(event, emit)
     Movie movie = Movie(
       id: id,
       name: nameController.text,

@@ -51,7 +51,7 @@ class MovieCard extends StatelessWidget {
                 children: [
                   const Icon(Icons.calendar_month,
                       size: 16, color: Color(0xffF2F2F2)),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Text(movie.year,
@@ -111,34 +111,6 @@ class MovieCard extends StatelessWidget {
                                             fontSize: 14,
                                             color: const Color(0xff8F8D9C),
                                           ),
-                                          // GestureDetector(
-                                          //   onTap: onDelete,
-                                          //   child: Container(
-                                          //     height: 30,
-                                          //     width: 110,
-                                          //     decoration: BoxDecoration(
-                                          //       color:const Color(0xff6F43F5),
-                                          //       borderRadius:BorderRadius.circular(10)
-                                          //     ),
-                                          //     child: const Center(
-                                          //       child: Text("Delete",style: TextStyle(color: Colors.white)),
-                                          //     ),
-                                          //   ),
-                                          // ),
-                                          // GestureDetector(
-                                          //   onTap: () => context.pop(),
-                                          //   child: Container(
-                                          //     height: 30,
-                                          //     width: 110,
-                                          //     decoration: BoxDecoration(
-                                          //       color:const Color(0xff8F8D9C),
-                                          //       borderRadius:BorderRadius.circular(10)
-                                          //     ),
-                                          //     child: const Center(
-                                          //       child: Text("Cancel",style: TextStyle(color: Colors.white),),
-                                          //     ),
-                                          //   ),
-                                          // )
                                         ],
                                       )
                                     ],

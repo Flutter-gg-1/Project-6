@@ -26,8 +26,7 @@ class ShowMovies extends StatelessWidget {
     return movies.isEmpty
         ? const NoMoviesWidget()
         : GridView.builder(
-            // padding: EdgeInsets.all(1),
-            physics: ScrollPhysics(),
+            physics: const ScrollPhysics(),
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: context.getWidth() < 810 ? 2 : 3,
