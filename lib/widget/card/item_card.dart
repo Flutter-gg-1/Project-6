@@ -41,7 +41,7 @@ class ItemCard extends StatelessWidget {
               children: [
                 Image.asset(
                   imagePath,
-                  height: context.getHeight() * 0.19,
+                  height: context.getHeight() * 0.18,
                   width: context.getWidth() * 0.35,
                 ),
                 Positioned(

@@ -83,7 +83,7 @@ class ItemScreen extends StatelessWidget {
             ),
             SingleChildScrollView(
               child: SizedBox(
-                height: context.getHeight() * 0.55,
+                height: context.getHeight() * 0.5,
                 width: double.infinity,
                 child: const TabBarView(children: [
                   Column(
