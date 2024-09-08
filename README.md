@@ -26,7 +26,7 @@ The purpose of this app is to allow admin to discover and CRUD items with more f
 
 - **SnackBar**: The `SnackBar` is used to show error messages to the users.
 
-- **BottomNavigationBar**: The `BottomNavigationBar` is used to navigate between different sections of the app, such as the Feed, Saved Items, and Profile.
+- **BottomNavigationBar**: The `BottomNavigationBar` is used to navigate between different sections of the app, such as the Home, Add Items screen, and Profile.
 
 - **Builder**: The `Builder` widget is used to create a new context for the child widget.
 
