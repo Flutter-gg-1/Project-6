@@ -10,6 +10,12 @@
   <a href="#output">Output</a> •
 </p>
 
+### Team Members 
+- Najwa Althahri 👩🏻‍💻
+- Rahaf Alghamdi 👩🏻‍💻
+- Turki Aloufi 👨🏻‍💻
+- Yaser Alkhayyat 👨🏻‍💻
+
 ### Overview
 In this project, our team collaborated to create the Movie App, an intuitive application designed for movie lovers who want to manage their movie collections effortlessly. We began by designing the user interface and crafting the user flow to ensure a seamless and enjoyable experience. Every step of the process was carefully planned, from wireframing to final design, with a focus on usability and functionality.
 
